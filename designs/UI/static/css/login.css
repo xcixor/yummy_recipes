@@ -1,0 +1,43 @@
+body{
+    /* background-image: url("../images/bread.jpg") */
+        background: radial-gradient(circle, black, white);
+}
+.login{
+    padding: 50px;
+    background-color: blueviolet;
+    /* border-radius: 5px; */
+    border: solid blue 2px;
+    margin-top: 50px;
+    color: #79BFA1;
+    position: relative;
+    height: 500px;
+    opacity: 0.9;
+}
+.row{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.bd-img{
+    opacity: 0.9;
+}
+
+input[type=text]{
+    margin-bottom: 20px;
+    
+ }
+ h4{
+    /* text-align: center; */
+    color: yellowgreen;
+    margin-bottom: 20px;
+}
+.log-head{
+    background-color: red;
+}
+@media (max-width: 767px) {
+    .container {
+        padding:0;
+        margin:0;
+    }
+ }
