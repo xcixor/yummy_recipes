@@ -28,6 +28,8 @@
 
 * [Dashboard](/designs/wireframes/dashboard.png)
 
+* [Dashboard](/designs/wireframes/uml.png)
+
 ## Contributing
 
 ## Versioning
