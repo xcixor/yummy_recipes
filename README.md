@@ -1,20 +1,20 @@
-#Yummy_Recipes#
+# Yummy_Recipes
 
-##Getting Started##
-###preliquisites###
-   installing
- Running the Tests
+## Getting Started
+### preliquisites
+### installing
+## Running the Tests
 
- Deployment
+## Deployment
 
- Built With
+## Built With
 
- Contributing
+ ## Contributing
 
- Versioning
+ ## Versioning
 
- Authors
+ ## Authors
   pndung54@gmail.com
- Licences
+ ## Licences
 
- Acknowledgements
+ ## Acknowledgements
