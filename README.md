@@ -1,7 +1,7 @@
- Yummy_Recipes
+#Yummy_Recipes#
 
-  Getting Started
-   preliquisites
+##Getting Started##
+###preliquisites###
    installing
  Running the Tests
 
