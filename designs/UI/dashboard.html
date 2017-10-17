@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <script src="static/jquery/jquery-3.2.1.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>  
+    <title>Dashboard</title>
+</head>
+<body>
+  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#my-nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Yummy!</a>
+    <!-- <div class="side-bar"> -->
+        <div class="collapse navbar-collapse side-bar" id="my-nav">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Username</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                  Category
+                </div>
+                <div class="card-block">
+                  <h4 class="card-title">Dessert</h4>
+                  <p class="card-text">Description</p>
+                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                </div>
+             </div>   
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                  Category
+                </div
+                <div class="card-block">
+                  <h4 class="card-title">Breakfast</h4>
+                  <p class="card-text">Foods you eat in the morining</p>
+                </div>
+             </div>   
+        </div>
+        <!-- <a href="#" class="btn btn-primary">Add new</a> -->
+              
+       
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-5">
+              
+          </div>
+          <div class="col-md-5">
+              <a href="#" class="btn btn-primary">Add new</a>
+        </div>
+
+      </div>
+
+
+   
+<!-- scripts -->
+
+
+
+  
+
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
+</script>
+
+</body>
+</html>
