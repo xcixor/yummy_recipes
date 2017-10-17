@@ -16,7 +16,7 @@
 ## Deployment
 
 ## Built with
-### Flask
+##### HTML, CSS3 and Javascript
 
 ## Mockups
 * [Landing page](/designs/wireframes/index_page.png)
