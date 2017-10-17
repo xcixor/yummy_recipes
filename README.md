@@ -1,6 +1,6 @@
-Yummy_Recipes
+#Yummy_Recipes
 
-Getting Started
+##Getting Started
 
     Prerequisites
     You should have the following software installed
