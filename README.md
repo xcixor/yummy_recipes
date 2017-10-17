@@ -19,11 +19,11 @@
 ### Flask
 
 ## Mockups
-![Landing page](/designs/wireframes/index_page.png)
+* [Landing page](/designs/wireframes/index_page.png)
 
-![Login page](/designs/wireframes/login_page.png)
+* [Login page](/designs/wireframes/login_page.png)
 
-![Dashboard](/designs/wireframes/dashboard.png)
+* [Dashboard](/designs/wireframes/dashboard.png)
 
 ## Contributing
 
