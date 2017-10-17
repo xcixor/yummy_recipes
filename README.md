@@ -1,30 +1,30 @@
-#Yummy_Recipes
+# Yummy_Recipes
 
-##Getting Started
+## Getting Started
 
-    Prerequisites
-    You should have the following software installed
+### Prerequisites
+	You should have the following software installed
         - A browser
-    Installing
-    Clone the project as follows:
-    On the terminal for linux and mac, type: 
-        $   git clone https://github.com/xcixor/yummy_recipes
+### Installing
+	Clone the project as follows:
+		On the terminal for linux and mac, type: 
+        	$   git clone https://github.com/xcixor/yummy_recipes
     This will download the project onto your machine locally
 
-Running the Tests
+## Running the Tests
 
-Deployment
+## Deployment
 
-Built with
-    -Flask
+## Built with
+### Flask
 
-Contributing
+## Contributing
 
-Versioning
+## Versioning
 
-Authors
+## Author
 	pndungu54@gmail.com
-Licences
-    None
+## Licences
+	None
 
-Acknowledments
+## Acknowledments
