@@ -18,9 +18,12 @@ Deployment
 Built with
     -Flask
 
+Mockups
+
 Contributing
 
 Versioning
+
 
 Authors
 	pndungu54@gmail.com
