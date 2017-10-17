@@ -19,7 +19,12 @@
 ### Flask
 
 <<<<<<< HEAD
-Mockups
+## Mockups
+![Landing page](/designs/wireframes/index_page.png)
+
+![Login page](/designs/wireframes/login_page.png)
+
+![Dashboard](/designs/wireframes/dashboard.png)
 
 Contributing
 =======
@@ -27,6 +32,8 @@ Contributing
 >>>>>>> f8e528aac9db8f42918d943b1fb6ea2ab99c0d9c
 
 ## Versioning
+
+<<<<<<< HEADersioning
 
 <<<<<<< HEAD
 
