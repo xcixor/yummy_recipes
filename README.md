@@ -7,9 +7,12 @@
         - A browser
 ### Installing
 	Clone the project as follows:
-		On the terminal for linux and mac, type: 
-        	$   git clone https://github.com/xcixor/yummy_recipes
+	On the terminal for linux and mac, type: 
+    	$   git clone https://github.com/xcixor/yummy_recipes
     This will download the project onto your machine locally
+	open the index.html on a browser to provide links to other pages 
+	or preview the site on github pages via the following link:
+	>
 
 ## Running the Tests
 
