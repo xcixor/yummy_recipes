@@ -13,6 +13,8 @@ def create_app():
     from .home import home as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    from .authentication import authentication as authentication_blueprint
+    app.register_blueprint(authentication_blueprint, url_prefix='/authentication')
 
     return app
 
