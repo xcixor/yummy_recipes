@@ -3,10 +3,8 @@
 import unittest
 
 
-from tests.app_classes import User
-
 class TestUser(unittest.TestCase):
-    """contains the test for the user object
+    """contains the test for theuser object
     methods
     """
     def setUp(self):
