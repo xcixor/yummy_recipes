@@ -2,8 +2,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/xcixor/yummy_recipes/badge.svg?branch=master)](https://coveralls.io/github/xcixor/yummy_recipes?branch=master)
 ### Prerequisites
 	You should have the following software installed
-        - python
-		- virtualenv
+    	python
+		virtualenv
 ### Installing
 	Clone the project as follows:
 	On the terminal for linux and mac, type: 
@@ -17,16 +17,16 @@
 		(myvenv) $	pip install -r requirements.txt
 	Once the installed start the app as follows:
 		(myvenv) $	python manage.py runserver
-	Or run the test as follows:
-		(myvenv) $ python manage.py test
 	Navigate to the link provided by the server and start creating recipes!
 
 ## Running the Tests
+	Run the test as follows:
+		(myvenv) $ python manage.py test
 
 ## Deployment
 
 ## Built with
-##### HTML, CSS3 and Javascript
+##### Flask
 
 ## Mockups
 * [Landing page](/designs/wireframes/index_page.png)
