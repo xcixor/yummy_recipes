@@ -9,27 +9,40 @@ sys.path.append("..")
 from myapp.app_classes import User
 
 class TestUser(unittest.TestCase):
-    """contains the test for theuser oject
+    """contains the test for the user object
     methods
     """
     def setUp(self):
         """
         creates user objects for the tests
         """
-        self.user_1 = User('ptah', 'ptah123')
-        self.user_2 = User('Alice', 'alibumaye')
-        self.user_3 = User('James', 'Jamo')
+        self.user = User()
         
-        
-        self.users = []
 
     def tearDown(self):
         """
-        removes the objects after they have been user
+        removes the objects after they have been used
         """
-        pass
+        del self.user
 
     def test_user_exist(self):
-        """Tests whether the """
-        self.assertEqual(self.user_1.name, 'ptah')
-       
+        """
+        Test for the existence of a user in the list
+        """
+
+        self.user.users = [{'username' : 'peter', 'ptah' : 'ptah'}]
+        result = self.user.register_user('peter', 'ptah', 'ptah')
+        self.assertEqual(result, "User added already")
+
+    def test_registration(self):
+        """Checks whether user can register with correct details"""
+        result = self.user.register_user('jim', 'ptah', 'ptah')
+        self.assertEqual(result, "registered successfuly!")
+
+    def test_login(self):
+        self.user.users = [{'username' : 'andela', 'password' : 'andela1'}]
+        result = self.user.login_user('andela','andela1')
+        self.assertEqual(result, "User successfully loged in")
+
+# if __name__ == '__main__':
+#     unittest.main
