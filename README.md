@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/xcixor/yummy_recipes.svg?branch=master)](https://travis-ci.org/xcixor/yummy_recipes)   
-[![Coverage Status](https://coveralls.io/repos/github/xcixor/yummy_recipes/badge.svg?branch=master)](https://coveralls.io/github/xcixor/yummy_recipes?branch=master)
+<!-- [![Coverage Status](https://coveralls.io/repos/github/xcixor/yummy_recipes/badge.svg?branch=master)](https://coveralls.io/github/xcixor/yummy_recipes?branch=master) -->
+[![Coverage Status](https://coveralls.io/repos/github/xcixor/yummy_recipes/badge.svg?branch=flask_recipe)](https://coveralls.io/github/xcixor/yummy_recipes?branch=flask_recipe)
 ### Prerequisites
 	You should have the following software installed
     	python
