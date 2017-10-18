@@ -2,7 +2,8 @@
 
 import unittest
 
-from app_classes import User
+
+from tests.app_classes import User
 
 class TestUser(unittest.TestCase):
     """contains the test for the user object
