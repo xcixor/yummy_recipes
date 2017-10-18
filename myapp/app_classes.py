@@ -11,45 +11,46 @@ class User(object):
     Attributes:
         username(str): The user's name
         password(str): The user's password
+        confirm_password(str): The user's confirmation password
     Methods:
-        add_category: adds a recipe_category to the user's collection
-        show_categories: shows a list of the user's categories
-        edit_category: edits a given recipe category
-        delete_category: delete a given recipe category
+        register_user: Adds a user to the user's collection
+        login_user: Confirms the credentials of the user and grants access to account
     """
-    def __init__(self, username, password):
-        """creates a user instance
+    def __init__(self):
+        """adds a users to a collection of users
+        Args:
+        """
+        self.users = []
+
+    def register_user(self, username, password, confirm_password):
+        """Checks the availability of the user in the user's collection
+        and adds him if he doesn't exist
+        """
+        data = {}
+
+        for a_user in self.users:
+            if username == a_user['username']:
+                return "User added already"
+            else:
+                if password != confirm_password:
+                    return "The passwords do not match"
+
+        data['username'] = username
+        data['password'] = password
+        self.users.append(data)
+        return "registered successfuly!"
+
+    def login_user(self, username, password):
+        """Compares details provided with those on record to prove user's authenticity
         Args:
             username(str): user's name
-            password(str): user's password
+            password
         """
-        self.username = username
-        self.password = password
-        self.categories = []
-
-    def add_category(self, category):
-        """Adds a recipe category to the user's collection
-        Args:
-            category (object): An object representing the category to be added
-        """
-        self.categories.append(category)
-
-    def show_categories(self):
-        """Returns a list of the user's categories"""
-        return self.categories
-
-    def edit_category(self):
-        """Edits an existing category in the user's collection"""
-        pass
-    def delete_category(self, category):
-        """Deletes an existing category from the user's list"""
-        self.categories.remove(category)
-
-    def get_username(self):
-        """A getter for the username"""
-        return self.username
-    
-    name = property(get_username)
+        for a_user in self.users:
+            if username == a_user['username'] and password == a_user['password']:
+                return "User successfully loged in"
+            else:
+                return "Password/username combination is incorrect"
 
 class Category(object):
     """Creates a recipe category and adss recipes to it
