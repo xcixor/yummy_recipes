@@ -19,4 +19,4 @@ def logout():
 @authentication.route('/register', methods=['GET', 'POST'])
 def register():
     """Creates a user and directs them to their account"""
-    return render_template('authentication/register.html')
+    return render_template('dashboard/dashboard.html')

@@ -5,10 +5,14 @@ Methods:
 """
 from flask import Flask
 
-def create_app():
+from config import config
+
+def create_app(configuration):
     """It initializes the application"""
 
     app = Flask(__name__)
+    app.config.from_object(config[configuration])
+    config[configuration].init_app(app)
 
     from .home import home as main_blueprint
     app.register_blueprint(main_blueprint)
