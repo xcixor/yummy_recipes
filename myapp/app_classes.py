@@ -30,16 +30,56 @@ class User(object):
     def add_category(self, category):
         """Adds a recipe category to the user's collection
         Args:
-            category (object): An object representing the shopping list to be added
+            category (object): An object representing the category to be added
         """
         self.categories.append(category)
 
     def show_categories(self):
         """Returns a list of the user's categories"""
         return self.categories
-    def edit_shoppinglist(self):
-        """Edits an existing shopping list in the user's collection"""
+
+    def edit_category(self):
+        """Edits an existing category in the user's collection"""
         pass
-    def delete_shoppinglist(self, category):
-        """Deletes an existing shopping list from the user's list"""
+    def delete_category(self, category):
+        """Deletes an existing category from the user's list"""
         self.categories.remove(category)
+
+class Category(object):
+    """Creates a recipe category and adss recipes to it
+    Attributes:
+        name(str): A name for the category
+        description(str): A description of what it is
+    Methods:
+        add_recipe: Adds a recipe to the category
+        show_recipe: Returns a List with the category recipes
+        edit_recipe: Edits an recipe in the category
+        delete_recipe: Deletes an recipe in the category
+    """
+
+    def __init__(self, name, description):
+        """Inititates a new category"""
+        self.name = name
+        self.description = description
+        self.recipes = []
+
+    def add_recipe(self, recipe):
+        """Adds an recipe to the category
+        Args:
+            recipe(object): Represents the recipe to be added
+        """
+        self.recipes.append(recipe)
+    def edit_category(self):
+        """Changes the details of the category as provided by user"""
+        pass
+
+    def show_recipes(self):
+        """Returns a list of the user's recipes"""
+        return self.recipes
+
+    def delete_recipe(self, recipe):
+        """Deletes a recipe from the collection
+        Args:
+            recipe(object) The recipe to remove
+        """
+        self.recipes.remove(recipe)
