@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/xcixor/yummy_recipes.svg?branch=master)](https://travis-ci.org/xcixor/yummy_recipes)   [![Coverage Status]
+[![Build Status](https://travis-ci.org/xcixor/yummy_recipes.svg?branch=master)](https://travis-ci.org/xcixor/yummy_recipes)   
 ### Prerequisites
 	You should have the following software installed
         - A browser
