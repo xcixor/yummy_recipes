@@ -19,6 +19,7 @@
 		(myvenv) $	python manage.py runserver
 	Or run the test as follows:
 		(myvenv) $ python manage.py test
+	Navigate to the link provided by the server and start creating recipes!
 
 ## Running the Tests
 
