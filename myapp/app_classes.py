@@ -83,3 +83,20 @@ class Category(object):
             recipe(object) The recipe to remove
         """
         self.recipes.remove(recipe)
+
+class recipe(object):
+    """Creates an Recipe to be added in the shopping list
+    Attributes:
+        name(str): The name of the recipe
+        procedure(str): The method for preparing the meal
+        servings(str): The number of servings it produces
+        cost(str): The cost it takes to prepare the meal
+    Methods:
+
+    """
+    def __init__(self, name, procedure, servings, cost):
+        """Creates a recipe object"""
+        self.name = name
+        self.procedure = procedure
+        self.servings = servings
+        self.cost = cost
