@@ -1,31 +1,35 @@
-# """Tests the User class"""
-# import sys
+"""Tests the User class"""
 
-# import unittest
+import unittest
 
+import sys
 
-# class TestUser(unittest.TestCase):
-#     """contains the test for theuser object
-#     methods
-#     """
-#     def setUp(self):
-#         """
-#         creates user objects for the tests
-#         """
-#         self.user_1 = User('ptah', 'ptah123')
-#         self.user_2 = User('Alice', 'alibumaye')
-#         self.user_3 = ser('James', 'Jamo')
+sys.path.append("..")
+
+from myapp.app_classes import User
+
+class TestUser(unittest.TestCase):
+    """contains the test for theuser oject
+    methods
+    """
+    def setUp(self):
+        """
+        creates user objects for the tests
+        """
+        self.user_1 = User('ptah', 'ptah123')
+        self.user_2 = User('Alice', 'alibumaye')
+        self.user_3 = User('James', 'Jamo')
         
         
-#         self.users = []
+        self.users = []
 
-#     def tearDown(self):
-#         """
-#         removes the objects after they have been user
-#         """
-#         pass
+    def tearDown(self):
+        """
+        removes the objects after they have been user
+        """
+        pass
 
-#     def test_user_exist(self):
-#         """Tests whether the """
-#         self.assertEqual(self.user_1.name, 'ptah')
+    def test_user_exist(self):
+        """Tests whether the """
+        self.assertEqual(self.user_1.name, 'ptah')
        
