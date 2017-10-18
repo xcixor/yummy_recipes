@@ -2,15 +2,23 @@
 [![Coverage Status](https://coveralls.io/repos/github/xcixor/yummy_recipes/badge.svg?branch=master)](https://coveralls.io/github/xcixor/yummy_recipes?branch=master)
 ### Prerequisites
 	You should have the following software installed
-        - A browser
+        - python
+		- virtualenv
 ### Installing
 	Clone the project as follows:
 	On the terminal for linux and mac, type: 
 		$	git clone [GitHubPages](https://github.com/xcixor/yummy_recipes)
     This will download the project onto your machine locally
-	open the index.html on a browser to provide links to other pages 
-	or preview the site on github pages via the following link:
-	[GitHubPages](https://xcixor.github.io/dashboard.html)
+	After cloning navigate to the root folder and in the terminal create a virtual environment as follows:
+		$	virtualenv 'preferred name of virtual environment'
+	After creating the virtual environment, activate it as folllows:
+		$	source 'your env'/bin/activate
+	After activating the virtual environment, install the app's dependencies as follows:
+		(myvenv) $	pip install -r requirements.txt
+	Once the installed start the app as follows:
+		(myvenv) $	python manage.py runserver
+	Or run the test as follows:
+		(myvenv) $ python manage.py test
 
 ## Running the Tests
 
