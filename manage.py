@@ -2,7 +2,7 @@ from myapp import create_app
 
 from flask_script import Manager, Shell
 
-app = create_app('default')
+app = create_app('testing')
 
 manager = Manager(app)
 
