@@ -2,3 +2,4 @@ designs/UI/README.md
 designs/UI/static/jquery/jquery-3.2.1.min.js
 designs/UI/.gitignore
 myvenv/
+__pycache__/
