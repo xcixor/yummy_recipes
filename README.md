@@ -45,7 +45,7 @@
 
 * [Dashboard](/designs/wireframes/dashboard.png)
 
-* [Dashboard](/designs/wireframes/uml.png)
+* [Uml](/designs/wireframes/uml.png)
 
 ## Contributing
 
