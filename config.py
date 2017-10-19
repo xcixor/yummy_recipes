@@ -11,20 +11,20 @@ class Config:
     def init_app(app):
         pass
 
-class DevelopmentConfig(Config):
+class Development(Config):
     DEBUG = True
 
 
-class TestingConfig(Config):
+class Testing(Config):
     TESTING = True
 
-class ProductionConfig(Config):
-    pass
+class Production(Config):
+    DEBUG = False
 
 config = {
-    'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'production': ProductionConfig,
+    'development': Development,
+    'testing': Testing,
+    'production': Production,
 
-    'default': DevelopmentConfig
+    'default': Development
 }
