@@ -85,7 +85,7 @@ class Category(object):
                description(str): A description of what it is
                owner(str): The name of the user who creates the category
         """
-        if self.find_category(name,owner):
+        if self.find_category(name, owner):
             return "Item alredy in list"
         category_toadd = {'owner': owner, 'name': name, 'description': description}
         self.categories.append(category_toadd)
@@ -96,17 +96,19 @@ class Category(object):
         for category in range(len(self.categories)):
             if self.categories[category]['name'] == name:
                 del self.categories[category]
+                return "Deleted successfully"
             return "Category not exist"
 
-    def edit_category(self, new_name,new_description, owner):
+    def edit_category(self, new_name,new_description, old_name, owner):
         """Updates the details of the new category
         Args:
             new_name(str): new name of category
             new_description(str): new description of category
         """
-        if self.find_category(owner):
-            self.delete_category
+        if self.find_category(old_name, owner):
+            self.delete_category(old_name)
             self.add_category(new_name, new_description, owner)
+            return "Updated"
         return "Item not exist"
 
 class Recipe(object):
@@ -165,17 +167,19 @@ class Recipe(object):
         for recipe in range(len(self.recipes)):
             if self.recipes[recipe]['name'] == name:
                 del self.recipes[recipe]
+                return "Deleted successfully"
             return "recipe not exist"
 
-    def edit_recipe(self, new_name,new_description, owner):
+    def edit_recipe(self, new_name,new_description, old_name, owner):
         """Updates the details of the new recipe
         Args:
             new_name(str): new name of recipe
             new_description(str): new description of recipe
         """
-        if self.find_recipe(owner):
-            self.delete_recipe
+        if self.find_recipe(old_name, owner):
+            self.delete_recipe(old_name)
             self.add_recipe(new_name, new_description, owner)
+            return "Updated"
         return "Item not exist"
 
 
