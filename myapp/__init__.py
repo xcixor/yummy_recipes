@@ -5,7 +5,11 @@ Methods:
 """
 from flask import Flask
 
+from flask_bootstrap import Bootstrap
+
 from config import config
+
+bootstrap = Bootstrap()
 
 def create_app(configuration):
     """It initializes the application"""
@@ -13,6 +17,8 @@ def create_app(configuration):
     app = Flask(__name__)
     app.config.from_object(config[configuration])
     config[configuration].init_app(app)
+
+    bootstrap.init_app(app)
 
     from .home import home as main_blueprint
     app.register_blueprint(main_blueprint)

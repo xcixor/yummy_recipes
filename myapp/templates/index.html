@@ -1,49 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/index.css">
-    <title>Yummy!</title>
-</head>
-<body class="img-responsive bd-img" >
-    <div class="landing container">
-        <h3>Yummy! Recipes</h3>    
-        <div class="row landing-content">
-            <div class="img-responsive bgimage col-lg-6 d-none d-md-block">
-                <span class="snippet"><p>Create yours today!</p></span>
-            </div>
-            <div class="col-lg-6 landing-form">
-                <h4>Love cooking?</h4>
-                <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share with their food ideas</p>
-                <p>Join them today by registering an account below!</p>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Username:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="pass1">Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="pass2">Confirm Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Password">
-                    </div>
-                    <!-- <button type="submit" class="btn btn-primary btn-block">Register</button> -->
-                    <a href="/authentication/register" class="btn btn-primary btn-block">Register</a>
-                    <!-- <li><a href="/auth/login">Log In</a></li> -->
-                </form>
-                <p>Already Registered? <a href="/authentication/login">Sign in</a></p>
-            </div>
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="css/login.css">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="landing container">
+    <h3>Yummy! Recipes</h3>    
+    <div class="row landing-content">
+        <div class="img-responsive bgimage col-lg-6 d-none d-md-block">
+            <span class="snippet"><p>Create yours today!</p></span>
+        </div>
+        <div class="col-lg-6 landing-form">
+            <h4>Love cooking?</h4>
+            <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share with their food ideas</p>
+            <p>Join them today by registering an account below!</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Username:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="pass1">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="pass2">Confirm Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Password">
+                </div>
+                <!-- <button type="submit" class="btn btn-primary btn-block">Register</button> -->
+                <a href="/authentication/register" class="btn btn-primary btn-block">Register</a>
+                <!-- <li><a href="/auth/login">Log In</a></li> -->
+            </form>
+            <p>Already Registered? <a href="/authentication/login">Sign in</a></p>
         </div>
     </div>
-    </div> 
-
-<script src="static/bootstrap/js/bootstrap.min.js"></script>    
-<script src="static/jquery/jquery-3.2.1.min.js"></script>
-</body>
-</html>
+</div>
+</div> 
+{% endblock %}
