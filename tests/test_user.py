@@ -18,13 +18,11 @@ class TestUser(unittest.TestCase):
         """
         self.user = User()
         
-
     def tearDown(self):
         """
         removes the objects after they have been used
         """
         del self.user
-
     def test_user_exist(self):
         """
         Test for the existence of a user in the list
