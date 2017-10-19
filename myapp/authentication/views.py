@@ -1,9 +1,13 @@
 """This module imports the authentication blueprint.
 It creates the routes for user authenication.
 """
-from flask import render_template, request, url_for
+from flask import render_template, redirect, request, url_for, flash
 
 from . import authentication
+
+from .forms import RegistrationForm
+
+from ..app_classes import User
 
 
 @authentication.route('/login', methods = ['GET', 'POST'])
@@ -18,5 +22,8 @@ def logout():
 
 @authentication.route('/register', methods=['GET', 'POST'])
 def register():
-    """Creates a user and directs them to their account"""
+    form = RegistrationForm()
+    user = User()
+    user.register_user(form.username.data, form.password, form.password2)
+    flash('You can now login.')
     return render_template('dashboard/dashboard.html')

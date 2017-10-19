@@ -7,3 +7,4 @@ from . import home
 def index():
     """Defines the landing page"""
     return render_template('index.html')
+
