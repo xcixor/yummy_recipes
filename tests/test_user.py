@@ -35,7 +35,7 @@ class TestUser(unittest.TestCase):
     def test_registration(self):
         """Checks whether user can register with correct details"""
         result = self.user.register_user('jim', 'ptah', 'ptah')
-        self.assertEqual(result, "registered successfuly!")
+        self.assertEqual(result, True)
 
     def test_login(self):
         self.user.users = [{'username' : 'andela', 'password' : 'andela1'}]
