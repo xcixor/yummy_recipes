@@ -75,10 +75,15 @@
 <h1>Category</h1>
 
 {% else %}
-<div class="jumbotron">
-  <h1 class="display-3">Hello, {{session['username']}}</h1>
-  <p class="lead">Start managing you categories by adding one.</p>
-</div>
+<!-- <div class="container-fluid"> -->
+<!-- <div class="row"> -->
+  <div class="jumbotron">
+    <h1 class="display-3">Hello, {{session['username']}}</h1>
+    <p class="lead">Start managing you categories by adding one.</p>
+  </div>
+<!-- </div> -->
+<!-- </div> -->
+
 {% endif %}
 <div class="container-fluid">
   <div class="row">
