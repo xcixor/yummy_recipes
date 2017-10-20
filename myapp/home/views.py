@@ -7,10 +7,9 @@ from flask import render_template, redirect, session, url_for, flash
 
 from . import home
 
+from .. import user, recipe, category
 
-from .forms import Registration
-
-from ..app_classes import User
+from .forms import RegistrationForm, CategoryCreation
 
 @home.route('/dashboard')
 def dashboard():
@@ -20,13 +19,11 @@ def dashboard():
 @home.route('/', methods=['GET', 'POST'])
 def index():
     """Defines the landing page"""
-    form = Registration()
+    form = RegistrationForm()
     if form.validate_on_submit():
-        # session['name'] = form.username.data
         username = form.username.data
         pass_1 = form.password.data
         pass_2 = form.password2.data
-        user = User()
         if user.register_user(username, pass_1, pass_2):
             session['username'] = username
             flash('You can now login.')
