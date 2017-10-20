@@ -6,6 +6,7 @@
 {% endblock %}
 {% block content %}
 <div class="landing container">
+
     <h3>Yummy! Recipes</h3>    
     <div class="row landing-content">
         <div class="img-responsive bgimage col-lg-6 d-none d-md-block">
@@ -13,25 +14,8 @@
         </div>
         <div class="col-lg-6 landing-form">
             <h4>Love cooking?</h4>
-            <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share with their food ideas</p>
+            <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share their food ideas</p>
             <p>Join them today by registering an account below!</p>
-            <form>
-                <!-- <div class="form-group">
-                    <label for="name">Username:</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <label for="pass1">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="pass2">Confirm Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Password">
-                </div>
-                <!-- <button type="submit" class="btn btn-primary btn-block">Register</button> -->
-                <!-- <a href="/authentication/register" class="btn btn-primary btn-block">Register</a> -->
-            <!-- </form> -->
-            <!-- <p>Already Registered? <a href="/authentication/login">Sign in</a></p>  -->
             {{ wtf.quick_form(form) }}
         </div>
     </div>
