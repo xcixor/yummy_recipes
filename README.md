@@ -17,7 +17,7 @@
 ### Installing
 	Clone the project as follows:
 	On the terminal for linux and mac, type: 
-		$	git clone [GitHubPages](https://github.com/xcixor/yummy_recipes)
+		$	git clone https://github.com/xcixor/yummy_recipes.git
     This will download the project onto your machine locally
 	After cloning navigate to the root folder and in the terminal create a virtual environment as follows:
 		$	virtualenv 'preferred name of virtual environment'
