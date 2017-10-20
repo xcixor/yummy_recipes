@@ -38,7 +38,7 @@ class User(object):
         data['username'] = username
         data['password'] = password
         self.users.append(data)
-        return "registered successfuly!"
+        return True
 
     def login_user(self, username, password):
         """Compares details provided with those on record to prove user's authenticity
