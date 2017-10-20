@@ -55,7 +55,7 @@ def add_category():
         description = form.description.data
         category.add_category(name,description,user)
         # return redirect(url_for('dashboard'))
-        return redirect(url_for('home.dashboard', form=form))
+        return render_template('dashboard/dashboard', form=form)
 
         
 
