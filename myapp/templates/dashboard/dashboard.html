@@ -1,105 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/css/dashboard.css">
-    <title>Dashboard</title>
-</head>
-<body>
-  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#my-nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">Yummy!</a>
-        <div class="collapse navbar-collapse side-bar" id="my-nav">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">{{session['username']}}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
-              </li>
-            </ul>
-        </div>
-  </nav>
-    <div class="container-fluid">
-        <h2>My Recipes</h2>
-      <div class="row">
-        <div class="col-md-2">
-          
-        </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header">
-                  Category
-                </div>
-                <div class="card-block">
-                  <h4 class="card-title">Dessert</h4>
-                  <p class="card-text">Food you just eat</p>
-                  <a href="#" class="btn btn-primary float-right">Delete</a>
-                  <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button>
-                </div>
-             </div>   
-        </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header">
-                  Category
-                </div>
-                <div class="card-block">
-                  <h4 class="card-title">Breakfast</h4>
-                  <p class="card-text">Foods you eat in the morining</p>
-                  <a href="#" class="btn btn-primary float-right">Delete</a>
-                  <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button>
-                </div>
-             </div>   
-            <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Recipe</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    <input type="text" class="form-control" id="name" placeholder="Name">
-                    <input type="text" class="form-control" id="procedure" placeholder="Procedure">
-                    <input type="text" class="form-control" id="yield" placeholder="Yied">
-                    <input type="text" class="form-control" id="cost" placeholder="Cost">
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-                </div>
-            </div> 
-        </div>             
-      </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
+{% extends "bootstrap/base.html" %}
 
-          </div>
-          <div class="col-md-5">
-              
-          </div>
-          <div class="col-md-5">
-              <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#recipeModal">Add new</button>
-          </div>
+{% block title %}Yummy!!{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../static/css/dashboard.css">
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#my-nav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Yummy!</a>
+      <div class="collapse navbar-collapse side-bar" id="my-nav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">{{session['username']}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Logout</a>
+            </li>
+          </ul>
       </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+{%if category %}
+
+<div class="container-fluid">
+  <h2>My Recipes</h2>
+<div class="row">
+  <div class="col-md-2">
+    
   </div>
-</body>
-</html>
+  <div class="col-md-5">
+      <div class="card">
+          <div class="card-header">
+            Category
+          </div>
+          <div class="card-block">
+            <h4 class="card-title">Dessert</h4>
+            <p class="card-text">Food you just eat</p>
+            <a href="#" class="btn btn-primary float-right">Delete</a>
+            <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button>
+          </div>
+       </div>   
+  </div>
+  <div class="col-md-5">
+      <div class="card">
+          <div class="card-header">
+            Category
+          </div>
+          <div class="card-block">
+            <h4 class="card-title">Breakfast</h4>
+            <p class="card-text">Foods you eat in the morining</p>
+            <a href="#" class="btn btn-primary float-right">Delete</a>
+            <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button>
+          </div>
+       </div>   
+
+  </div>             
+</div>
+</div>
+<h1>Category</h1>
+
+{% else %}
+<div class="jumbotron">
+  <h1 class="display-3">Hello, world!</h1>
+  <p class="lead">Start managing you categories by adding one.</p>
+</div>
+{% endif %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-5">
+        
+    </div>
+    <div class="col-md-5">
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#recipeModal">Add new</button>
+        <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Recipe</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              <input type="text" class="form-control" id="name" placeholder="Name">
+              <input type="text" class="form-control" id="procedure" placeholder="Procedure">
+              <input type="text" class="form-control" id="yield" placeholder="Yied">
+              <input type="text" class="form-control" id="cost" placeholder="Cost">
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save</button>
+              </div>
+          </div>
+          </div>
+      </div> 
+    </div>
+
+</div>
+</div>
+{% endblock %}
