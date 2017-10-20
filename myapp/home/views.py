@@ -33,3 +33,18 @@ def index():
         flash("You cant login")
     return render_template('index.html', form=form)
 
+@home.route('/add_category')
+def add_category():
+    """Adds a user category"""
+    user = session['username']
+    if form.validate_on_submit():
+        form = CategoryCreation()
+        name = form.data.name
+        description = form.data.description
+        if category.add_category(name, description, user):
+            flash("Category added successfully")
+            return render_template('dashboard/dashboard.html')
+        
+
+
+
