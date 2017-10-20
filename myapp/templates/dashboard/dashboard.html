@@ -94,8 +94,9 @@
         
     </div>
     <div class="col-md-5">
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#recipeModal">Add new</button>
-        <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#recipeModal">Add new</button> -->
+        <a href="{{ url_for('home.add_category') }}" class="btn btn-primary btn-block">Add new</a>
+        <!-- <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
@@ -104,13 +105,12 @@
                   <span aria-hidden="true">&times;</span>
               </button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body"> -->
               <!-- <input type="text" class="form-control" id="name" placeholder="Name">
               <input type="text" class="form-control" id="procedure" placeholder="Procedure">
               <input type="text" class="form-control" id="yield" placeholder="Yied">
               <input type="text" class="form-control" id="cost" placeholder="Cost"> -->
-              {{ wtf.quick_form(form) }}
-              </div>
+              <!-- </div> -->
               <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save</button>

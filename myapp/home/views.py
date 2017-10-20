@@ -3,7 +3,7 @@ from flask import render_template
 
 from . import home
 
-from flask import render_template, redirect, session, url_for, flash
+from flask import render_template, request, redirect, session, url_for, flash
 
 from . import home
 
@@ -16,16 +16,7 @@ def dashboard():
     """Avails the user's dashboard"""
     user = session['username']
     categories = category.show_categories(user)
-    form = CategoryCreation()
-    # user = session['username']
-    # if form.validate_on_submit():
-    #     name = form.data.name
-    #     description = form.data.description
-    #     if category.add_category(name, description, user):
-    #         flash("Category added successfully")
-    #         # return render_template('dashboard/dashboard.html', form=form)
-    #         return redirect(url_for('home.dashboard'))
-    return render_template('dashboard/dashboard.html', user_categories = categories, form=form)
+    return render_template('dashboard/dashboard.html', user_categories = categories)
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
@@ -46,19 +37,33 @@ def index():
 
 
 
-@home.route('/add_category', methods=['GET','POST'])
-def add_category():
-    user = session['username']
-    form = CategoryCreation()
-    # if request.method == 'POST':
-    #     return redirect(url_for('home.dashboard'))
-    # return render_template('index.html')
+# @home.route('/add_category', methods=['GET','POST'])
+# def add_category():
+#     user = session['username']
+#     form = CategoryCreation()
+#     if request.method == 'POST':
+#         name = form.name.data
+#         description = form.description.data
+#         category.add_category(name,description,user)
+#         return redirect(url_for('dashboard'))
+#     return render_template('index.html')
 
-    if form.validate_on_submit():
-        name = form.name.data
-        description = form.description.data
+@home.route('/add_category')
+def add_category():
+    """Provides access to a form to create a category"""
+    return render_template('dashboard/categoryadd.html')
+
+@home.route('/create_category')
+def add_category():
+    """Collects data about a category and creates a cateegory"""
+    user = session['username']
+    if request.method == 'POST':
+        name = request.form['name']
+        description = request.form['description']
         category.add_category(name,description,user)
         return redirect(url_for('dashboard'))
-        
+    return render_template('index.html')
 
+
+        
 

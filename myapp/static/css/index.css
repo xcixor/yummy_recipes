@@ -1,5 +1,5 @@
 .bgimage{
-    /* background-image: url("../images/kebab.jpg"); */
+    background-image: url("../images/kebab.jpg");
     background-position: center center;
     background-size: contain;
     height: 500px;
@@ -21,7 +21,7 @@
 }
 body{
     /* background: radial-gradient(circle, black, white); */
-    /* background-image: url("../images/bread.jpg") */
+    background-image: url("../images/bread.jpg")
 }
 .landing-content{
     height: 100%;
