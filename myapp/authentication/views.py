@@ -1,7 +1,7 @@
 """This module imports the authentication blueprint.
 It creates the routes for user authenication.
 """
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, url_for
 
 from . import authentication
 
