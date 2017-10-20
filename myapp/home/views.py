@@ -14,8 +14,18 @@ from .forms import RegistrationForm, CategoryCreation
 @home.route('/dashboard')
 def dashboard():
     """Avails the user's dashboard"""
+    user = session['username']
+    categories = category.show_categories(user)
     form = CategoryCreation()
-    return render_template('dashboard/dashboard.html', form=form)
+    # user = session['username']
+    # if form.validate_on_submit():
+    #     name = form.data.name
+    #     description = form.data.description
+    #     if category.add_category(name, description, user):
+    #         flash("Category added successfully")
+    #         # return render_template('dashboard/dashboard.html', form=form)
+    #         return redirect(url_for('home.dashboard'))
+    return render_template('dashboard/dashboard.html', user_categories = categories, form=form)
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
@@ -28,25 +38,27 @@ def index():
         if user.register_user(username, pass_1, pass_2):
             session['username'] = username
             flash('You can now login.')
-            return redirect(url_for('home.dashboard'))
+            return redirect(url_for('home.dashboard', form=form))
         else:
             flash("You cant login")
         flash("You cant login")
     return render_template('index.html', form=form)
 
-@home.route('/add_category')
+
+
+@home.route('/add_category', methods=['GET','POST'])
 def add_category():
-    """Adds a user category"""
     user = session['username']
     form = CategoryCreation()
+    # if request.method == 'POST':
+    #     return redirect(url_for('home.dashboard'))
+    # return render_template('index.html')
+
     if form.validate_on_submit():
-        form = CategoryCreation()
-        name = form.data.name
-        description = form.data.description
-        if category.add_category(name, description, user):
-            flash("Category added successfully")
-            return render_template('dashboard/dashboard.html', form=form)
-
-
+        name = form.name.data
+        description = form.description.data
+        category.add_category(name,description,user)
+        return redirect(url_for('dashboard'))
+        
 
 
