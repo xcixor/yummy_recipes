@@ -1,4 +1,5 @@
 {% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Yummy!!{% endblock %}
 
@@ -99,15 +100,16 @@
               </button>
               </div>
               <div class="modal-body">
-              <input type="text" class="form-control" id="name" placeholder="Name">
+              <!-- <input type="text" class="form-control" id="name" placeholder="Name">
               <input type="text" class="form-control" id="procedure" placeholder="Procedure">
               <input type="text" class="form-control" id="yield" placeholder="Yied">
-              <input type="text" class="form-control" id="cost" placeholder="Cost">
+              <input type="text" class="form-control" id="cost" placeholder="Cost"> -->
+              {{ wtf.quick_form(form) }}
               </div>
-              <div class="modal-footer">
+              <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save</button>
-              </div>
+              </div> -->
           </div>
           </div>
       </div> 
