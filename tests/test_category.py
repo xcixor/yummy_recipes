@@ -37,6 +37,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(result, "Deleted successfully")
 
     def test_edit_category(self):
+        """Test if a category can be edited successfully"""
         self.category.add_category('Dessert', 'sweet food', 'ptah')
         result = self.category.edit_category('Brunch', 'Breakfast lunch combo', 'Dessert', 'ptah')
         self.assertEqual(result, "Updated")

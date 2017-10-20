@@ -27,7 +27,6 @@ class TestUser(unittest.TestCase):
         """
         Test for the existence of a user in the list
         """
-
         self.user.users = [{'username' : 'peter', 'ptah' : 'ptah'}]
         result = self.user.register_user('peter', 'ptah', 'ptah')
         self.assertEqual(result, "User added already")
@@ -38,9 +37,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_login(self):
+        """Test whether a user can login with correct credentials"""   
         self.user.users = [{'username' : 'andela', 'password' : 'andela1'}]
         result = self.user.login_user('andela','andela1')
         self.assertEqual(result, "User successfully loged in")
-
-# if __name__ == '__main__':
-#     unittest.main

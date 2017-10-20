@@ -7,6 +7,7 @@ from myapp import create_app
 
 class BasicsTestCase(unittest.TestCase):
     def setUp(self):
+        """Creates the app"""
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
         self.app_context.push()
@@ -15,4 +16,5 @@ class BasicsTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_app_exists(self):
+        """Tests if the app is created successfully"""
         self.assertFalse(current_app is None)
