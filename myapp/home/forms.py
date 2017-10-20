@@ -8,7 +8,7 @@ from wtforms.validators import Required, Email, Length, Email, Regexp, EqualTo
 
 from wtforms import ValidationError
 
-class Registration(FlaskForm):
+class RegistrationForm(FlaskForm):
     """TThe form class created the registration form"""
     username = StringField('Username', validators=[
         Required(), Length(1, 64)])
