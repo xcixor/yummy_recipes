@@ -19,6 +19,6 @@ class RegistrationForm(FlaskForm):
 
 class CategoryCreation(FlaskForm):
     """The form class creates the category creation form"""
-    username = StringField('Username')
+    name = StringField('Username')
     description = StringField('Description')
     submit = SubmitField('Register')
