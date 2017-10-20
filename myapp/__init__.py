@@ -7,13 +7,16 @@ from flask import Flask
 
 from flask_bootstrap import Bootstrap
 
-from flask_login import LoginManager
+# from flask_login import LoginManager
+
 
 from config import config
 
 bootstrap = Bootstrap()
 
-loginmanager = LoginManager()
+# loginmanager = LoginManager()
+
+# loginmanager.login_view = 'auth.login'
 
 def create_app(configuration):
     """It initializes the application"""
@@ -23,10 +26,10 @@ def create_app(configuration):
     config[configuration].init_app(app)
 
     bootstrap.init_app(app)
-    loginmanager.init_app(app)
+    # loginmanager.init_app(app)
 
-    from .home import home as main_blueprint
-    app.register_blueprint(main_blueprint)
+    from .home import home as home_blueprint
+    app.register_blueprint(home_blueprint)
 
     from .authentication import authentication as authentication_blueprint
     app.register_blueprint(authentication_blueprint, url_prefix='/authentication')
