@@ -48,21 +48,23 @@ def index():
 #         return redirect(url_for('dashboard'))
 #     return render_template('index.html')
 
-@home.route('/add_category')
-def add_category():
-    """Provides access to a form to create a category"""
-    return render_template('dashboard/categoryadd.html')
+# @home.route('/add_category')
+# def add_category():
+#     """Provides access to a form to create a category"""
+#     form = CategoryCreation()
+#     return render_template('dashboard/categoryadd.html', form=form)
 
-@home.route('/create_category')
-def add_category():
+@home.route('/create_category', methods=['GET','POST'])
+def create_category():
     """Collects data about a category and creates a cateegory"""
     user = session['username']
-    if request.method == 'POST':
-        name = request.form['name']
-        description = request.form['description']
+    form = CategoryCreation()
+    if form.validate_on_submit():
+        name = form.name.data
+        description = form.description.data
         category.add_category(name,description,user)
-        return redirect(url_for('dashboard'))
-    return render_template('index.html')
+        return render_template('dashboard/dashboard.html')
+    return render_template('dashboard/categoryadd.html', form=form)
 
 
         
