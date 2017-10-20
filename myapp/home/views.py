@@ -62,9 +62,19 @@ def create_category():
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
-        category.add_category(name,description,user)
-        return render_template('dashboard/dashboard.html')
+        # category.add_category(name,description,user)
+        # return render_template('dashboard/dashboard.html')
+        mycat = category.add_category(name,description,user)
+        # mycat = []
+        # mycat.append(user)
+        # mycat.append(name)
+        # mycat.append(description)
+        return render_template('/dashboard/categories.html', mycat=mycat)
     return render_template('dashboard/categoryadd.html', form=form)
+
+# @app.route('/show_categories/<name>/<categories', methods=['GET'])
+# def show_categories(name, description):
+#     return render_template('/dashboard/mycategories.html', name=name, description=description)
 
 
         
