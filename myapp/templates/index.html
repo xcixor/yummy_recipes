@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
@@ -15,7 +16,7 @@
             <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share with their food ideas</p>
             <p>Join them today by registering an account below!</p>
             <form>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="name">Username:</label>
                     <input type="text" class="form-control" id="username" placeholder="Username">
                 </div>
@@ -28,10 +29,10 @@
                     <input type="password" class="form-control" id="pwd" placeholder="Password">
                 </div>
                 <!-- <button type="submit" class="btn btn-primary btn-block">Register</button> -->
-                <a href="/authentication/register" class="btn btn-primary btn-block">Register</a>
-                <!-- <li><a href="/auth/login">Log In</a></li> -->
-            </form>
-            <p>Already Registered? <a href="/authentication/login">Sign in</a></p>
+                <!-- <a href="/authentication/register" class="btn btn-primary btn-block">Register</a> -->
+            <!-- </form> -->
+            <!-- <p>Already Registered? <a href="/authentication/login">Sign in</a></p>  -->
+            {{ wtf.quick_form(form) }}
         </div>
     </div>
 </div>
