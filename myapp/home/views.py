@@ -38,13 +38,14 @@ def index():
 def add_category():
     """Adds a user category"""
     user = session['username']
+    form = CategoryCreation()
     if form.validate_on_submit():
         form = CategoryCreation()
         name = form.data.name
         description = form.data.description
         if category.add_category(name, description, user):
             flash("Category added successfully")
-            return render_template('dashboard/dashboard.html')
+            return render_template('dashboard/dashboard.html', form=form)
 
 
 
