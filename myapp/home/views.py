@@ -12,14 +12,19 @@ from .forms import Registration
 from ..app_classes import User
 
 @home.route('/')
+def dashboard():
+    """Avails the user's dashboard"""
+    return render_template('dashboard/dashboard.html')
+
+@home.route('/', methods=['GET', 'POST'])
 def index():
     """Defines the landing page"""
     form = Registration()
     if form.validate_on_submit():
         user = User()
         if user.register_user(form.username.data, form.password.data, form.password2.data):
-            flash('You can now login.')
-            return render_template('dashboard/dashboard.html')
-        return render_template('authentication/login.html')
+            # flash('You can now login.')
+            return redirect(url_for('home.dashboard'))
     return render_template('index.html', form=form)
+
 
