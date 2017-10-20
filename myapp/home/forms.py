@@ -16,3 +16,9 @@ class Registration(FlaskForm):
         Required(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[Required()])
     submit = SubmitField('Register')
+
+class CategoryCreation(FlaskForm):
+    """The form class creates the category creation form"""
+    username = StringField('Username')
+    username = StringField('Description')
+    submit = SubmitField('Register')
