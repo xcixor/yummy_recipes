@@ -50,15 +50,13 @@ def index():
 def add_category():
     user = session['username']
     form = CategoryCreation()
-    # if request.method == 'POST':
-    #     return redirect(url_for('home.dashboard'))
-    # return render_template('index.html')
-
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
         category.add_category(name,description,user)
-        return redirect(url_for('dashboard'))
+        # return redirect(url_for('dashboard'))
+        return redirect(url_for('home.dashboard', form=form))
+
         
 
 
