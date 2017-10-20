@@ -7,9 +7,13 @@ from flask import Flask
 
 from flask_bootstrap import Bootstrap
 
+from flask_login import LoginManager
+
 from config import config
 
 bootstrap = Bootstrap()
+
+loginmanager = LoginManager()
 
 def create_app(configuration):
     """It initializes the application"""
@@ -19,6 +23,7 @@ def create_app(configuration):
     config[configuration].init_app(app)
 
     bootstrap.init_app(app)
+    loginmanager.init_app(app)
 
     from .home import home as main_blueprint
     app.register_blueprint(main_blueprint)
