@@ -14,7 +14,8 @@ from .forms import RegistrationForm, CategoryCreation
 @home.route('/dashboard')
 def dashboard():
     """Avails the user's dashboard"""
-    return render_template('dashboard/dashboard.html')
+    form = CategoryCreation()
+    return render_template('dashboard/dashboard.html', form=form)
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
@@ -44,7 +45,7 @@ def add_category():
         if category.add_category(name, description, user):
             flash("Category added successfully")
             return render_template('dashboard/dashboard.html')
-        
+
 
 
 
