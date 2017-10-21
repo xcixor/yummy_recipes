@@ -5,7 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     
-    SECRET_KEY = 'Your Cross Site Forgery Attempts are Futile'
+    SECRET_KEY = 'You cannot hack this site fool'
 
     @staticmethod
     def init_app(app):
