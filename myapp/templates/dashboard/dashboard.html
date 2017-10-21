@@ -36,18 +36,28 @@
 {% block content %}
 
 {%if category %}
-     
+{% if mycat %}
+<div class="container">
+{% for data in mycat%}
+<div class="card">
+    <div class="card-header">
+      Category
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">{{ data['name'] }}</h4>
+      <p class="card-text">{{ data['description'] }}</p>
+      <a href="#" class="btn btn-primary float-right">Delete</a>
+      <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button>
+    </div>
+ </div>   
+
+{% endfor %}
 
 {% else %}
-<!-- <div class="container-fluid"> -->
-<!-- <div class="row"> -->
   <div class="jumbotron">
     <h1 class="display-3">Hello, {{session['username']}}</h1>
     <p class="lead">Start managing you categories by adding one.</p>
   </div>
-<!-- </div> -->
-<!-- </div> -->
-
 {% endif %}
 <div class="container-fluid">
   <div class="row">
@@ -66,4 +76,3 @@
 
 </div>
 </div>
-{% endblock %}
