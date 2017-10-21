@@ -15,9 +15,9 @@ h2{
 .btn-card{
   margin-right: 5px;
 }
-.modal-body{
-  margin: 10px;
-}
 .form-control{
   margin: 5px;
+}
+.card{
+  width: 800px;
 }
