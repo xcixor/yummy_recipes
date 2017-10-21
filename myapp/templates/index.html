@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{% endblock %}
+{% block content %}
+<div class="landing container">
+
+    <h3>Yummy! Recipes</h3>    
+    <div class="row landing-content">
+        <div class="img-responsive bgimage col-lg-6 d-none d-md-block">
+            <span class="snippet"><p>Create yours today!</p></span>
+        </div>
+        <div class="col-lg-6 landing-form">
+            <h4>Love cooking?</h4>
+            <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share their food ideas</p>
+            <p>Join them today by registering an account below!</p>
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+</div>
+</div> 
+{% endblock %}
