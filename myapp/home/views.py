@@ -35,25 +35,6 @@ def index():
         flash("You cant login")
     return render_template('index.html', form=form)
 
-
-
-# @home.route('/add_category', methods=['GET','POST'])
-# def add_category():
-#     user = session['username']
-#     form = CategoryCreation()
-#     if request.method == 'POST':
-#         name = form.name.data
-#         description = form.description.data
-#         category.add_category(name,description,user)
-#         return redirect(url_for('dashboard'))
-#     return render_template('index.html')
-
-# @home.route('/add_category')
-# def add_category():
-#     """Provides access to a form to create a category"""
-#     form = CategoryCreation()
-#     return render_template('dashboard/categoryadd.html', form=form)
-
 @home.route('/create_category', methods=['GET','POST'])
 def create_category():
     """Collects data about a category and creates a cateegory"""
@@ -62,19 +43,15 @@ def create_category():
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
-        # category.add_category(name,description,user)
-        # return render_template('dashboard/dashboard.html')
         mycat = category.add_category(name,description,user)
-        # mycat = []
-        # mycat.append(user)
-        # mycat.append(name)
-        # mycat.append(description)
         return render_template('/dashboard/categories.html', mycat=mycat)
     return render_template('dashboard/categoryadd.html', form=form)
 
-# @app.route('/show_categories/<name>/<categories', methods=['GET'])
-# def show_categories(name, description):
-#     return render_template('/dashboard/mycategories.html', name=name, description=description)
+@home.route('/logout')
+def logout():
+    """Logs the user out of the system"""
+    session.pop('username', None)
+    return redirect(url_for('home.index', form=RegistrationForm()))
 
 
         
