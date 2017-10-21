@@ -53,21 +53,36 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('home.index', form=RegistrationForm()))
 
-@home.route('/edit_category', methods=['GET', 'POST'])
-def edit_category():
+# @home.route('/edit_category', methods=['GET', 'POST'])
+# def edit_category():
+#     """Edits the category details"""
+#     user = session['username']
+#     categories = category.show_categories(user)
+#     for items in categories:
+#         old_name = categories['name']
+#         old_description = categories['description']
+#         form = CategoryEdit()
+#         if form.validate_on_submit():
+#             new_name = form.name.data
+#             new_description = form.description.data
+#             mycat = category.edit_category(new_name,new_description,old_name, user)
+#             return redirect(url_for('home.dashboard', mycat=mycat))
+#     return render_template('dashboard/editcategory.html',user, form=form)
+
+@home.route('/edit_category', methods = ['GET','POST'])
+def edit_category(name):
     """Edits the category details"""
     user = session['username']
-    categories = category.show_categories(user)
-    for items in categories:
-        old_name = categories['name']
-        old_description = categories['description']
-        form = CategoryEdit()
-        if form.validate_on_submit():
-            new_name = form.name.data
-            new_description = form.description.data
-            mycat = category.edit_category(new_name,new_description,old_name, user)
-            return redirect(url_for('home.dashboard', mycat=mycat))
-    return render_template('dashboard/editcategory.html',user, form=form)
+    user_cats = category.show_categories(user)
+    for the_category in user_cats:
+        if the_category['name']==name:
+            description = the_category['description']
+    form = CategoryEdit()
+    # if form.validate_on_submit():
+    #     return render_template(url_for('dashboard/editcategories', user_cats))
+
+    return render_template('dashboard/editcategory.html', name, description)
+
 
 
         
