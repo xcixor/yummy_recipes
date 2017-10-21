@@ -52,7 +52,8 @@
             <h4 class="card-title">{{ data['name'] }}</h4>
             <p class="card-text">{{ data['description'] }}</p>
             <a href="#" class="btn btn-primary float-right">Delete</a>
-            <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button>
+            <!-- <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button> -->
+            <a href="{{ url_for('home.edit_category') }}" class="btn btn-primary float-right btn-card">Edit</a>
           </div>
        </div> 
   </div>

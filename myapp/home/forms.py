@@ -22,3 +22,9 @@ class CategoryCreation(FlaskForm):
     name = StringField('Username')
     description = StringField('Description')
     submit = SubmitField('Save')
+
+class CategoryEdit(FlaskForm):
+    """The form class creates the category editing form"""
+    name = StringField('Username')
+    description = StringField('Description')
+    submit = SubmitField('Edit')
