@@ -44,7 +44,7 @@ def create_category():
         name = form.name.data
         description = form.description.data
         mycat = category.add_category(name,description,user)
-        return render_template('/dashboard/dashboard.html', mycat=mycat)
+        return render_template('/dashboard/categories.html', mycat=mycat)
     return render_template('dashboard/categoryadd.html', form=form)
 
 @home.route('/logout')
