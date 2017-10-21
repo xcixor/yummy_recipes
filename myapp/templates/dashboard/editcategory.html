@@ -6,6 +6,17 @@
 {% endblock %}
 {% block content %}
 <div class="landing container">
+<div class="row">
+{% if name %}
 
+{% for cat in user_cats %}
+
+{{ name }}
+{{description}}
+
+{% endfor %}
+{% endif %}
+
+</div>
 </div>
 {% endblock %}
