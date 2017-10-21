@@ -17,10 +17,10 @@
             <p>Hundreds of other food enthusiast have joined yummy! to manage their recipes and share their food ideas</p>
             <p>Join them today by registering an account below!</p>
             {{ wtf.quick_form(form) }}
+            <p>Registered? <a href="{{ url_for('authentication.login') }}">login</a></p>
         </div>
     </div>
 </div>
-</div> 
 {% endblock %}
 
 
