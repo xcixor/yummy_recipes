@@ -28,3 +28,10 @@ class CategoryEdit(FlaskForm):
     name = StringField('Name')
     description = StringField('Description')
     submit = SubmitField('Edit')
+
+class EditCategory(FlaskForm):
+    """To edit category"""
+    submit = SubmitField('Delete')
+class DeleteCategory(FlaskForm):
+    """To Delete category"""
+    submit = SubmitField('Delete')
