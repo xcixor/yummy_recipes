@@ -11,7 +11,7 @@ from . import home
 
 from .. import recipe, category, user
 
-from .forms import RegistrationForm, CategoryCreation, CategoryEdit
+from .forms import RegistrationForm, CategoryCreation, CategoryEdit, DeleteCategory, EditCategory
 
 @home.route('/dashboard')
 def dashboard():
@@ -85,6 +85,7 @@ def edit_category(name):
 
 @home.route('/delete_category/<name>', methods=['GET', 'POST'])
 def delete_category(name):
+    user = session['username']
     category.delete_category(name)
     mycat = category.categories
     return render_template('/dashboard/dashboard.html', mycat=mycat)
