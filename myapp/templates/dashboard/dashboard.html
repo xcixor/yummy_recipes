@@ -53,8 +53,23 @@
               <div class="card-block">
                 <h4 class="card-title" id="name">{{ data['name'] }}</h4>
                 <p class="card-text">{{ data['description'] }}</p>
-                <a href="/edit_category/{{ data['name'] }}" class="btn btn-primary btn-block">Edit me</a>
-                <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary btn-block">Delete me</a>
+                <ul>
+                  <div class="cat-btns">
+                    <ul style="list-style-type: none">
+                      <li style="float: right; padding-left: 50px;"><a href="/edit_category/{{ data['name'] }}" class="btn btn-primary">Edit me</a></li>
+                      <li style="float: right; padding-left: 50px;"> <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary">Delete me</a></li>
+                      <li style="float: right; padding-left: 50px;"> <a href="#" class="btn btn-primary">Add Recipe</a></li>
+                    </ul>
+   
+                  </div>
+                  
+                             <!-- <div class="thumbnail">
+                    <div class="caption float-right">
+                      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a>  <a href="#" class="btn btn-primary" role="button">Button</a></p>
+                    </div>
+                  </div> -->
+
+                </ul>
              </div>
            </div> 
 
