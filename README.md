@@ -34,9 +34,10 @@
 		(myvenv) $ python manage.py test
 
 ## Deployment
+	The app will be hosted at heroku, a platform for developers to build run and test their application
 
 ## Built with
-##### Flask
+	Flask
 
 ## Mockups
 * [Landing page](/designs/wireframes/index_page.png)
@@ -48,6 +49,7 @@
 * [Uml](/designs/wireframes/uml.png)
 
 ## Contributing
+	Kevin Samoei and Alfred Maina offered their suggestions about how to improve the app
 
 ## Versioning
 ## Authors
@@ -56,4 +58,5 @@
 	None
 
 ## Acknowledments
+	I would like to thank Andela for giving me the opportunity to work on this project and learn a myriad of new skills that would have taken months to learn about
 
