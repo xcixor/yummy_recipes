@@ -83,7 +83,7 @@ def edit_category(name):
         return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
 
-@home.route('/edit_category/<name>', methods=['GET', 'POST'])
+@home.route('/delete_category/<name>', methods=['GET', 'POST'])
 def delete_category(name):
     category.delete_category(name)
     mycat = category.categories
