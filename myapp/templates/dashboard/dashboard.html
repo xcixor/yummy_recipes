@@ -51,15 +51,10 @@
                 Category
               </div>
               <div class="card-block">
-
                 <h4 class="card-title" id="name">{{ data['name'] }}</h4>
                 <p class="card-text">{{ data['description'] }}</p>
-                <form method="POST" action="/edit_category/{{ data['name'] }}" class="left">
-                  <button class="btn btn-primary float-right">Delete me</button>
-               </form>
-                <form method="POST" action="/edit_category/{{ data['name'] }}" class="left">
-                   <button class="btn btn-primary float-right">Edit me</button>
-                </form>
+                <a href="/edit_category/{{ data['name'] }}" class="btn btn-primary btn-block">Edit me</a>
+                <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary btn-block">Delete me</a>
              </div>
            </div> 
 
