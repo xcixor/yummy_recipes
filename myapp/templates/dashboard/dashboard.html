@@ -12,40 +12,37 @@
 {% endblock %}
 
 {% block navbar %}
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#my-nav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">Yummy!</a>
-      <div class="collapse navbar-collapse side-bar" id="my-nav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">{{session['username']}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('home.logout') }}">Logout</a>
-            </li>
-          </ul>
-      </div>
-</nav>
+    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#my-nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Yummy!</a>
+            <div class="collapse navbar-collapse side-bar" id="my-nav">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">{{session['username']}}</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home.logout') }}">Logout</a>
+                  </li>
+                </ul>
+            </div>
+      </nav>
+
 {% endblock %}
 
 {% block content %}
 {% if mycat %}
+<h2>My Categories</h2>
 {% for data in mycat%}
 <div class="container">
-
+   
 <div class="row">
 
-  <div class="col-md-2">
-
-  </div>
-  <div class="col-md-8">
-      
-       <!-- <form> -->
+  <div class="col-md-12">
           <div class="card">
               <div class="card-header">
                 Category
@@ -54,24 +51,15 @@
                 <h4 class="card-title" id="name">{{ data['name'] }}</h4>
                 <p class="card-text">{{ data['description'] }}</p>
                 <ul>
-                  <div class="cat-btns">
                     <ul style="list-style-type: none">
                       <li style="float: right; padding-left: 50px;"><a href="/edit_category/{{ data['name'] }}" class="btn btn-primary">Edit me</a></li>
                       <li style="float: right; padding-left: 50px;"> <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary">Delete me</a></li>
                       <li style="float: right; padding-left: 50px;"> <a href="#" class="btn btn-primary">Add Recipe</a></li>
                     </ul>
-                  </div>
                 </ul>
              </div>
-           </div> 
-
-        <!-- </form> -->
+          </div> 
   </div>
-  <div class="col-md-2">
-      
-  </div>
-
-
 </div>
    
 </div>
@@ -85,17 +73,10 @@
 {% endif %}
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-
+    <div class="col-md-12">
+        <a href="{{ url_for('home.create_category') }}" class="btn btn-primary">Add new</a>
     </div>
-    <div class="col-md-8">
-        <a href="{{ url_for('home.create_category') }}" class="btn btn-primary btn-block">Add new</a>
-    </div>
-    <div class="col-md-2">
-       
-    </div>
-    </div>
+  </div>
   </div> 
-
 {% endblock %}
 
