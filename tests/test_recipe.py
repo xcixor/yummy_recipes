@@ -40,7 +40,7 @@ class TestUser(unittest.TestCase):
     def test_edit_recipe(self):
         self.recipe.add_recipe('Dessert', 'sweet food', 'ptah')
         result = self.recipe.edit_recipe('Brunch', 'Luch and breakfast combo', 'Dessert', 'ptah')
-        self.assertEqual(result, "Updated")
+        self.assertEqual(result, self.recipe.recipes)
 
     # def test_show_user_categories(self):
     #     self.recipe.add_recipe('Cousine', 'Dont know what that is', 'aly')
