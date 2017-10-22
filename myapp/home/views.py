@@ -7,6 +7,8 @@ from flask import render_template, request, redirect, session, url_for, flash
 
 from . import home
 
+from flask_login import login_required
+
 # from .. import user, recipe, category, my_cat
 
 from .. import recipe, category, user
