@@ -13,7 +13,7 @@ h2{
   padding: 10px;
 }
 .btn-card{
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .form-control{
   margin: 5px;
@@ -24,3 +24,15 @@ h2{
 .form{
   margin: 10px;
 }
+.btn{
+  display: inline;
+}
+.outer
+{
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+
