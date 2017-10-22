@@ -179,7 +179,7 @@ class Recipe(object):
         if self.find_recipe(old_name, owner):
             self.delete_recipe(old_name)
             self.add_recipe(new_name, new_description, owner)
-            return "Updated"
+            return self.show_recipes(owner)
         return "Item not exist"
 
 

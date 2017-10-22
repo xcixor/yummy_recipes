@@ -13,7 +13,7 @@ from flask_login import login_required
 
 from .. import recipe, category, user
 
-from .forms import RegistrationForm, CategoryCreation, CategoryEdit, DeleteCategory, EditCategory
+from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation
 
 @home.route('/dashboard')
 def dashboard():
@@ -92,6 +92,17 @@ def delete_category(name):
     mycat = category.categories
     return render_template('/dashboard/dashboard.html', mycat=mycat)
 
+@home.route('/create_recipe', methods=['GET','POST'])
+def create_recipe():
+    """Collects data about a category and creates a cateegory"""
+    user = session['username']
+    form = RecipeCreation()
+    if form.validate_on_submit():
+        name = form.name.data
+        description = form.description.data
+        myrec = category.add_category(name, description, user)
+        return render_template('/dashboard/recipeview.html', myrec=myrec)
+    return render_template('dashboard/addrecipe.html', form=form)
 
 
 
