@@ -7,15 +7,17 @@ from flask import Flask
 
 from flask_bootstrap import Bootstrap
 
-from .app_classes import User, Category, Recipe
+# from .app_classes import User, Category, Recipe
 
 from config import config
 
-user = User()
+from myapp import app_classes
 
-category = Category()
+user = app_classes.User()
 
-recipe = Recipe()
+category = app_classes.Category()
+
+recipe = app_classes.Recipe()
 
 bootstrap = Bootstrap()
 
