@@ -28,10 +28,11 @@ class CategoryEdit(FlaskForm):
     name = StringField('Name')
     description = StringField('Description')
     submit = SubmitField('Edit')
+    
+class RecipeCreation(FlaskForm):
+    """The form class creates the recipe addition form"""
+    name = StringField('Name')
+    description = StringField('Description')
+    submit = SubmitField('Save')
 
-class EditCategory(FlaskForm):
-    """To edit category"""
-    submit = SubmitField('Delete')
-class DeleteCategory(FlaskForm):
-    """To Delete category"""
-    submit = SubmitField('Delete')
+
