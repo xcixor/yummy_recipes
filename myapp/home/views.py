@@ -104,14 +104,6 @@ def edit_category(name):
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
 
 
-@home.route('/save_category')
-def save_category():
-    user = session['username']
-    new_name = request.form['name']
-    new_description = request.form['description']
-    # mycat = category.edit_category(new_name, new_description, name, user)
-    my_cat = category.add_category(new_name, new_description, user)
-    return render_template('/dashboard/dashboard.html', mycat=my_cat)
 
 
 
