@@ -45,7 +45,6 @@ def create_category():
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
-        # mycat = category.add_category(name,description,user)
         mycat = category.add_category(name, description, user)
         return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/categoryadd.html', form=form)
@@ -81,9 +80,7 @@ def edit_category(name):
         new_name = request.form['name']
         new_description = request.form['description']
         mycat = category.edit_category(new_name, new_description, name, user)
-        return redirect(url_for('home.dashboard', mycat=mycat))
-        
-
+        return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
 
 
