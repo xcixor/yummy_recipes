@@ -45,7 +45,7 @@
   </div>
   <div class="col-md-8">
       
-       <form>
+       <!-- <form> -->
           <div class="card">
               <div class="card-header">
                 Category
@@ -55,13 +55,16 @@
                 <h4 class="card-title" id="name">{{ data['name'] }}</h4>
                 <p class="card-text">{{ data['description'] }}</p>
                 <!-- <button type="button" class="btn btn-primary float-right btn-card" data-toggle="modal" data-target="#recipeModal">Edit</button> -->
-                <a href="{{ url_for('home.edit_category') }}" class="btn btn-primary float-right">Delete</a>
-                <a href="{{ url_for('home.edit_category') }}" class="btn btn-primary float-right btn-card">Edit</a>
+                <a href="#" class="btn btn-primary float-right">Delete</a>
+                <form method="POST" action="/edit_category/{{ data['name'] }}" class="left">
+                   <button class="btn btn-primary float-right">Edit me</button>
+                </form>
+                
                 
               </div>
            </div> 
 
-        </form>
+        <!-- </form> -->
   </div>
   <div class="col-md-2">
       
