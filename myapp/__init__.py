@@ -7,11 +7,11 @@ from flask import Flask
 
 from flask_bootstrap import Bootstrap
 
+from flask_login import LoginManager
+
 from config import config
 
 from myapp import app_classes
-
-from flask_wtf import CsrfProtect
 
 user = app_classes.User()
 
@@ -21,7 +21,7 @@ recipe = app_classes.Recipe()
 
 bootstrap = Bootstrap()
 
-csrf = CsrfProtect()
+login_manager = LoginManager()
 
 
 def create_app(configuration):
@@ -32,7 +32,7 @@ def create_app(configuration):
     config[configuration].init_app(app)
 
     bootstrap.init_app(app)
-    csrf.init_app(app)
+    login_manager.init_app(app)
 
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
