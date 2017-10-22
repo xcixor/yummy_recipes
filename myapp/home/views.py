@@ -92,18 +92,32 @@ def delete_category(name):
     mycat = category.categories
     return render_template('/dashboard/dashboard.html', mycat=mycat)
 
-@home.route('/create_recipe', methods=['GET','POST'])
-def create_recipe():
+@home.route('/create_recipe/<name>', methods=['GET','POST'])
+def create_recipe(name):
     """Collects data about a category and creates a cateegory"""
     user = session['username']
     form = RecipeCreation()
     if form.validate_on_submit():
-        name = form.name.data
+        rec_name = form.name.data
         description = form.description.data
-        myrec = category.add_category(name, description, user)
+        myrec = recipe.add_recipe(rec_name, description, name)
         return render_template('/dashboard/recipeview.html', myrec=myrec)
     return render_template('dashboard/addrecipe.html', form=form)
 
+@home.route('/my_dash')
+def my_dash():
+    """Returns the user to the dashboard after working on recipes"""
+    user = session['username']
+    mycat = category.show_categories(user)
+    return render_template('dashboard/dashboard.html',mycat=mycat)
+
+@home.route('/delete_recipe/<name>', methods=['GET', 'POST'])
+def delete_recipe(name):
+    user = session['username']
+    recipe.delete_recipe(user)
+    myrec = recipe.recipes
+    return render_template('/dashboard/recipeview.html', myrec=myrec)
+    
 
 
 
