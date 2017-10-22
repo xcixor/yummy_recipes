@@ -40,7 +40,7 @@ class TestUser(unittest.TestCase):
         """Test if a category can be edited successfully"""
         self.category.add_category('Dessert', 'sweet food', 'ptah')
         result = self.category.edit_category('Brunch', 'Breakfast lunch combo', 'Dessert', 'ptah')
-        self.assertEqual(result, "Updated")
+        self.assertEqual(result, self.category.categories)
 
     # def test_show_user_categories(self):
     #     self.category.add_category('Cousine', 'Dont know what that is', 'aly')
