@@ -108,7 +108,7 @@ class Category(object):
         if self.find_category(old_name, owner):
             self.delete_category(old_name)
             self.add_category(new_name, new_description, owner)
-            return "Updated"
+            return self.categories
         return "Item not exist"
 
 class Recipe(object):
