@@ -22,6 +22,8 @@ recipe = app_classes.Recipe()
 bootstrap = Bootstrap()
 
 login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'home.login'
 
 
 def create_app(configuration):
