@@ -7,7 +7,9 @@ from flask import render_template, request, redirect, session, url_for, flash
 
 from . import home
 
-from .. import user, recipe, category
+# from .. import user, recipe, category, my_cat
+
+from .. import recipe, category, user
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit
 
@@ -43,7 +45,8 @@ def create_category():
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
-        mycat = category.add_category(name,description,user)
+        # mycat = category.add_category(name,description,user)
+        mycat = category.add_category(name, description, user)
         return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/categoryadd.html', form=form)
 
@@ -53,35 +56,62 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('home.index', form=RegistrationForm()))
 
-# @home.route('/edit_category', methods=['GET', 'POST'])
-# def edit_category():
-#     """Edits the category details"""
-#     user = session['username']
-#     categories = category.show_categories(user)
-#     for items in categories:
-#         old_name = categories['name']
-#         old_description = categories['description']
-#         form = CategoryEdit()
-#         if form.validate_on_submit():
-#             new_name = form.name.data
-#             new_description = form.description.data
-#             mycat = category.edit_category(new_name,new_description,old_name, user)
-#             return redirect(url_for('home.dashboard', mycat=mycat))
-#     return render_template('dashboard/editcategory.html',user, form=form)
-
-@home.route('/edit_category', methods = ['GET','POST'])
+@home.route('/edit_category/<name>', methods=['GET', 'POST'])
 def edit_category(name):
     """Edits the category details"""
     user = session['username']
-    user_cats = category.show_categories(user)
-    for the_category in user_cats:
-        if the_category['name']==name:
-            description = the_category['description']
-    form = CategoryEdit()
-    # if form.validate_on_submit():
-    #     return render_template(url_for('dashboard/editcategories', user_cats))
+    categories = category.show_categories(user)
+    old_name = ''
+    old_description = ''
+    for cat in categories:
+        if cat['name'] == name:
+            my_cat = cat
+            old_name = my_cat['name']
+            old_description = my_cat['description']
+            break
+    else:
+        my_cat = None
+        old_name = 'Not found'
+        old_description = 'Not found'
 
-    return render_template('dashboard/editcategory.html', name, description)
+    form = CategoryEdit()
+    form.name.data = old_name
+    form.description.data = old_description
+    if form.validate_on_submit():
+        new_name = request.form['name']
+        new_description = request.form['description']
+        mycat = category.edit_category(new_name, new_description, name, user)
+        return redirect(url_for('home.dashboard', mycat=mycat))
+        
+
+    # if request.method == 'POST':
+    #     new_name = request.form['name']
+    #     new_description = request.form['description']
+    #     mycat = category.edit_category(new_name, new_description, name, user)
+    #     return redirect(url_for('home.dashboard', mycat=mycat))
+
+
+    # for item in categories:
+    #     old_name = categories['name']
+    #     old_description = categories['description']
+    #     form = CategoryEdit()
+    #     if form.validate_on_submit():
+    #         new_name = form.name.data
+    #         new_description = form.description.data
+    #         mycat = category.edit_category(new_name,new_description,old_name, user)
+    #         return redirect(url_for('home.dashboard', mycat=mycat))
+
+    return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
+
+
+@home.route('/save_category')
+def save_category():
+    user = session['username']
+    new_name = request.form['name']
+    new_description = request.form['description']
+    # mycat = category.edit_category(new_name, new_description, name, user)
+    my_cat = category.add_category(new_name, new_description, user)
+    return render_template('/dashboard/dashboard.html', mycat=my_cat)
 
 
 
