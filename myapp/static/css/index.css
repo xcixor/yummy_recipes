@@ -35,7 +35,7 @@ body{
     position: absolute; 
     top: 0px; 
     left: 0; 
-    width: 45%; 
+    width: 45%;
     color: white; 
     font: bold 24px/45px Helvetica, Sans-Serif; 
     letter-spacing: -1px;  
@@ -53,7 +53,7 @@ form{
     margin-bottom: 20px;
 }
 .bd-img{
-    opacity: 0.9;
+    opacity: 0.4;
 }
 h3{
     text-align: center;
