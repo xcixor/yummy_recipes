@@ -13,7 +13,7 @@ from flask_login import login_required
 
 from .. import recipe, category, user
 
-from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation
+from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
 @home.route('/dashboard')
 def dashboard():
@@ -101,7 +101,7 @@ def create_recipe(name):
         rec_name = form.name.data
         description = form.description.data
         myrec = recipe.add_recipe(rec_name, description, name)
-        return render_template('/dashboard/recipeview.html', myrec=myrec)
+        return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
     return render_template('dashboard/addrecipe.html', form=form)
 
 @home.route('/my_dash')
@@ -111,12 +111,41 @@ def my_dash():
     mycat = category.show_categories(user)
     return render_template('dashboard/dashboard.html',mycat=mycat)
 
-@home.route('/delete_recipe/<name>', methods=['GET', 'POST'])
-def delete_recipe(name):
+@home.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
+def delete_recipe(name, owner):
     user = session['username']
-    recipe.delete_recipe(user)
+    recipe.delete_recipe(name)
     myrec = recipe.recipes
-    return render_template('/dashboard/recipeview.html', myrec=myrec)
+    # return redirect(url_for('home.create_recipe',myrec=myrec, name=owner))
+    return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+
+@home.route('/edit_recipe/<name>/<owner>', methods=['GET', 'POST'])
+def edit_recipe(name, owner):
+    """Edits the details of the recipe"""
+    user = session['username']
+    recipes = recipe.show_recipes(owner)
+    old_name = ''
+    old_description = ''
+    for a_recipe in recipes:
+        if a_recipe['name'] == name:
+            my_rec = a_recipe
+            old_name = my_rec['name']
+            old_description = my_rec['description']
+            break
+    else:
+        my_rec = None
+        old_name = 'Not found'
+        old_description = 'Not found'
+
+    form = RecipeEdit()
+    form.name.data = old_name
+    form.description.data = old_description
+    if form.validate_on_submit():
+        new_name = request.form['name']
+        new_description = request.form['description']
+        myrec = recipe.edit_recipe(new_name,new_description, old_name, owner)
+        return render_template('/dashboard/editrecipe.html', myrec=myrec)
+    return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
     
 
 
