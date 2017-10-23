@@ -31,13 +31,13 @@ class CategoryEdit(FlaskForm):
     
 class RecipeCreation(FlaskForm):
     """The form class creates the recipe addition form"""
-    name = StringField('Name')
+    name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Save')
 
 class RecipeEdit(FlaskForm):
     """The form class creates the recipe editing form"""
-    name = StringField('Name')
+    name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Edit')
 
