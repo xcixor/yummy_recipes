@@ -10,11 +10,11 @@ from wtforms import ValidationError
 
 class RegistrationForm(FlaskForm):
     """TThe form class created the registration form"""
-    username = StringField('Username', validators=[
+    username = StringField('Username', render_kw={"placeholder": "username"}, validators=[
         Required(), Length(2, 40)])
-    password = PasswordField('Password', validators=[
+    password = PasswordField('Password', render_kw={"placeholder": "password"}, validators=[
         Required(), EqualTo('password2', message='Passwords must match.'), Length(8)])
-    password2 = PasswordField('Confirm password', validators=[Required()])
+    password2 = PasswordField('Confirm password', render_kw={"placeholder": "password"}, validators=[Required()])
     submit = SubmitField('Register')
 
 class CategoryCreation(FlaskForm):
