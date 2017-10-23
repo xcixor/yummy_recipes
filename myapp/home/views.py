@@ -116,7 +116,6 @@ def delete_recipe(name, owner):
     user = session['username']
     recipe.delete_recipe(name)
     myrec = recipe.recipes
-    # return redirect(url_for('home.create_recipe',myrec=myrec, name=owner))
     return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
 
 @home.route('/edit_recipe/<name>/<owner>', methods=['GET', 'POST'])
@@ -144,8 +143,8 @@ def edit_recipe(name, owner):
         new_name = request.form['name']
         new_description = request.form['description']
         myrec = recipe.edit_recipe(new_name,new_description, old_name, owner)
-        return render_template('/dashboard/editrecipe.html', myrec=myrec)
-    return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
+        return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+    return render_template('dashboard/editrecipe.html', form=form, name=old_name, description=old_description)
     
 
 
