@@ -88,6 +88,7 @@ def edit_category(name):
 
 @home.route('/delete_category/<name>', methods=['GET', 'POST'])
 def delete_category(name):
+    """Deletes a category from the category list"""
     user = session['username']
     category.delete_category(name)
     mycat = category.categories
@@ -102,8 +103,10 @@ def create_recipe(name):
         rec_name = form.name.data
         description = form.description.data
         myrec = recipe.add_recipe(rec_name, description, name)
-        return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
-    return render_template('dashboard/addrecipe.html', form=form)
+        if isinstance(myrec, list):
+            return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
+        flash("Cannot add duplicate recipe")
+    return render_template('/dashboard/addrecipe.html', form=form)
 
 @home.route('/my_dash')
 def my_dash():
@@ -144,12 +147,6 @@ def edit_recipe(name, owner):
         new_name = request.form['name']
         new_description = request.form['description']
         myrec = recipe.edit_recipe(new_name,new_description, old_name, owner)
-        return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+        if isinstance(myrec, list):
+            return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     return render_template('dashboard/editrecipe.html', form=form, name=old_name, description=old_description)
-    
-
-
-
-
-        
-
