@@ -98,6 +98,8 @@ class Category(object):
                 del self.categories[category]
                 return "Deleted successfully"
             return "Category not exist"
+        categories_left = self.show_categories(name)
+        return categories_left
 
     def edit_category(self, new_name,new_description, old_name, owner):
         """Updates the details of the new category
