@@ -19,13 +19,13 @@ class RegistrationForm(FlaskForm):
 
 class CategoryCreation(FlaskForm):
     """The form class creates the category creation form"""
-    name = StringField('Name')
+    name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Save')
 
 class CategoryEdit(FlaskForm):
     """The form class creates the category editing form"""
-    name = StringField('Name')
+    name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Edit')
     
