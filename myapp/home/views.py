@@ -119,9 +119,10 @@ def my_dash():
 @home.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def delete_recipe(name, owner):
     user = session['username']
-    recipe.delete_recipe(name)
-    myrec = recipe.recipes
-    return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+    if recipe.delete_recipe(name):
+        myrec = recipe.recipes
+        return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+    render_template('/dashboard/recipeview.html')
 
 @home.route('/edit_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def edit_recipe(name, owner):
