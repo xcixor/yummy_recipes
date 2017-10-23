@@ -82,7 +82,8 @@ def edit_category(name):
         new_name = request.form['name']
         new_description = request.form['description']
         mycat = category.edit_category(new_name, new_description, name, user)
-        return render_template('/dashboard/dashboard.html', mycat=mycat)
+        if isinstance(mycat, list):
+            return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
 
 @home.route('/delete_category/<name>', methods=['GET', 'POST'])
