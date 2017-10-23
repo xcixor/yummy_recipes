@@ -8,9 +8,11 @@ app = create_app('default')
 
 manager = Manager(app)
 
+port = int(os.environ.get('PORT', 5000))
+
 def make_shell_context():
     """Creates the custom context for the python shell"""
-    return dict(app=app)
+    return dict(app=app,host='0.0.0.0', port=port)
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
 
@@ -22,6 +24,5 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    manager.run(host='0.0.0.0', port=port)
+    manager.run()
  
