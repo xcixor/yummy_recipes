@@ -68,3 +68,8 @@ h3{
     margin: 0px;
   }
 }
+form{
+    text-align: right;
+    align-items: right;
+    margin-bottom: 50px;
+}
