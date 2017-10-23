@@ -90,9 +90,10 @@ def edit_category(name):
 def delete_category(name):
     """Deletes a category from the category list"""
     user = session['username']
-    category.delete_category(name)
-    mycat = category.categories
-    return render_template('/dashboard/dashboard.html', mycat=mycat)
+    if category.delete_category(name):
+        mycat = category.categories
+        return render_template('/dashboard/dashboard.html', mycat=mycat)
+    return render_template('/dashboard/dashboard.html')
 
 @home.route('/create_recipe/<name>', methods=['GET','POST'])
 def create_recipe(name):
