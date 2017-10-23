@@ -1,9 +1,7 @@
 [![Build Status](https://travis-ci.org/xcixor/yummy_recipes.svg?branch=master)](https://travis-ci.org/xcixor/yummy_recipes)
-<a href='https://coveralls.io/github/xcixor/yummy_recipes?branch=flask_recipe'><img src='https://coveralls.io/repos/github/xcixor/yummy_recipes/badge.svg?branch=flask_recipe' alt='Coverage Status' /></a>
-<a href="https://codeclimate.com/github/codeclimate/codeclimate"><imgss src="https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg" /></a>
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/f4307cd025c074193088/maintainability)](https://codeclimate.com/github/xcixor/yummy_recipes/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f4307cd025c074193088/test_coverage)](https://codeclimate.com/github/xcixor/yummy_recipes/test_coverage)
 [![Issue Count](https://codeclimate.com/github/codeclimate/codeclimate/badges/issue_count.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
-
 [![Test Coverage](https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg)](https://codeclimate.com/github/codeclimate/codeclimate/coverage)
 
 
