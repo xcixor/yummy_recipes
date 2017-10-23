@@ -37,7 +37,7 @@ def index():
 
 @home.route('/create_category', methods=['GET','POST'])
 def create_category():
-    """Collects data about a category and creates a cateegory"""
+    """Collects data about a category and creates a category"""
     user = session['username']
     form = CategoryCreation()
     if form.validate_on_submit():
