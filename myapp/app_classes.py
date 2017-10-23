@@ -96,8 +96,8 @@ class Category(object):
         for category in range(len(self.categories)):
             if self.categories[category]['name'] == name:
                 del self.categories[category]
-                return "Deleted successfully"
-            return "Category not exist"
+                return True
+        return False
 
     def edit_category(self, new_name,new_description, old_name, owner):
         """Updates the details of the new category
