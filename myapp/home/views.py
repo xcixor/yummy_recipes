@@ -146,7 +146,7 @@ def edit_recipe(name, owner):
     if form.validate_on_submit():
         new_name = request.form['name']
         new_description = request.form['description']
-        myrec = recipe.edit_recipe(new_name,new_description, old_name, owner)
+        myrec = recipe.edit_recipe(new_name, new_description, old_name, owner)
         if isinstance(myrec, list):
             return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     return render_template('dashboard/editrecipe.html', form=form, name=old_name, description=old_description)
