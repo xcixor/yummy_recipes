@@ -44,13 +44,17 @@ def create_category():
         name = form.name.data
         description = form.description.data
         mycat = category.add_category(name, description, user)
-        return render_template('/dashboard/dashboard.html', mycat=mycat)
+        if isinstance(mycat, list):
+            return render_template('/dashboard/dashboard.html', mycat=mycat)
+        flash("Item already in list")
+        return redirect(url_for('home.create_category', form=form))
     return render_template('dashboard/categoryadd.html', form=form)
 
 @home.route('/logout')
 def logout():
     """Logs the user out of the system"""
     session.pop('username', None)
+    flash("You have been logged out")
     return redirect(url_for('home.index', form=RegistrationForm()))
 
 @home.route('/edit_category/<name>', methods=['GET', 'POST'])
