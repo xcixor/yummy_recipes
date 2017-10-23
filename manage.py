@@ -1,5 +1,7 @@
 from myapp import create_app
 
+import os
+
 from flask_script import Manager, Shell
 
 app = create_app('default')
@@ -20,4 +22,6 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 if __name__ == '__main__':
-    manager.run()
+    port = int(os.environ.get('PORT', 5000))
+    manager.run(host='0.0.0.0', port=port)
+ 
