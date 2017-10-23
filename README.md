@@ -32,7 +32,7 @@
 		(myvenv) $ python manage.py test
 
 ## Deployment
-	The app will be hosted at heroku, a platform for developers to build run and test their application
+	The app is hosted at heroku, and you can access it through this [link](https://my-yummy.herokuapp.com/)
 
 ## Built with
 	Flask
