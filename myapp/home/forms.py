@@ -35,4 +35,10 @@ class RecipeCreation(FlaskForm):
     description = StringField('Description')
     submit = SubmitField('Save')
 
+class RecipeEdit(FlaskForm):
+    """The form class creates the recipe editing form"""
+    name = StringField('Name')
+    description = StringField('Description')
+    submit = SubmitField('Edit')
+
 
