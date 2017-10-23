@@ -167,8 +167,8 @@ class Recipe(object):
         for recipe in range(len(self.recipes)):
             if self.recipes[recipe]['name'] == name:
                 del self.recipes[recipe]
-                return "Deleted successfully"
-            return "recipe not exist"
+                return True
+        return False
 
     def edit_recipe(self, new_name,new_description, old_name, owner):
         """Updates the details of the new recipe
