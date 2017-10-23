@@ -35,7 +35,12 @@
         </div>
         
         {% else %}
-        <h2>You dont have any recipes under this category</h2> <a href="/create_recipe/{{owner}}">Add some</a>
+        <div class="container">
+            <div class="jumbotron">
+              <h1>Hi, {{session['username']}}</h1> 
+              <p>{{owner}} category does not have any more recipes, <a href="/create_recipe/{{owner}}">add some</a> or go back to<a href="{{ url_for('home.my_dash') }}"> categories</a></p> 
+            </div>
+          </div>
         {% endif %}
     </div>
 </div>
