@@ -5,9 +5,8 @@
 
 [![Test Coverage](https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg)](https://codeclimate.com/github/codeclimate/codeclimate/coverage)
 [![Issue Count](https://codeclimate.com/github/codeclimate/codeclimate/badges/issue_count.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
-
-
 </Stack>
+
 ### Prerequisites
 	You should have the following software installed
     	python
@@ -33,8 +32,6 @@
 
 ## Deployment
 The app is hosted at heroku, and you can access it through this [link](https://my-yummy.herokuapp.com/)
-This site was built using [GitHub Pages](https://pages.github.com/)
-
 ## Built with
 	Flask
 
