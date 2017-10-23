@@ -32,8 +32,8 @@
 		(myvenv) $ python manage.py test
 
 ## Deployment
-	The app is hosted at heroku, and you can access it through this [link](https://my-yummy.herokuapp.com/)
-	This site was built using [GitHub Pages](https://pages.github.com/)
+The app is hosted at heroku, and you can access it through this [link](https://my-yummy.herokuapp.com/)
+This site was built using [GitHub Pages](https://pages.github.com/)
 
 ## Built with
 	Flask
