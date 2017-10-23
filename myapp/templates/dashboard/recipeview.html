@@ -2,35 +2,41 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block head %}
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static', filename='css/categoryview.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/recipeview.css')}}">
 {% endblock %}
 {% block content %}
 
 {% if myrec %}
-<h2>{{ owner }}</h2>
-<table class="table table-striped table-hover table-responsive">
-    <thead>
-        <tr>
-        <th>Name</th>
-        <th>Description</th>
-        </tr>
-    </thead>
+<div class="container">
+    <div class="row">
+        <h2>{{ owner }}</h2>
+        <table class="table table-striped table-hover table-responsive">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Description</th>
+                </tr>
+            </thead>
 
-    <tbody>
-            {% for data in myrec %}
-        <tr>
-        <td>{{ data['name'] }}</td>
-        <td>{{ data['description'] }}</td>
-        <td><a href="/edit_recipe/{{ data['name'] }}/{{owner}}">edit</a></td>
-        <td><a href="/delete_recipe/{{ data['name'] }}/{{owner}}">delete</a></td>
-        {% endfor %}
-        </tr>
-    </tbody>
-</table>
-<a href="/create_recipe/{{owner}}">Add another</a>
-<a href="{{ url_for('home.my_dash') }}" class="btn btn-primary float-right">Home</a>
-{% else %}
-<h2>You dont have any recipes under this category</h2> <a href="/create_recipe/{{owner}}">Add some</a>
-{% endif %}
-
+            <tbody>
+                    {% for data in myrec %}
+                <tr>
+                <td>{{ data['name'] }}</td>
+                <td>{{ data['description'] }}</td>
+                <td><a href="/edit_recipe/{{ data['name'] }}/{{owner}}">edit</a></td>
+                <td><a href="/delete_recipe/{{ data['name'] }}/{{owner}}">delete</a></td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <div id="btns">
+                <a href="/create_recipe/{{owner}}" class="btn btn-info float-right">Add another</a>
+                <a href="{{ url_for('home.my_dash') }}" class="btn btn-info float-right">Home</a>
+        </div>
+        
+        {% else %}
+        <h2>You dont have any recipes under this category</h2> <a href="/create_recipe/{{owner}}">Add some</a>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
