@@ -1,0 +1,9 @@
+h2{
+    text-align: center;
+}
+#btns{
+    align-items: end;
+}
+.row{
+    border: solid blue 1px;
+}

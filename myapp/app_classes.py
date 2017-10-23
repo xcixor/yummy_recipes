@@ -162,7 +162,7 @@ class Recipe(object):
     def delete_recipe(self, name):
         """Remove a recipe from the list
         Args:
-            name(str): name of recipes
+            name(str): name of recipe
         """
         for recipe in range(len(self.recipes)):
             if self.recipes[recipe]['name'] == name:

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/editrecipe.css')}}">
+{% endblock %}
+{% block content %}
+<div class="landing container">
+<div class="row">
+        {{ wtf.quick_form(form) }}
+</div>
+</div>
+
+{% endblock %}

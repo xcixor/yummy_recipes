@@ -42,7 +42,10 @@
    
 <div class="row">
 
+<<<<<<< HEAD
   <div class="col-md-12">
+=======
+>>>>>>> flask_recipe_#2
           <div class="card">
               <div class="card-header">
                 Category
@@ -52,14 +55,22 @@
                 <p class="card-text">{{ data['description'] }}</p>
                 <ul>
                     <ul style="list-style-type: none">
-                      <li style="float: right; padding-left: 50px;"><a href="/edit_category/{{ data['name'] }}" class="btn btn-primary">Edit me</a></li>
-                      <li style="float: right; padding-left: 50px;"> <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary">Delete me</a></li>
-                      <li style="float: right; padding-left: 50px;"> <a href="#" class="btn btn-primary">Add Recipe</a></li>
+                      <li style="float: right; padding-left: 30px;"><a href="/edit_category/{{ data['name'] }}" class="btn btn-primary">Edit me</a></li>
+                      <li style="float: right; padding-left: 30px;"> <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary">Delete me</a></li>
+                      <li style="float: right; padding-left: 30px;"> <a href="/create_recipe/{{ data['name'] }}" class="btn btn-primary">Add Recipe</a></li>
                     </ul>
+<<<<<<< HEAD
                 </ul>
              </div>
           </div> 
   </div>
+=======
+                  </div>
+                </ul>
+             </div>
+           </div> 
+
+>>>>>>> flask_recipe_#2
 </div>
    
 </div>
@@ -73,10 +84,17 @@
 {% endif %}
 <div class="container">
   <div class="row">
+<<<<<<< HEAD
     <div class="col-md-12">
         <a href="{{ url_for('home.create_category') }}" class="btn btn-primary">Add new</a>
     </div>
   </div>
   </div> 
+=======
+      <a href="{{ url_for('home.create_category') }}" class="btn btn-primary">Add new</a>
+  </div>
+</div> 
+
+>>>>>>> flask_recipe_#2
 {% endblock %}
 
