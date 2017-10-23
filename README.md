@@ -52,5 +52,5 @@ The app is hosted at heroku, and you can access it through this [link](https://m
 	None
 
 ## Acknowledments
-	I would like to thank Andela for giving me the opportunity to work on this project and learn a myriad of new skills that would have taken months to learn about
+	I would like to thank Andela for giving me the opportunity to work on this project <br/>and learn a myriad of new skills that would have taken months to learn about
 
