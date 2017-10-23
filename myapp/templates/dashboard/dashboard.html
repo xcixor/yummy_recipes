@@ -39,25 +39,22 @@
 <h2>My Categories</h2>
 {% for data in mycat%}
 <div class="container">
-   
-<div class="row">
-          <div class="card">
-              <div class="card-header">
-                Category
-              </div>
-              <div class="card-block">
-                <h4 class="card-title" id="name">{{ data['name'] }}</h4>
-                <p class="card-text">{{ data['description'] }}</p>
-                <ul>
-                    <ul style="list-style-type: none">
-                      <li style="float: right; padding-left: 30px;"><a href="/edit_category/{{ data['name'] }}" class="btn btn-primary">Edit me</a></li>
-                      <li style="float: right; padding-left: 30px;"> <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary">Delete me</a></li>
-                      <li style="float: right; padding-left: 30px;"> <a href="/create_recipe/{{ data['name'] }}" class="btn btn-primary">Add Recipe</a></li>
-                    </ul>
-                  </div>
+  <div class="row">
+        <div class="card">
+            <div class="card-header">
+              Category
+            </div>
+            <div class="card-block">
+              <h4 class="card-title" id="name">{{ data['name'] }}</h4>
+              <p class="card-text">{{ data['description'] }}</p>
+                <ul style="list-style-type: none">
+                  <li style="float: right; padding-left: 30px;"><a href="/edit_category/{{ data['name'] }}" class="btn btn-primary">Edit me</a></li>
+                  <li style="float: right; padding-left: 30px;"> <a href="/delete_category/{{ data['name'] }}" class="btn btn-primary">Delete me</a></li>
+                  <li style="float: right; padding-left: 30px;"> <a href="/create_recipe/{{ data['name'] }}" class="btn btn-primary">Add Recipe</a></li>
                 </ul>
-             </div>
-           </div> 
+            </div>
+        </div>
+        </div> 
     </div>
 {% endfor %}
 {% else %}
