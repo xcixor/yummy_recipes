@@ -40,7 +40,7 @@ The app is hosted at heroku, and you can access it through this [link](https://m
 
 * [Dashboard](/designs/wireframes/dashboard.png)
 
-* [Uml](/designs/wireframes/uml.png)
+* [Uml](/designs/wireframes/uml2.png)
 
 ## Contributing
 	Kevin Samoei and Alfred Maina offered their suggestions about how to improve the app
