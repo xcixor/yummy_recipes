@@ -1,5 +1,4 @@
 """Contains the route for the landing page"""
-from flask import render_template
 
 from . import home
 
@@ -9,7 +8,6 @@ from . import home
 
 from flask_login import login_required
 
-# from .. import user, recipe, category, my_cat
 
 from .. import recipe, category, user
 
@@ -20,7 +18,7 @@ def dashboard():
     """Avails the user's dashboard"""
     user = session['username']
     categories = category.show_categories(user)
-    return render_template('dashboard/dashboard.html', user_categories = categories)
+    return render_template('dashboard/dashboard.html', user_categories=categories)
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
@@ -34,8 +32,6 @@ def index():
             session['username'] = username
             flash('You can now login.')
             return redirect(url_for('home.dashboard', form=form))
-        else:
-            flash("You cant login")
         flash("You cant login")
     return render_template('index.html', form=form)
 
