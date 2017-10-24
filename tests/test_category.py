@@ -2,11 +2,14 @@
 
 import unittest
 
-import sys
+import sy
 
 sys.path.append("..")
 
 from myapp.app_classes import Category
+
+# from myapp import category
+
 
 class TestUser(unittest.TestCase):
     """contains the test for the category object methods
@@ -15,20 +18,25 @@ class TestUser(unittest.TestCase):
         """
         creates user objects for the tests
         """
-        self.category = Category()
+        self.category_one = Category("Soups", "Goes with other foods", "James")
+        self.recipe_one = Recipe("Vegetable Salads", "Corrianders, blue bells, royco", \
+        "Boils veggies and add fat", "Soups")
+        self.recipe_two = Recipe("Beef stew", "beef, onions, pepper", \
+        "Mix and boil in medium heat", "Soups")
         
-
     def tearDown(self):
         """
         removes the objects after they have been used
         """
-        del self.category
+        del self.category_one.add_recipe()
 
-    def test_category_exist(self):
-        """Tests the existence of a category"""
-        self.category.add_category('Breakfast', 'Food for morning', 'ptah')
-        result = self.category.add_category('Breakfast', 'Food for morning', 'ptah')
-        self.assertEqual(result, "Item alredy in list")
+    # def test_category_exist(self):
+    #     """Tests the existence of a category"""
+    #     self.category.add_category('Breakfast', 'Food for morning', 'ptah')
+    #     result = self.category.add_category('Breakfast', 'Food for morning', 'ptah')
+    #     self.assertEqual(result, "Item alredy in list")
+    def test_addrecipe(self):
+        self.recipe_one
 
     def test_delete_category(self):
         """Test if user deleted successfully"""
