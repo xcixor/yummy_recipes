@@ -9,7 +9,7 @@ from . import home
 from flask_login import login_required
 
 
-from .. import recipe, category, user
+from .. import recipe, category, user, usr_mgr
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
@@ -17,7 +17,7 @@ from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreat
 def dashboard():
     """Avails the user's dashboard"""
     user = session['username']
-    categories = category.show_categories(user)
+    categories = user.show_categories(user)
     return render_template('dashboard/dashboard.html', user_categories=categories)
 
 @home.route('/', methods=['GET', 'POST'])
@@ -28,7 +28,7 @@ def index():
         username = form.username.data
         pass_1 = form.password.data
         pass_2 = form.password2.data
-        if user.register_user(username, pass_1, pass_2):
+        if usr_mgr.register_user(username, pass_1, pass_2):
             session['username'] = username
             flash('You can now login.')
             return redirect(url_for('home.dashboard', form=form))
@@ -43,7 +43,7 @@ def create_category():
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
-        mycat = category.add_category(name, description, user)
+        mycat = user.add_category(name, description, user)
         if isinstance(mycat, list):
             return render_template('/dashboard/dashboard.html', mycat=mycat)
         flash("Item already in list")
@@ -61,7 +61,7 @@ def logout():
 def edit_category(name):
     """Edits the category details"""
     user = session['username']
-    categories = category.show_categories(user)
+    categories = user.show_categories(user)
     old_name = ''
     old_description = ''
     for cat in categories:
@@ -81,7 +81,7 @@ def edit_category(name):
     if form.validate_on_submit():
         new_name = request.form['name']
         new_description = request.form['description']
-        mycat = category.edit_category(new_name, new_description, name, user)
+        mycat = user.edit_category(new_name, new_description, name, user)
         if isinstance(mycat, list):
             return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
@@ -90,8 +90,8 @@ def edit_category(name):
 def delete_category(name):
     """Deletes a category from the category list"""
     user = session['username']
-    if category.delete_category(name):
-        mycat = category.categories
+    if user.delete_category(name):
+        mycat = user.categories
         return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('/dashboard/dashboard.html')
 
@@ -103,7 +103,7 @@ def create_recipe(name):
     if form.validate_on_submit():
         rec_name = form.name.data
         description = form.description.data
-        myrec = recipe.add_recipe(rec_name, description, name)
+        myrec = category.add_recipe(rec_name, description, name)
         if isinstance(myrec, list):
             return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
         flash("Cannot add duplicate recipe")
@@ -113,14 +113,14 @@ def create_recipe(name):
 def my_dash():
     """Returns the user to the dashboard after working on recipes"""
     user = session['username']
-    mycat = category.show_categories(user)
+    mycat = category.show_recipes(user)
     return render_template('dashboard/dashboard.html',mycat=mycat)
 
 @home.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def delete_recipe(name, owner):
     user = session['username']
-    if recipe.delete_recipe(name):
-        myrec = recipe.recipes
+    if category.delete_recipe(name):
+        myrec = category.recipes
         return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     render_template('/dashboard/recipeview.html')
 
@@ -128,7 +128,7 @@ def delete_recipe(name, owner):
 def edit_recipe(name, owner):
     """Edits the details of the recipe"""
     user = session['username']
-    recipes = recipe.show_recipes(owner)
+    recipes = category.show_recipes(owner)
     old_name = ''
     old_description = ''
     for a_recipe in recipes:
@@ -148,7 +148,7 @@ def edit_recipe(name, owner):
     if form.validate_on_submit():
         new_name = request.form['name']
         new_description = request.form['description']
-        myrec = recipe.edit_recipe(new_name, new_description, old_name, owner)
+        myrec = category.edit_recipe(new_name, new_description, old_name, owner)
         if isinstance(myrec, list):
             return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     return render_template('dashboard/editrecipe.html', form=form, name=old_name, description=old_description)
