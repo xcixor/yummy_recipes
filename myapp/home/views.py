@@ -6,15 +6,11 @@ from flask import render_template, request, redirect, session, url_for, flash
 
 from . import home
 
-from flask_login import login_user, logout_user, login_required, \
-    current_user
-
-from .. import myuser, recipe, category, usr_mgr
+from .. import myuser, category, usr_mgr
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
 @home.route('/dashboard')
-@login_required
 def dashboard():
     """Avails the user's dashboard"""
     user = session['username']
