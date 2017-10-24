@@ -7,7 +7,7 @@ from . import authentication
 
 from .forms import RegistrationForm
 
-from .. import myuser
+from .. import usr_mgr
 
 @authentication.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -17,7 +17,7 @@ def login():
         username = form.username.data
         password = form.password.data
 
-        if user.login_user(username,password):
+        if usr_mgr.login_user(username,password):
             session['username'] = username
             render_template('dashboard/dashboard.html')
     return render_template('authentication/login.html', form=form)

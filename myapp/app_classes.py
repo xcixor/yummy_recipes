@@ -132,6 +132,11 @@ class Category(object):
         self.owner = owner
         self.recipes = []
 
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    name = property(get_name)
+
     def show_recipes(self, owner):
         """Returns a list of recipes belonging to the category"""
         category_recipes = [recipe for recipe in self.recipes if recipe['owner'] == owner]
@@ -155,6 +160,19 @@ class Category(object):
         recipe_toadd = {'owner': owner, 'name': name, 'description': description}
         self.recipes.append(recipe_toadd)
         return self.show_recipes(owner)
+    def add_myrecipe(recipe):
+        recipe_name = recipe.name
+        recipe_owner = name
+        preparation = recipe.preparation
+        ingredients = recipe.ingredients
+
+
+        if self.find_recipe(recipe_name, recipe_owner):
+            return False
+        recipe_toadd = {'owner': recipe_owner, 'name': recipe_name, 'preparation': preparation, 'ingredients': ingredients}
+        self.recipes.append(recipe_toadd)
+        return self.show_recipes(owner)
+
     def delete_recipe(self, name, owner):
         """Removes a recipe from the list
         Args:
@@ -189,8 +207,23 @@ class Recipe(object):
     Methods:
     """
 
-    def __init__(self, name, description, owner):
+    def __init__(self, name, ingredients, preparation):
         """Initializes the attributes of the user created"""
         self.name = name
-        self.description = description
-        self.owner = owner
+        self.preparation = preparation
+        self.ingredients = ingredients
+
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    name = property(get_name)
+
+    def get_ingredients(self):
+        """A getter for the ingredients"""
+        return self.ingredients
+    ingredients = property(get_ingredients)
+
+    def get_preparation(self):
+        """A getter for the preparation"""
+        return self.ingredients
+    preparation = property(get_preparation)
