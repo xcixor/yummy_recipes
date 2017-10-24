@@ -114,14 +114,14 @@ def create_recipe(name):
 def my_dash():
     """Returns the user to the dashboard after working on recipes"""
     user = session['username']
-    mycat = user.show_categories(user)
+    mycat = myuser.show_categories(user)
     return render_template('dashboard/dashboard.html', mycat=mycat)
 
 @home.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def delete_recipe(name, owner):
     user = session['username']
-    if category.delete_recipe(name):
-        myrec = category.recipes
+    myrec = category.delete_recipe(name, owner)
+    if isinstance(myrec, list):
         return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     render_template('/dashboard/recipeview.html')
 
