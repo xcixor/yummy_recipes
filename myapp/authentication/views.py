@@ -7,7 +7,7 @@ from . import authentication
 
 from .forms import RegistrationForm
 
-from .. import user
+from .. import myuser
 
 @authentication.route('/login', methods = ['GET', 'POST'])
 def login():

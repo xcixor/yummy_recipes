@@ -6,18 +6,20 @@ from flask import render_template, request, redirect, session, url_for, flash
 
 from . import home
 
-from flask_login import login_required
+from flask_login import login_user, logout_user, login_required, \
+    current_user
 
-from .. import myuser, usr_mgr, recipe, category
+from .. import myuser, recipe, category, usr_mgr
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
 @home.route('/dashboard')
+@login_required
 def dashboard():
     """Avails the user's dashboard"""
     user = session['username']
     mycategories = myuser.show_categories(user)
-    return render_template('dashboard/dshboard.html', user_categories=mycategories)
+    return render_template('dashboard/dashboard.html', user_categories=mycategories)
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
@@ -42,7 +44,7 @@ def create_category():
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
-        mycat = user.add_category(name, description, user)
+        mycat = myuser.add_category(name, description, user)
         if isinstance(mycat, list):
             return render_template('/dashboard/dashboard.html', mycat=mycat)
         flash("Item already in list")
@@ -60,7 +62,7 @@ def logout():
 def edit_category(name):
     """Edits the category details"""
     user = session['username']
-    categories = user.show_categories(user)
+    categories = myuser.show_categories(user)
     old_name = ''
     old_description = ''
     for cat in categories:
@@ -80,7 +82,7 @@ def edit_category(name):
     if form.validate_on_submit():
         new_name = request.form['name']
         new_description = request.form['description']
-        mycat = user.edit_category(new_name, new_description, name, user)
+        mycat = myuser.edit_category(new_name, new_description, name, user)
         if isinstance(mycat, list):
             return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
@@ -89,8 +91,8 @@ def edit_category(name):
 def delete_category(name):
     """Deletes a category from the category list"""
     user = session['username']
-    if user.delete_category(name):
-        mycat = user.categories
+    if myuser.delete_category(name):
+        mycat = myuser.categories
         return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('/dashboard/dashboard.html')
 
@@ -113,7 +115,7 @@ def my_dash():
     """Returns the user to the dashboard after working on recipes"""
     user = session['username']
     mycat = category.show_recipes(user)
-    return render_template('dashboard/dashboard.html',mycat=mycat)
+    return render_template('dashboard/dashboard.html', mycat=mycat)
 
 @home.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def delete_recipe(name, owner):
