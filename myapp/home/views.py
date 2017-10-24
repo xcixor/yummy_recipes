@@ -8,7 +8,7 @@ from . import home
 
 from flask_login import login_required
 
-from .. import recipe, category, user, usr_mgr
+from .. import myuser, usr_mgr, recipe, category
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
@@ -16,12 +16,12 @@ from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreat
 def dashboard():
     """Avails the user's dashboard"""
     user = session['username']
-    mycategories = user.show_categories(user)
-    return render_template('dashboard/dashboard.html', user_categories=mycategories)
+    mycategories = myuser.show_categories(user)
+    return render_template('dashboard/dshboard.html', user_categories=mycategories)
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
-    """Defines the landing page"""
+    """Defines the landing pae"""
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data

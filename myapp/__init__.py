@@ -15,11 +15,11 @@ from myapp import app_classes
 
 usr_mgr = app_classes.App()
 
-user = app_classes.User("default_user", "default_pass", "default_pass")
-
 category = app_classes.Category("default_name", "default_description", "default_owner")
 
 recipe = app_classes.Recipe("default_name", "default_description", "default_owner")
+
+myuser = app_classes.User("default_name", "default_pass", "default_pass")
 
 bootstrap = Bootstrap()
 
