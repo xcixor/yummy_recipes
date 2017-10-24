@@ -5,23 +5,9 @@ classes:
     Recipe: Instantiates a recipe that belongs to a certain user's category
 Methods:
 """
-
-class User(object):
-    """Instantiates a new user
-    Attributes:
-        username(str): The user's name
-        password(str): The user's password
-        confirm_password(str): The user's confirmation password
-    Methods:
-        register_user: Adds a user to the user's collection
-        login_user: Confirms the credentials of the user and grants access to account
-    """
-    def __init__(self, username, password, confirm_password):
-        """initializes the attributes of the user created
-        """
-        self.username = username
-        self.password = password
-        self.confirm_password = confirm_password
+class App(object):
+    """Manages the actions of the user and maintains a list of users who have registered"""
+    def __init__(self):
         self.users = []
 
     def register_user(self, username, password, confirm_password):
@@ -58,40 +44,37 @@ class User(object):
             else:
                 return "Password/username combination is incorrect"
 
-class Category(object):
-    """Manages the addition, update, deletion and display of categories
+class User(object):
+    """Instantiates a new user
     Attributes:
-            name(str): A name for the category
-            description(str): A short description about the category
-            owner(str): The user who created the category
+        username(str): The user's name
+        password(str): The user's password
+        confirm_password(str): The user's confirmation password
     Methods:
-            add_category: creates a category and adds it to the collection
-            edit_category: updates the details of a category
-            delete_category: removes the category fro the collection
-            show_categories: returns a given user's categories
-            find_category: checks for the existence of a category
+        register_user: Adds a user to the user's collection
+        login_user: Confirms the credentials of the user and grants access to account
     """
-
-    def __init__(self, name, description, owner):
-        """Initializes the attributes of the class"""
-        self.name = name
-        self.description = description
-        self.owner = owner
+    def __init__(self, username, password, confirm_password):
+        """initializes the attributes of the user created
+        """
+        self.username = username
+        self.password = password
+        self.confirm_password = confirm_password
         self.categories = []
 
     def show_categories(self, owner):
+        """Shows a list of categories belonging to the user"""
         user_categories = [category for category in self.categories if category['owner'] == owner]
         return user_categories
 
     def find_category(self, name, owner):
+        """Searches for a particular category belonging to the user"""
         user_categories = self.show_categories(owner)
-        
         category_in_list = [category for category in user_categories if category['name'] == name]
-
         if category_in_list:
             return True
     def add_category(self, name, description, owner):
-        """Creates a recipe category and adds it to the user collection
+        """Creates category and adds it to the user's collection
            Args:
                name(str): A name for the category
                description(str): A description of what it is
@@ -102,9 +85,8 @@ class Category(object):
         category_toadd = {'owner': owner, 'name': name, 'description': description}
         self.categories.append(category_toadd)
         return self.show_categories(owner)
-    
     def delete_category(self, name):
-        """Removes a category from the list
+        """Removes a category from the user's list
         Args:
             name(str): the category's name that is used to remove the category's object
         """
@@ -128,66 +110,55 @@ class Category(object):
             return self.show_categories(owner)
         return "Item not exist"
 
-class Recipe(object):
-    """Manages the addition, update, deletion and display of recipes
-    Args:
-        name(str): The name of the recipe created
-        description(str): A short description of the recipe created
-        owner
+class Category(object):
+    """Creates a new category
+    Attributes:
+            name(str): A name for the category
+            description(str): A short description about the category
+            owner(str): The user who created the category
+            recipes(object): A list of recipes belonging th the category
     Methods:
-        add_recipe: creates a recipe and adds it to the collection
-        edit_recipe: updates the details of a recipe
-        delete_recipe: removes the recipe fro the collection
-        show_recipes: returns a given user's recipes
-        find_recipe: checks for the existence of a recipe
+            add_recipe: creates a recipe and adds it to the collection
+            edit_recipe: updates the details of a recipe
+            delete_recipe: removes a recipe from the collection
+            show_recipe: returns a given category's recipes
+            find_recipe: checks for the existence of a recipe
     """
 
     def __init__(self, name, description, owner):
-        """Initializes the attributes of the user created"""
+        """Initializes the attributes of the class"""
         self.name = name
         self.description = description
         self.owner = owner
         self.recipes = []
 
     def show_recipes(self, owner):
-        """Returns a list of a user's recipes
-        Args: the user whose recipes are to be returned
-        """
-        user_recipes = [recipe for recipe in self.recipes if recipe['owner'] == owner]
-        return user_recipes
+        """Returns a list of recipes belonging to the category"""
+        category_recipes = [recipe for recipe in self.recipes if recipe['owner'] == owner]
+        return category_recipes
 
     def find_recipe(self, name, owner):
-        """
-        Checks for the existence of a recipe in a user's collection
-        Args:
-            name: recipe's name
-            owner: the recipes owner
-        """
-        user_recipes = self.show_recipes(owner)
-        
-        recipe_in_list = [recipe for recipe in user_recipes if recipe['name'] == name]
-
+        """Checks whether a particular recipe belongs to a category"""
+        category_recipes = self.show_recipes(owner)
+        recipe_in_list = [recipe for recipe in category_recipes if recipe['name'] == name]
         if recipe_in_list:
             return True
-        
-
     def add_recipe(self, name, description, owner):
-        """Creates a recipe recipe and adds it to the user collection
+        """Creates a recipe and adds it to the category collection
            Args:
                name(str): A name for the recipe
                description(str): A description of what it is
-               owner(str): The name of the user who creates the recipe
+               owner(str): The name of the category who creates the recipe
         """
         if self.find_recipe(name, owner):
             return "Item alredy in list"
         recipe_toadd = {'owner': owner, 'name': name, 'description': description}
         self.recipes.append(recipe_toadd)
         return self.show_recipes(owner)
-    
     def delete_recipe(self, name):
-        """Remove a recipe from the list
+        """Removes a recipe from the list
         Args:
-            name(str): name of recipe
+            name(str): the recipe's name that is used to remove the recipe's object
         """
         for recipe in range(len(self.recipes)):
             if self.recipes[recipe]['name'] == name:
@@ -195,13 +166,13 @@ class Recipe(object):
                 return True
         return False
 
-    def edit_recipe(self, new_name,new_description, old_name, owner):
+    def edit_recipe(self, new_name, new_description, old_name, owner):
         """Updates the details of the new recipe
         Args:
             new_name(str): new name of recipe
             new_description(str): new description of recipe
             old_name(str): The name to be replaced
-            owner(str): The name of the object that owns the category
+            owner(str): The name of the object that owns the recipe
         """
         if self.find_recipe(old_name, owner):
             self.delete_recipe(old_name)
@@ -209,4 +180,17 @@ class Recipe(object):
             return self.show_recipes(owner)
         return "Item not exist"
 
+class Recipe(object):
+    """Creates a recipe
+    Args:
+        name(str): The name of the recipe created
+        description(str): A short description of the recipe created
+        owner
+    Methods:
+    """
 
+    def __init__(self, name, description, owner):
+        """Initializes the attributes of the user created"""
+        self.name = name
+        self.description = description
+        self.owner = owner
