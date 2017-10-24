@@ -155,7 +155,7 @@ class Category(object):
         recipe_toadd = {'owner': owner, 'name': name, 'description': description}
         self.recipes.append(recipe_toadd)
         return self.show_recipes(owner)
-    def delete_recipe(self, name):
+    def delete_recipe(self, name, owner):
         """Removes a recipe from the list
         Args:
             name(str): the recipe's name that is used to remove the recipe's object
@@ -163,8 +163,8 @@ class Category(object):
         for recipe in range(len(self.recipes)):
             if self.recipes[recipe]['name'] == name:
                 del self.recipes[recipe]
-                return True
-        return False
+                return self.show_recipes(owner)
+        return None
 
     def edit_recipe(self, new_name, new_description, old_name, owner):
         """Updates the details of the new recipe
