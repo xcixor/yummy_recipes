@@ -13,11 +13,13 @@ from config import config
 
 from myapp import app_classes
 
-user = app_classes.User()
+usr_mgr = app_classes.App()
 
-category = app_classes.Category()
+user = app_classes.User("default_user", "default_pass", "default_pass")
 
-recipe = app_classes.Recipe()
+category = app_classes.Category("default_name", "default_description", "default_owner")
+
+recipe = app_classes.Recipe("default_name", "default_description", "default_owner")
 
 bootstrap = Bootstrap()
 
