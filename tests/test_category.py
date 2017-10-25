@@ -80,4 +80,4 @@ class TestUser(unittest.TestCase):
         self.assertEqual(result, [{'name': 'Vegetable salad', \
         'ingredients': 'corriander, vegetables', 'preparation': 'boil veggies and add corriander', 'owner' :'Soups'},\
         {'name': 'Beef stew', \
-        'ingredients': 'beef, onions, pepper', 'preparation': 'Mix and boil in medium heat', 'owner': 'Soups'}]))
+        'ingredients': 'beef, onions, pepper', 'preparation': 'Mix and boil in medium heat', 'owner': 'Soups'}])

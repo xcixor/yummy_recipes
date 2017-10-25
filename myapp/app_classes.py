@@ -147,7 +147,7 @@ class Category(object):
         category_recipes = self.show_recipes(owner)
         recipe_in_list = [recipe for recipe in category_recipes if recipe['name'] == name]
         if recipe_in_list:
-            return recipe_in_list
+            return True
     def add_recipe(self, recipe):
         """Creates a recipe and adds it to the category collection
            Args:
