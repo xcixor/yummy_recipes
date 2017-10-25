@@ -135,7 +135,7 @@ class Category(object):
     def get_name(self):
         """A getter for the name"""
         return self.name
-    name = property(get_name)
+    category_name = property(get_name)
 
     def show_recipes(self, owner):
         """Returns a list of recipes belonging to the category"""
@@ -147,33 +147,26 @@ class Category(object):
         category_recipes = self.show_recipes(owner)
         recipe_in_list = [recipe for recipe in category_recipes if recipe['name'] == name]
         if recipe_in_list:
-            return True
-    def add_recipe(self, name, description, owner):
+            return recipe_in_list
+    def add_recipe(self, recipe):
         """Creates a recipe and adds it to the category collection
            Args:
                name(str): A name for the recipe
                description(str): A description of what it is
                owner(str): The name of the category who creates the recipe
         """
+        name = recipe.recipe_name
+        owner = recipe.recipe_owner
+        preparation = recipe.recipe_preparation
+        ingredients = recipe.recipe_ingredients
+
         if self.find_recipe(name, owner):
-            return "Item alredy in list"
-        recipe_toadd = {'owner': owner, 'name': name, 'description': description}
-        self.recipes.append(recipe_toadd)
-        return self.show_recipes(owner)
-    def add_myrecipe(recipe):
-        recipe_name = recipe.name
-        recipe_owner = name
-        preparation = recipe.preparation
-        ingredients = recipe.ingredients
-
-
-        if self.find_recipe(recipe_name, recipe_owner):
             return False
-        recipe_toadd = {'owner': recipe_owner, 'name': recipe_name, 'preparation': preparation, 'ingredients': ingredients}
+        recipe_toadd = {'name': name, 'ingredients':ingredients, 'preparation': preparation, 'owner':owner}
         self.recipes.append(recipe_toadd)
         return self.show_recipes(owner)
 
-    def delete_recipe(self, name, owner):
+    def delete_recipe(self, name):
         """Removes a recipe from the list
         Args:
             name(str): the recipe's name that is used to remove the recipe's object
@@ -181,22 +174,25 @@ class Category(object):
         for recipe in range(len(self.recipes)):
             if self.recipes[recipe]['name'] == name:
                 del self.recipes[recipe]
-                return self.show_recipes(owner)
+                # return self.show_recipes(owner)
+                return self.recipes
         return None
 
-    def edit_recipe(self, new_name, new_description, old_name, owner):
+    def edit_recipe(self, name, new_recipe):
         """Updates the details of the new recipe
         Args:
-            new_name(str): new name of recipe
-            new_description(str): new description of recipe
-            old_name(str): The name to be replaced
-            owner(str): The name of the object that owns the recipe
-        """
-        if self.find_recipe(old_name, owner):
-            self.delete_recipe(old_name)
-            self.add_recipe(new_name, new_description, owner)
-            return self.show_recipes(owner)
-        return "Item not exist"
+            name(str): contains the name of the recipe to edit
+            new_recipe(object): containes the details of the new recipe
+        """       
+        new_name = new_recipe.recipe_name
+        owner = new_recipe.recipe_owner
+        preparation = new_recipe.recipe_preparation
+        ingredients = new_recipe.recipe_ingredients
+        recipe_to_add = Recipe(new_name, ingredients, preparation, owner)
+        if self.find_recipe(name, owner):
+            self.delete_recipe(name)
+            return self.add_recipe(recipe_to_add)
+        return "False"
 
 class Recipe(object):
     """Creates a recipe
@@ -207,23 +203,29 @@ class Recipe(object):
     Methods:
     """
 
-    def __init__(self, name, ingredients, preparation):
+    def __init__(self, name, ingredients, preparation, owner):
         """Initializes the attributes of the user created"""
         self.name = name
-        self.preparation = preparation
         self.ingredients = ingredients
+        self.preparation = preparation
+        self.owner = owner
 
     def get_name(self):
         """A getter for the name"""
         return self.name
-    name = property(get_name)
+    recipe_name = property(get_name)
 
     def get_ingredients(self):
         """A getter for the ingredients"""
         return self.ingredients
-    ingredients = property(get_ingredients)
+    recipe_ingredients = property(get_ingredients)
 
     def get_preparation(self):
         """A getter for the preparation"""
-        return self.ingredients
-    preparation = property(get_preparation)
+        return self.preparation
+    recipe_preparation = property(get_preparation)
+
+    def get_owner(self):
+        """A getter for the owner"""
+        return self.owner
+    recipe_owner = property(get_owner)
