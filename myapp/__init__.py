@@ -17,7 +17,9 @@ usr_mgr = app_classes.App()
 
 category = app_classes.Category("default_name", "default_description", "default_owner")
 
-recipe = app_classes.Recipe("default_name", "default_description", "default_owner")
+# recipe = app_classes.Recipe("default name", "default ingredients", "default preparation", "default owner")
+
+recipe = app_classes.Recipe('name', 'ingredients', 'preparation', 'owner')
 
 myuser = app_classes.User("default_name", "default_pass", "default_pass")
 
