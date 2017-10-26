@@ -11,19 +11,18 @@ from flask_login import LoginManager
 
 from config import config
 
-from myapp import app_classes
+from .app_classes import User, Category, Recipe, App
 
-usr_mgr = app_classes.App()
+usr_mgr = App()
 
-category = app_classes.Category("default_name", "default_description", "default_owner")
+myuser = User()
 
-# recipe = app_classes.Recipe("default name", "default ingredients", "default preparation", "default owner")
+category = Category()
 
-recipe = app_classes.Recipe('name', 'ingredients', 'preparation', 'owner')
-
-myuser = app_classes.User("default_name", "default_pass", "default_pass")
+recipe = Recipe()
 
 bootstrap = Bootstrap()
+
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
