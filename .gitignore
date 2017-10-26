@@ -13,3 +13,4 @@ myapp/templates/dashboard/categories.html
 tests/__pycache__/test_category.cpython-35.pyc
 tests/__pycache__/test_recipe.cpython-35.pyc
 tests/__pycache__.*
+myapp/prev_classes.py
