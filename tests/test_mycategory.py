@@ -60,14 +60,14 @@ class TestUser(unittest.TestCase):
         {'name': 'Beef stew', 'ingredients': 'beef, onions, pepper', 'preparation': 'Mix and boil in medium heat', 'owner': 'Soups'}])
         
 
-    def test_delete_category(self):
+    def test_delete_recipe(self):
         """Test if recipe deleted successfully"""
         self.category_one.add_item(self.recipe_two)
         result = self.category_one.delete_item('Beef stew')
         self.assertEqual(result,[{'name': 'Vegetable salad',\
         'ingredients': 'corriander, vegetables', 'preparation': 'boil veggies and add corriander', 'owner' :'Soups'}])  
 
-    def test_edit_category(self):
+    def test_edit_recipe(self):
         """Test if a category can be edited successfully"""
         new_recipe = self.recipe_two
         result = self.category_one.edit_item('Vegetable salad', new_recipe)
