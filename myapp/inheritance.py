@@ -1,3 +1,48 @@
+"""Defines the classes for the application
+classes:
+    User: This class instantiates a user to be added to the application
+    Category: This class instantiates a category created by a user
+    Recipe: Instantiates a recipe that belongs to a certain user's category
+Methods:
+"""
+class App(object):
+    """Manages the actions of the user and maintains a list of users who have registered"""
+    def __init__(self):
+        self.users = []
+
+    def register_user(self, username, password, confirm_password):
+        """Checks the availability of the user in the user's collection
+        and adds him if he doesn't exist
+        Args:
+            username(str): The name of the user to register
+            password(str): The password of the user to register
+            confirm_password(str): The confirmation password of the user to register
+        """
+        data = {}
+
+        for a_user in self.users:
+            if username == a_user['username']:
+                return "User added already"
+            else:
+                if password != confirm_password:
+                    return "The passwords do not match"
+
+        data['username'] = username
+        data['password'] = password
+        self.users.append(data)
+        return True
+
+    def login_user(self, username, password):
+        """Compares details provided with those on record to prove user's authenticity
+        Args:
+            username(str): The user to login name
+            password(str): The user to login password
+        """
+        for a_user in self.users:
+            if username == a_user['username'] and password == a_user['password']:
+                return "User successfully loged in"
+            else:
+                return "Password/username combination is incorrect"
 class AppObject(object):
     """Super class for objects with similar behavior in the app
     Attributes:
@@ -56,8 +101,59 @@ class AppObject(object):
         """
         pass
 
+class User(AppObject):
+    """Inherits from AppObject and Instantiates a new user
+    Attributes:
+        username(str): The user's name
+        password(str): The user's password
+        confirm_password(str): The user's confirmation password
+    Methods:
+        register_user: Adds a user to the user's collection
+        login_user: Confirms the credentials of the user and grants access to account
+    """
+    def __init__(self, username, password, confirm_password):
+        """initializes the attributes of the user created
+        """
+        super(User, self).__init__(name=username)
+        self.password = password
+        self.confirm_password = confirm_password
+
+    def add_item(self, category):
+        """Creates category and adds it to the user's collection
+           Args:
+               name(str): A name for the category
+               description(str): A description of what it is
+               owner(str): The name of the user who creates the category
+        """
+        name = category.item_name
+        owner = category.item_owner
+        description = category.item_description
+
+        if self.find_item(name, owner):
+            return False
+        category_toadd = {'name': name, 'description': description, 'owner': owner}
+        self.items.append(category_toadd)
+        return self.show_items(owner)
+
+
+    def edit_item(self, name, new_category):
+        """Updates the details of the new category
+        Args:
+            name(str): contains the name of the category to edit
+            new_category(object): containes the details of the new category
+        """ 
+        new_name = new_category.item_name
+        owner = new_category.item_owner
+        description = new_category.item_description
+
+        category_to_edit = Category(new_name, description, owner)
+        if self.find_item(name, owner):
+            self.delete_item(name)
+            return self.add_item(category_to_edit)
+        return False
+
 class Category(AppObject):
-    """Creates a new category
+    """Inherots from AppObject and creates a new category
     Attributes:
             name(str): A name for the category
             description(str): A short description about the category
@@ -74,6 +170,21 @@ class Category(AppObject):
         super(Category, self).__init__(name=name)
         self.description = description
         self.owner = owner
+
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    item_name = property(get_name)
+
+    def get_description(self):
+        """A getter for the name"""
+        return self.description
+    item_description = property(get_description)
+
+    def get_owner(self):
+        """A getter for the owner"""
+        return self.owner
+    item_owner = property(get_owner)
 
     def add_item(self, recipe):
         """Creates a recipe and adds it to the category collection
@@ -107,7 +218,7 @@ class Category(AppObject):
         if self.find_item(name, owner):
             self.delete_item(name)
             return self.add_item(recipe_to_add)
-        return "False"
+        return False
 
 
 class Recipe(object):
