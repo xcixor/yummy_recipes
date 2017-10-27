@@ -23,5 +23,4 @@ class TestUser(unittest.TestCase):
     def test_recipe_exist(self):
         """Tests the existence of a recipe"""
         result = self.recipe.__str__()
-        self.assertEqual(result, "Name: default recipe, Ingredients: default ingredients, \
-        Preparation: default preparation")
+        self.assertEqual(result, "Name: default recipe, Ingredients: default ingredients, Preparation: default preparation")
