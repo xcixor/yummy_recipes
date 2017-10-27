@@ -46,6 +46,7 @@ The app is hosted at heroku, and you can access it through this [link](https://m
 	Kevin Samoei and Alfred Maina offered their suggestions about how to improve the app
 
 ## Versioning
+	yummy 1.0
 ## Authors
 	pndungu54@gmail.com
 ## Licences
