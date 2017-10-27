@@ -127,6 +127,13 @@ def delete_recipe(name, owner):
         return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     render_template('/dashboard/recipeview.html')
 
+@home.route('/view_recipes/<owner>', methods=['GET', 'POST'])
+def view_recipes(owner):
+    myrecs = category.show_items(owner)
+    if isinstance(myrecs, list):
+        return render_template('/dashboard/recipeview.html', myrec=myrecs, owner=owner)
+    render_template('/dashboard/recipeview.html')
+
 @home.route('/edit_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def edit_recipe(name, owner):
     """Edits the details of the recipe"""
