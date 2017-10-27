@@ -25,6 +25,5 @@ config = {
     'development': Development,
     'testing': Testing,
     'production': Production,
-
     'default': Development
 }
