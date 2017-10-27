@@ -10,7 +10,15 @@ class UserManager(object):
     def __init__(self):
         self.users = []
 
-    def register_user(self, username, password, confirm_password):
+    def show_user(self, username):
+        """Returns a list of all the items in the object's collection
+        Args:
+            name(str): The name of the owning object
+        """
+        registered_user = [user for user in self.users if user['username'] == username]
+        return registered_user
+
+    def register_user(self, user):
         """Checks the availability of the user in the user's collection
         and adds him if he doesn't exist
         Args:
@@ -18,31 +26,40 @@ class UserManager(object):
             password(str): The password of the user to register
             confirm_password(str): The confirmation password of the user to register
         """
-        data = {}
+        username = user.item_name
+        password = user.pass_one
+        confirm_password = user.pass_two
 
         for a_user in self.users:
             if username == a_user['username']:
-                return "User added already"
+                return "User added registered"
             else:
                 if password != confirm_password:
                     return "The passwords do not match"
 
-        data['username'] = username
-        data['password'] = password
-        self.users.append(data)
+        user = {'username':username, 'password':password}
+        self.users.append(user)
         return True
 
-    def login_user(self, username, password):
+    def login_user(self, user):
         """Compares details provided with those on record to prove user's authenticity
         Args:
             username(str): The user to login name
             password(str): The user to login password
         """
-        for a_user in self.users:
-            if username == a_user['username'] and password == a_user['password']:
-                return "User successfully loged in"
-            else:
-                return "Password/username combination is incorrect"
+        username = user.item_name
+        password = user.pass_one
+
+        registered_user = self.show_user(username)
+
+        if registered_user:
+            for user in registered_user:
+                reg_username = user['username']
+                reg_password = user['password']
+                if username == reg_username and password == reg_password:
+                    return "User successfully loged in"
+                else:
+                    return "Password/username combination is incorrect"
 class AppObject(object):
     """Super class for objects with similar behavior in the app
     Attributes:
@@ -117,6 +134,21 @@ class User(AppObject):
         super(User, self).__init__(name=username)
         self.password = password
         self.confirm_password = confirm_password
+
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    item_name = property(get_name)
+
+    def get_pass_one(self):
+        """A getter for the name"""
+        return self.password
+    pass_one = property(get_pass_one)
+
+    def get_pass_two(self):
+        """A getter for the name"""
+        return self.confirm_password
+    pass_two = property(get_pass_two)
 
     def add_item(self, category):
         """Creates category and adds it to the user's collection
