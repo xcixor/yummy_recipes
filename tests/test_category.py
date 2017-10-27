@@ -8,9 +8,6 @@ import unittest
 from myapp.app_classes import Category, Recipe
 
 
-# from myapp import category
-
-
 class TestUser(unittest.TestCase):
     """
     contains the test for the category object methods
@@ -80,4 +77,3 @@ class TestUser(unittest.TestCase):
         'ingredients': 'corriander, vegetables', 'preparation': 'boil veggies and add corriander', \
         'owner' :'Soups'}, {'name': 'Beef stew', \
         'ingredients': 'beef, onions, pepper', 'preparation': 'Mix and boil in medium heat', 'owner': 'Soups'}])
-        
