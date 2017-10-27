@@ -13,7 +13,7 @@ from config import config
 
 from .app_classes import User, Category, Recipe, UserManager
 
-usr_mgr = UserManager
+usr_mgr = UserManager()
 
 myuser = User()
 

@@ -8,13 +8,13 @@ from . import home
 
 from .. import myuser, category, usr_mgr, recipe
 
-from .. import User, Category, App, Recipe
+from .. import User, Category, UserManager, Recipe
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
 # myuser = User()
 # category = Category()
-# usr_mgr = App()
+# usr_mgr = UserManager()
 # recipe = Recipe()
 
 @home.route('/dashboard')
@@ -32,7 +32,8 @@ def index():
         username = form.username.data
         pass_1 = form.password.data
         pass_2 = form.password2.data
-        if usr_mgr.register_user(username, pass_1, pass_2):
+        usr = User(username, pass_1, pass_2)
+        if usr_mgr.register_user(usr):
             session['username'] = username
             flash('You can now login.')
             return redirect(url_for('home.dashboard', form=form))
