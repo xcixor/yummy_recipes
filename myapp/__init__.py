@@ -11,9 +11,9 @@ from flask_login import LoginManager
 
 from config import config
 
-from .app_classes import User, Category, Recipe, App
+from .app_classes import User, Category, Recipe, UserManager
 
-usr_mgr = App()
+usr_mgr = UserManager
 
 myuser = User()
 
