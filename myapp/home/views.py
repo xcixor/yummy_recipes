@@ -12,11 +12,6 @@ from .. import User, Category, UserManager, Recipe
 
 from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
 
-# myuser = User()
-# category = Category()
-# usr_mgr = UserManager()
-# recipe = Recipe()
-
 @home.route('/dashboard')
 def dashboard():
     """Avails the user's dashboard"""
