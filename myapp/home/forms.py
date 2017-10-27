@@ -9,7 +9,9 @@ from wtforms.validators import Required, Email, Length, Email, Regexp, EqualTo
 from wtforms import ValidationError
 
 class RegistrationForm(FlaskForm):
-    """TThe form class created the registration form"""
+    """
+    The form class created the registration form
+    """
     username = StringField('Username', render_kw={"placeholder": "username"}, validators=[
         Required(), Length(2, 40)])
     password = PasswordField('Password', render_kw={"placeholder": "password"}, validators=[
@@ -18,19 +20,25 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
 class CategoryCreation(FlaskForm):
-    """The form class creates the category creation form"""
+    """
+    The form class creates the category creation form
+    """
     name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Save')
 
 class CategoryEdit(FlaskForm):
-    """The form class creates the category editing form"""
+    """
+    The form class creates the category editing form
+    """
     name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Edit')
     
 class RecipeCreation(FlaskForm):
-    """The form class creates the recipe addition form"""
+    """
+    The form class creates the recipe addition form
+    """
     name = StringField('Name', validators=[Required()])
     ingredients = StringField('Ingredients')
     preparation = StringField('Preparation')

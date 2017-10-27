@@ -26,7 +26,7 @@ def dashboard():
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
-    """Defines the landing pae"""
+    """Defines the landing page"""
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data
