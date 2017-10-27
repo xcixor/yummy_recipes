@@ -1,4 +1,4 @@
-"""Defines the classes for the application
+"""Defines the classes for the application.
 classes:
     User: This class instantiates a user to be added to the application
     Category: This class instantiates a category created by a user
@@ -6,25 +6,23 @@ classes:
 Methods:
 """
 class UserManager(object):
-    """Manages the actions of the user and maintains a list of users who have registered"""
+    """Manages the actions of the user and maintains a list of users who have registered."""
     def __init__(self):
         self.users = []
 
     def show_user(self, username):
-        """Returns a list of all the items in the object's collection
+        """Returns a list of all the items in the object's collection.
         Args:
-            name(str): The name of the owning object
+            name(str): The name of the owning object.
         """
         registered_user = [user for user in self.users if user['username'] == username]
         return registered_user
 
     def register_user(self, user):
         """Checks the availability of the user in the user's collection
-        and adds him if he doesn't exist
+        and adds him if he doesn't exist.
         Args:
-            username(str): The name of the user to register
-            password(str): The password of the user to register
-            confirm_password(str): The confirmation password of the user to register
+            user(object): The object of the user to add.
         """
         username = user.item_name
         password = user.pass_one
@@ -42,10 +40,9 @@ class UserManager(object):
         return True
 
     def login_user(self, user):
-        """Compares details provided with those on record to prove user's authenticity
+        """Compares details provided with those on record to prove user's authenticity.
         Args:
-            username(str): The user to login name
-            password(str): The user to login password
+            user(object): The user object to login.
         """
         username = user.item_name
         password = user.pass_one
@@ -61,48 +58,48 @@ class UserManager(object):
                 else:
                     return "Password/username combination is incorrect"
 class AppObject(object):
-    """Super class for objects with similar behavior in the app
+    """Super class for objects with similar behavior in the app.
     Attributes:
         Name(str): Name of the object
     Methods:
-        show_items: Returns a list of the items belonging to that object
-        find_item: Checks whether a certain item belongs to the particular object
-        add_item: Adds an item to that class
-        delete_item: Deletes an item from the containing collection
-        edit_item: Updates an item with new details provided
+        show_items: Returns a list of the items belonging to that object.
+        find_item: Checks whether a certain item belongs to the particular object.
+        add_item: Adds an item to that class.
+        delete_item: Deletes an item from the containing collection.
+        edit_item: Updates an item with new details provided.
     """
     def __init__(self, name):
         self.name = name
         self.items = []
 
     def show_items(self, owner):
-        """Returns a list of all the items in the object's collection
+        """Returns a list of all the items in the object's collection.
         Args:
             name(str): The name of the owning object
         """
         object_items = [item for item in self.items if item['owner'] == owner]
         return object_items
     def find_item(self, name, owner):
-        """Checks whether a particular item belongs to a particular object's collection
+        """Checks whether a particular item belongs to a particular object's collection.
         Args:
-            name(str): The name of the item to search for
-            owner(str): The name of the item whose collection is being searched
+            name(str): The name of the item to search for.
+            owner(str): The name of the item whose collection is being searched.
         """
         object_items = self.show_items(owner)
         item_in_list = [item for item in object_items if item['name'] == name]
         if item_in_list:
             return True
     def add_item(self, item_to_add):
-        """Adds an item to the main object's collection
+        """Adds an item to the main object's collection.
         Args:
-            item_to_add(item): The item to be added to the collection
+            item_to_add(item): The item to be added to the collection.
         """
         pass
 
     def delete_item(self, name, owner):
         """Removes an item from the itemlist
         Args:
-            name(str): the item's name that is used to remove the item's item
+            name(str): the item's name that is used to remove the item's item.
         """
         for item in range(len(self.items)):
             if self.items[item]['name'] == name:
@@ -113,20 +110,20 @@ class AppObject(object):
     def edit_item(self, name, new_item):
         """Updates the details of the new item
         Args:
-            name(str): contains the name of the item to edit
-            new_recipe(object): containes the details of the new recipe
+            name(str): contains the name of the item to edit.
+            new_recipe(object): containes the details of the new recipe.
         """
         pass
 
 class User(AppObject):
-    """Inherits from AppObject and Instantiates a new user
+    """Inherits from AppObject and Instantiates a new user.
     Attributes:
-        username(str): The user's name
-        password(str): The user's password
-        confirm_password(str): The user's confirmation password
+        username(str): The user's name.
+        password(str): The user's password.
+        confirm_password(str): The user's confirmation password.
     Methods:
-        register_user: Adds a user to the user's collection
-        login_user: Confirms the credentials of the user and grants access to account
+        register_user: Adds a user to the user's collection.
+        login_user: Confirms the credentials of the user and grants access to account.
     """
     def __init__(self, username="default user", password="default password", confirm_password="default confirm password"):
         """initializes the attributes of the user created
@@ -151,10 +148,9 @@ class User(AppObject):
     pass_two = property(get_pass_two)
 
     def add_item(self, category):
-        """Creates category and adds it to the user's collection
+        """Creates category and adds it to the user's collection.
            Args:
-               name(str): A name for the category
-               category(object): The category object to be added
+               category(object): The category object to be added.
         """
         name = category.item_name
         owner = category.item_owner
@@ -168,10 +164,10 @@ class User(AppObject):
 
 
     def edit_item(self, name, new_category):
-        """Updates the details of the new category
+        """Updates the details of the new category.
         Args:
-            name(str): contains the name of the category to edit
-            new_category(object): containes the details of the new category
+            name(str): contains the name of the category to edit.
+            new_category(object): containes the details of the new category.
         """ 
         new_name = new_category.item_name
         owner = new_category.item_owner
@@ -184,12 +180,12 @@ class User(AppObject):
         return False
 
 class Category(AppObject):
-    """Inherots from AppObject and creates a new category
+    """Inherots from AppObject and creates a new category.
     Attributes:
-            name(str): A name for the category
-            description(str): A short description about the category
-            owner(str): The user who created the category
-            recipes(object): A list of recipes belonging th the category
+            name(str): A name for the category.
+            description(str): A short description about the category.
+            owner(str): The user who created the category.
+            recipes(object): A list of recipes belonging th the category.
     Methods:
             add_recipe: creates a recipe and adds it to the collection
             edit_recipe: updates the details of a recipe
@@ -218,9 +214,9 @@ class Category(AppObject):
     item_owner = property(get_owner)
 
     def add_item(self, recipe):
-        """Creates a recipe and adds it to the category collection
+        """Creates a recipe and adds it to the category collection.
            Args:
-               recipe(object): the object to add to the collection
+               recipe(object): the object to add to the collection.
         """
         name = recipe.item_name
         owner = recipe.item_owner
@@ -234,10 +230,10 @@ class Category(AppObject):
         return self.show_items(owner)
 
     def edit_item(self, name, new_recipe):
-        """Updates the details of the new recipe
+        """Updates the details of the new recipe.
         Args:
-            name(str): contains the name of the recipe to edit
-            new_recipe(object): containes the details of the new recipe
+            name(str): contains the name of the recipe to edit.
+            new_recipe(object): containes the details of the new recipe.
         """       
         new_name = new_recipe.item_name
         owner = new_recipe.item_owner
@@ -253,8 +249,9 @@ class Category(AppObject):
 class Recipe(object):
     """Creates a recipe
     Args:
-        name(str): The name of the recipe created
-        description(str): A short description of the recipe created
+        name(str): The name of the recipe created.
+        ingredients(str): The requirements for the recipe.
+        preparation(str): An explanation on how to prepare the meal.
         owner
     Methods:
     """
