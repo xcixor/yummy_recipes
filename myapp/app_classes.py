@@ -5,12 +5,20 @@ classes:
     Recipe: Instantiates a recipe that belongs to a certain user's category
 Methods:
 """
-class App(object):
+class UserManager(object):
     """Manages the actions of the user and maintains a list of users who have registered"""
     def __init__(self):
         self.users = []
 
-    def register_user(self, username, password, confirm_password):
+    def show_user(self, username):
+        """Returns a list of all the items in the object's collection
+        Args:
+            name(str): The name of the owning object
+        """
+        registered_user = [user for user in self.users if user['username'] == username]
+        return registered_user
+
+    def register_user(self, user):
         """Checks the availability of the user in the user's collection
         and adds him if he doesn't exist
         Args:
@@ -18,34 +26,100 @@ class App(object):
             password(str): The password of the user to register
             confirm_password(str): The confirmation password of the user to register
         """
-        data = {}
+        username = user.item_name
+        password = user.pass_one
+        confirm_password = user.pass_two
 
         for a_user in self.users:
             if username == a_user['username']:
-                return "User added already"
+                return "User added registered"
             else:
                 if password != confirm_password:
                     return "The passwords do not match"
 
-        data['username'] = username
-        data['password'] = password
-        self.users.append(data)
+        user = {'username':username, 'password':password}
+        self.users.append(user)
         return True
 
-    def login_user(self, username, password):
+    def login_user(self, user):
         """Compares details provided with those on record to prove user's authenticity
         Args:
             username(str): The user to login name
             password(str): The user to login password
         """
-        for a_user in self.users:
-            if username == a_user['username'] and password == a_user['password']:
-                return "User successfully loged in"
-            else:
-                return "Password/username combination is incorrect"
+        username = user.item_name
+        password = user.pass_one
 
-class User(object):
-    """Instantiates a new user
+        registered_user = self.show_user(username)
+
+        if registered_user:
+            for user in registered_user:
+                reg_username = user['username']
+                reg_password = user['password']
+                if username == reg_username and password == reg_password:
+                    return "User successfully loged in"
+                else:
+                    return "Password/username combination is incorrect"
+class AppObject(object):
+    """Super class for objects with similar behavior in the app
+    Attributes:
+        Name(str): Name of the object
+    Methods:
+        show_items: Returns a list of the items belonging to that object
+        find_item: Checks whether a certain item belongs to the particular object
+        add_item: Adds an item to that class
+        delete_item: Deletes an item from the containing collection
+        edit_item: Updates an item with new details provided
+    """
+    def __init__(self, name):
+        self.name = name
+        self.items = []
+
+    def show_items(self, owner):
+        """Returns a list of all the items in the object's collection
+        Args:
+            name(str): The name of the owning object
+        """
+        object_items = [item for item in self.items if item['owner'] == owner]
+        return object_items
+    def find_item(self, name, owner):
+        """Checks whether a particular item belongs to a particular object's collection
+        Args:
+            name(str): The name of the item to search for
+            owner(str): The name of the item whose collection is being searched
+        """
+        object_items = self.show_items(owner)
+        item_in_list = [item for item in object_items if item['name'] == name]
+        if item_in_list:
+            return True
+    def add_item(self, item_to_add):
+        """Adds an item to the main object's collection
+        Args:
+            item_to_add(item): The item to be added to the collection
+        """
+        pass
+
+    def delete_item(self, name, owner):
+        """Removes an item from the itemlist
+        Args:
+            name(str): the item's name that is used to remove the item's item
+        """
+        for item in range(len(self.items)):
+            if self.items[item]['name'] == name:
+                del self.items[item]
+                return self.show_items(owner)
+        return None
+    
+    def edit_item(self, name, new_item):
+        """Updates the details of the new item
+        Args:
+            name(str): contains the name of the item to edit
+            new_recipe(object): containes the details of the new recipe
+        """
+        pass
+
+class User(AppObject):
+    """Inherits from AppObject and Instantiates a new user
     Attributes:
         username(str): The user's name
         password(str): The user's password
@@ -54,64 +128,63 @@ class User(object):
         register_user: Adds a user to the user's collection
         login_user: Confirms the credentials of the user and grants access to account
     """
-    def __init__(self, username, password, confirm_password):
+    def __init__(self, username="default user", password="default password", confirm_password="default confirm password"):
         """initializes the attributes of the user created
         """
-        self.username = username
+        super(User, self).__init__(name=username)
         self.password = password
         self.confirm_password = confirm_password
-        self.categories = []
 
-    def show_categories(self, owner):
-        """Shows a list of categories belonging to the user"""
-        user_categories = [category for category in self.categories if category['owner'] == owner]
-        return user_categories
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    item_name = property(get_name)
 
-    def find_category(self, name, owner):
-        """Searches for a particular category belonging to the user"""
-        user_categories = self.show_categories(owner)
-        category_in_list = [category for category in user_categories if category['name'] == name]
-        if category_in_list:
-            return True
-    def add_category(self, name, description, owner):
+    def get_pass_one(self):
+        """A getter for the name"""
+        return self.password
+    pass_one = property(get_pass_one)
+
+    def get_pass_two(self):
+        """A getter for the name"""
+        return self.confirm_password
+    pass_two = property(get_pass_two)
+
+    def add_item(self, category):
         """Creates category and adds it to the user's collection
            Args:
                name(str): A name for the category
-               description(str): A description of what it is
-               owner(str): The name of the user who creates the category
+               category(object): The category object to be added
         """
-        if self.find_category(name, owner):
-            return "Item alredy in list"
-        category_toadd = {'owner': owner, 'name': name, 'description': description}
-        self.categories.append(category_toadd)
-        return self.show_categories(owner)
-    def delete_category(self, name):
-        """Removes a category from the user's list
-        Args:
-            name(str): the category's name that is used to remove the category's object
-        """
-        for category in range(len(self.categories)):
-            if self.categories[category]['name'] == name:
-                del self.categories[category]
-                return True
-        return False
+        name = category.item_name
+        owner = category.item_owner
+        description = category.item_description
 
-    def edit_category(self, new_name, new_description, old_name, owner):
+        if self.find_item(name, owner):
+            return False
+        category_toadd = {'name': name, 'description': description, 'owner': owner}
+        self.items.append(category_toadd)
+        return self.show_items(owner)
+
+
+    def edit_item(self, name, new_category):
         """Updates the details of the new category
         Args:
-            new_name(str): new name of category
-            new_description(str): new description of category
-            old_name(str): The name to be replaced
-            owner(str): The name of the object that owns the category
-        """
-        if self.find_category(old_name, owner):
-            self.delete_category(old_name)
-            self.add_category(new_name, new_description, owner)
-            return self.show_categories(owner)
-        return "Item not exist"
+            name(str): contains the name of the category to edit
+            new_category(object): containes the details of the new category
+        """ 
+        new_name = new_category.item_name
+        owner = new_category.item_owner
+        description = new_category.item_description
 
-class Category(object):
-    """Creates a new category
+        category_to_edit = Category(new_name, description, owner)
+        if self.find_item(name, owner):
+            self.delete_item(name, owner)
+            return self.add_item(category_to_edit)
+        return False
+
+class Category(AppObject):
+    """Inherots from AppObject and creates a new category
     Attributes:
             name(str): A name for the category
             description(str): A short description about the category
@@ -122,63 +195,60 @@ class Category(object):
             edit_recipe: updates the details of a recipe
             delete_recipe: removes a recipe from the collection
             show_recipe: returns a given category's recipes
-            find_recipe: checks for the existence of a recipe
+            find_recipe: checks for the existence of a recip
     """
-
-    def __init__(self, name, description, owner):
-        """Initializes the attributes of the class"""
-        self.name = name
+    def __init__(self, name="default category", description="default description", owner="default owner"):
+        super(Category, self).__init__(name=name)
         self.description = description
         self.owner = owner
-        self.recipes = []
 
-    def show_recipes(self, owner):
-        """Returns a list of recipes belonging to the category"""
-        category_recipes = [recipe for recipe in self.recipes if recipe['owner'] == owner]
-        return category_recipes
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    item_name = property(get_name)
 
-    def find_recipe(self, name, owner):
-        """Checks whether a particular recipe belongs to a category"""
-        category_recipes = self.show_recipes(owner)
-        recipe_in_list = [recipe for recipe in category_recipes if recipe['name'] == name]
-        if recipe_in_list:
-            return True
-    def add_recipe(self, name, description, owner):
+    def get_description(self):
+        """A getter for the name"""
+        return self.description
+    item_description = property(get_description)
+
+    def get_owner(self):
+        """A getter for the owner"""
+        return self.owner
+    item_owner = property(get_owner)
+
+    def add_item(self, recipe):
         """Creates a recipe and adds it to the category collection
            Args:
-               name(str): A name for the recipe
-               description(str): A description of what it is
-               owner(str): The name of the category who creates the recipe
+               recipe(object): the object to add to the collection
         """
-        if self.find_recipe(name, owner):
-            return "Item alredy in list"
-        recipe_toadd = {'owner': owner, 'name': name, 'description': description}
-        self.recipes.append(recipe_toadd)
-        return self.show_recipes(owner)
-    def delete_recipe(self, name, owner):
-        """Removes a recipe from the list
-        Args:
-            name(str): the recipe's name that is used to remove the recipe's object
-        """
-        for recipe in range(len(self.recipes)):
-            if self.recipes[recipe]['name'] == name:
-                del self.recipes[recipe]
-                return self.show_recipes(owner)
-        return None
+        name = recipe.item_name
+        owner = recipe.item_owner
+        preparation = recipe.item_preparation
+        ingredients = recipe.item_ingredients
 
-    def edit_recipe(self, new_name, new_description, old_name, owner):
+        if self.find_item(name, owner):
+            return False
+        recipe_toadd = {'name': name, 'ingredients':ingredients, 'preparation': preparation, 'owner':owner}
+        self.items.append(recipe_toadd)
+        return self.show_items(owner)
+
+    def edit_item(self, name, new_recipe):
         """Updates the details of the new recipe
         Args:
-            new_name(str): new name of recipe
-            new_description(str): new description of recipe
-            old_name(str): The name to be replaced
-            owner(str): The name of the object that owns the recipe
-        """
-        if self.find_recipe(old_name, owner):
-            self.delete_recipe(old_name)
-            self.add_recipe(new_name, new_description, owner)
-            return self.show_recipes(owner)
-        return "Item not exist"
+            name(str): contains the name of the recipe to edit
+            new_recipe(object): containes the details of the new recipe
+        """       
+        new_name = new_recipe.item_name
+        owner = new_recipe.item_owner
+        preparation = new_recipe.item_preparation
+        ingredients = new_recipe.item_ingredients
+        recipe_to_add = Recipe(new_name, ingredients, preparation, owner)
+        if self.find_item(name, owner):
+            self.delete_item(name, owner)
+            return self.add_item(recipe_to_add)
+        return False
+
 
 class Recipe(object):
     """Creates a recipe
@@ -189,8 +259,32 @@ class Recipe(object):
     Methods:
     """
 
-    def __init__(self, name, description, owner):
+    def __init__(self, name="default recipe", ingredients="default ingredients", preparation="default preparation", owner="default owner"):
         """Initializes the attributes of the user created"""
         self.name = name
-        self.description = description
+        self.ingredients = ingredients
+        self.preparation = preparation
         self.owner = owner
+
+    def get_name(self):
+        """A getter for the name"""
+        return self.name
+    item_name = property(get_name)
+
+    def get_ingredients(self):
+        """A getter for the ingredients"""
+        return self.ingredients
+    item_ingredients = property(get_ingredients)
+
+    def get_preparation(self):
+        """A getter for the preparation"""
+        return self.preparation
+    item_preparation = property(get_preparation)
+
+    def get_owner(self):
+        """A getter for the owner"""
+        return self.owner
+    item_owner = property(get_owner)
+
+    def __str__(self):
+        return "Name: {0.item_name}, Ingredients: {0.item_ingredients}, Preparation: {0.item_preparation}".format(self)

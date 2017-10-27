@@ -14,7 +14,8 @@
             <thead>
                 <tr>
                 <th>Name</th>
-                <th>Description</th>
+                <th>Ingredients</th>
+                <th>Preparation</th>
                 </tr>
             </thead>
 
@@ -22,7 +23,8 @@
                     {% for data in myrec %}
                 <tr>
                 <td>{{ data['name'] }}</td>
-                <td>{{ data['description'] }}</td>
+                <td>{{ data['ingredients'] }}</td>
+                <td>{{ data['preparation'] }}</td>
                 <td><a href="/edit_recipe/{{ data['name'] }}/{{owner}}">edit</a></td>
                 <td><a href="/delete_recipe/{{ data['name'] }}/{{owner}}">delete</a></td>
                 {% endfor %}
