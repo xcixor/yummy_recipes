@@ -19,36 +19,19 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField('Confirm password', render_kw={"placeholder": "password"}, validators=[Required()])
     submit = SubmitField('Register')
 
-class CategoryCreation(FlaskForm):
+class CategoryForm(FlaskForm):
     """
-    The form class creates the category creation form
+    The form class creates the category management form
     """
     name = StringField('Name', validators=[Required()])
     description = StringField('Description')
     submit = SubmitField('Save')
-
-class CategoryEdit(FlaskForm):
-    """
-    The form class creates the category editing form
-    """
-    name = StringField('Name', validators=[Required()])
-    description = StringField('Description')
-    submit = SubmitField('Edit')
     
-class RecipeCreation(FlaskForm):
+class RecipeForm(FlaskForm):
     """
-    The form class creates the recipe addition form
+    This form class creates a Recipe management form
     """
     name = StringField('Name', validators=[Required()])
     ingredients = StringField('Ingredients')
     preparation = StringField('Preparation')
     submit = SubmitField('Save')
-
-class RecipeEdit(FlaskForm):
-    """The form class creates the recipe editing form"""
-    name = StringField('Name', validators=[Required()])
-    ingredients = StringField('Ingredients')
-    preparation = StringField('Preparation')
-    submit = SubmitField('Edit')
-
-
