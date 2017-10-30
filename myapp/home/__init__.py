@@ -1,4 +1,6 @@
-"""This is the entry point for the main module"""
+"""This file makes python treat the main directory as containing modules
+It also defines the home blueprint
+"""
 
 from flask import Blueprint
 
