@@ -7,7 +7,6 @@ from flask import Flask
 
 from flask_bootstrap import Bootstrap
 
-from flask_login import LoginManager
 
 from config import config
 
@@ -24,20 +23,17 @@ recipe = Recipe()
 bootstrap = Bootstrap()
 
 
-login_manager = LoginManager()
-login_manager.session_protection = 'strong'
-login_manager.login_view = 'home.login'
-
-
 def create_app(configuration):
-    """It initializes the application"""
+    """It initializes the application
+    Args:
+        configuration: The configuration to use for the application instance
+    """
 
     app = Flask(__name__)
     app.config.from_object(config[configuration])
     config[configuration].init_app(app)
 
     bootstrap.init_app(app)
-    login_manager.init_app(app)
 
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
