@@ -1,3 +1,5 @@
+"""This script runs the application"""
+
 from myapp import create_app
 
 from flask_script import Manager, Shell
