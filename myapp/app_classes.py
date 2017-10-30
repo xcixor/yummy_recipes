@@ -27,14 +27,12 @@ class UserManager(object):
         username = user.item_name
         password = user.pass_one
         confirm_password = user.pass_two
-
         for a_user in self.users:
             if username == a_user['username']:
                 return "User added registered"
             else:
                 if password != confirm_password:
                     return "The passwords do not match"
-
         user = {'username':username, 'password':password}
         self.users.append(user)
         return True
@@ -46,9 +44,7 @@ class UserManager(object):
         """
         username = user.item_name
         password = user.pass_one
-
         registered_user = self.show_user(username)
-
         if registered_user:
             for user in registered_user:
                 reg_username = user['username']
@@ -161,7 +157,6 @@ class User(AppObject):
         category_toadd = {'name': name, 'description': description, 'owner': owner}
         self.items.append(category_toadd)
         return self.show_items(owner)
-
 
     def edit_item(self, name, new_category):
         """Updates the details of the new category.

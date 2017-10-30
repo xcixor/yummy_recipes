@@ -153,7 +153,6 @@ def edit_recipe(name, owner):
         old_name = 'Not found'
         old_ingredients = 'Not found'
         old_preparation = 'Not found'
-
     form = RecipeForm()
     form.name.data = old_name
     form.ingredients.data = old_ingredients
