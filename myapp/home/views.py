@@ -10,7 +10,7 @@ from .. import myuser, category, usr_mgr, recipe
 
 from .. import User, Category, UserManager, Recipe
 
-from .forms import RegistrationForm, CategoryCreation, CategoryEdit, RecipeCreation, RecipeEdit
+from .forms import RegistrationForm, CategoryForm, RecipeForm
 
 @home.route('/dashboard')
 def dashboard():
@@ -39,7 +39,7 @@ def index():
 def create_category():
     """Collects data about a category and creates a category"""
     owner = session['username']
-    form = CategoryCreation()
+    form = CategoryForm()
     if form.validate_on_submit():
         name = form.name.data
         description = form.description.data
@@ -77,7 +77,7 @@ def edit_category(name):
         old_name = 'Not found'
         old_description = 'Not found'
 
-    form = CategoryEdit()
+    form = CategoryForm()
     form.name.data = old_name
     form.description.data = old_description
     if form.validate_on_submit():
@@ -101,7 +101,7 @@ def delete_category(name):
 @home.route('/create_recipe/<name>', methods=['GET','POST'])
 def create_recipe(name):
     """Collects data about a category and creates a cateegory"""
-    form = RecipeCreation()
+    form = RecipeForm()
     if form.validate_on_submit():
         rec_name = form.name.data
         ingredients = form.ingredients.data
@@ -154,7 +154,7 @@ def edit_recipe(name, owner):
         old_ingredients = 'Not found'
         old_preparation = 'Not found'
 
-    form = RecipeEdit()
+    form = RecipeForm()
     form.name.data = old_name
     form.ingredients.data = old_ingredients
     form.preparation.data = old_preparation
@@ -167,4 +167,5 @@ def edit_recipe(name, owner):
         myrec = category.edit_item(name, edited_rec)
         if isinstance(myrec, list):
             return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
-    return render_template('dashboard/editrecipe.html', form=form, name=old_name, ingredients=old_ingredients, preparation=old_preparation)
+    return render_template('dashboard/editrecipe.html', form=form, name=old_name, \
+            ingredients=old_ingredients, preparation=old_preparation)
