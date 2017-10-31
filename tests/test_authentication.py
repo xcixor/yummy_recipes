@@ -1,12 +1,8 @@
 """Contains tests for the UserManager class"""
 
-import sys
-
-sys.path.append("..")
-
 import unittest
 
-from myapp.app_classes import User, UserManager
+from myapp.app_classes import User, Authentication
 
 class TestUser(unittest.TestCase):
     """
@@ -14,7 +10,7 @@ class TestUser(unittest.TestCase):
     """
     def setUp(self):
         """Inititalizes the objects to test with"""
-        self.user_mgr = UserManager()
+        self.user_mgr = Authentication()
         self.user_one = User("mike", "123456", "123456")
         self.user_two = User("alice", "al1234", "al1234")
         self.user_three = User("ptah", "123456", "78910")

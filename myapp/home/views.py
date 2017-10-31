@@ -8,7 +8,7 @@ from . import home
 
 from .. import myuser, category, usr_mgr, recipe
 
-from .. import User, Category, UserManager, Recipe
+from .. import User, Category, Authentication, Recipe
 
 from .forms import RegistrationForm, CategoryForm, RecipeForm
 

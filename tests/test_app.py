@@ -1,9 +1,5 @@
 """Test whether an instance of the app is created successfully and its context created"""
 
-import sys
-
-sys.path.append("..")
-
 import unittest
 
 from flask import current_app
