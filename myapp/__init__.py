@@ -7,10 +7,9 @@ from flask import Flask
 
 from flask_bootstrap import Bootstrap
 
-
 from config import config
 
-from .app_classes import User, Category, Recipe, UserManager
+from myapp.app_classes import User, Category, Recipe, UserManager
 
 usr_mgr = UserManager()
 
