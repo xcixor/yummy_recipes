@@ -169,3 +169,8 @@ def edit_recipe(name, owner):
             return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
     return render_template('dashboard/editrecipe.html', form=form, name=old_name, \
             ingredients=old_ingredients, preparation=old_preparation)
+
+@home.route('/view_all_recipes/<owner>', methods=['GET', 'POST'])
+def view_all_recipes(owner):
+    """View all the recipes belonging to particulat user"""
+    pass
