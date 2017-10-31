@@ -5,6 +5,8 @@ classes:
     Recipe: Instantiates a recipe that belongs to a certain user's category
 Methods:
 """
+import re
+
 class Authentication(object):
     """Manages the actions of the user and maintains a list of users who have registered."""
     def __init__(self):
@@ -27,16 +29,39 @@ class Authentication(object):
         username = user.item_name
         password = user.pass_one
         confirm_password = user.pass_two
+        email = user.email
 
         for a_user in self.users:
             if username == a_user['username']:
-                return "User added registered"
-            else:
-                if password != confirm_password:
-                    return "The passwords do not match"
+                return "User already registered"
+            if password != confirm_password:
+                return "The passwords do not match"
+            if not email.validate_email(email):
+                return "Invalid emailadress"
+            if not password.validate_password(password):
+                return "Invalid password"
+            user = {'username':username, 'email':email, 'password':password}
+            self.users.append(user)
+            return True
 
-        user = {'username':username, 'password':password}
-        self.users.append(user)
+    def validate_email(self, email):
+        """Validates the email
+        Args: email(str): The email to match
+        """
+        if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email):
+            return True
+        return False
+
+    def validate_password(self, password):
+        """Validates the password
+        Args(str): The password to match
+        """
+        if len(password) < 6:
+            return "Make sure your password is at least 6 letters"
+        elif re.search('[0-9]', password) is None:
+            return "Your password should have a number in it"
+        elif re.search('[A-Z]', password) is None:
+            return "Your password should have atleast one capital letter"
         return True
 
     def login_user(self, user):
@@ -44,19 +69,19 @@ class Authentication(object):
         Args:
             user(object): The user object to login.
         """
-        username = user.item_name
+        email = user.email
         password = user.pass_one
 
-        registered_user = self.show_user(username)
+        registered_user = self.show_user(email)
 
         if registered_user:
             for user in registered_user:
-                reg_username = user['username']
+                reg_email = user['email']
                 reg_password = user['password']
-                if username == reg_username and password == reg_password:
+                if email == reg_email and password == reg_password:
                     return "User successfully loged in"
                 else:
-                    return "Password/username combination is incorrect"
+                    return "Password/email combination is incorrect"
 class AppObject(object):
     """Super class for objects with similar behavior in the app.
     Attributes:
@@ -125,12 +150,14 @@ class User(AppObject):
         register_user: Adds a user to the user's collection.
         login_user: Confirms the credentials of the user and grants access to account.
     """
-    def __init__(self, username="default user", password="default password", confirm_password="default confirm password"):
+    def __init__(self, username="default user", password="default password", \
+    confirm_password="default confirm password", email="default email"):
         """initializes the attributes of the user created
         """
         super(User, self).__init__(name=username)
         self.password = password
         self.confirm_password = confirm_password
+        self.email = email
 
     def get_name(self):
         """A getter for the name"""
@@ -146,6 +173,11 @@ class User(AppObject):
         """A getter for the name"""
         return self.confirm_password
     pass_two = property(get_pass_two)
+
+    def get_email(self):
+        """A getter for the email"""
+        return self.name
+    email = property(get_email)
 
     def add_item(self, category):
         """Creates category and adds it to the user's collection.
