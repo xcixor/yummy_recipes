@@ -5,7 +5,7 @@ classes:
     Recipe: Instantiates a recipe that belongs to a certain user's category
 Methods:
 """
-class UserManager(object):
+class Authentication(object):
     """Manages the actions of the user and maintains a list of users who have registered."""
     def __init__(self):
         self.users = []
