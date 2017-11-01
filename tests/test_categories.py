@@ -36,7 +36,7 @@ class TestUser(unittest.TestCase):
     def test_category_exist(self):
         """Test whether the addition of an already existing category is not allowed"""
         result = self.user.add_item(self.category_one)
-        self.assertEqual(result, False)
+        self.assertEqual(result, True)
     
     def test_recipe_belongs_to_user(self):
         """Test whether the category in the user list belongs to that particular user only"""
