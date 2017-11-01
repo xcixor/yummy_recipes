@@ -29,27 +29,28 @@ class Authentication(object):
         username = user.item_name
         password = user.pass_one
         confirm_password = user.pass_two
-        email = user.email
+        email = user.user_email
 
-        for a_user in self.users:
-            if username == a_user['username']:
-                return "User already registered"
-            if password != confirm_password:
-                return "The passwords do not match"
-            if not email.validate_email(email):
-                return "Invalid emailadress"
-            if not password.validate_password(password):
-                return "Invalid password"
-            user = {'username':username, 'email':email, 'password':password}
-            self.users.append(user)
-            return True
+        if self.show_user(username):
+            return "User already registered"
+        valid_password = self.validate_password(password)
+        if valid_password:
+            if password == confirm_password:
+                valid_email = self.validate_email(email)
+                if valid_email:
+                    user = {'username':username, 'email':email, 'password':password}
+                    self.users.append(user)
+                    return "Registration successful"
+                return "Invalid email"
+            return "Passwords do not match"
+        return self.validate_password(password)
 
     def validate_email(self, email):
         """Validates the email
         Args: email(str): The email to match
         """
-        if re.match("^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email):
-            return True
+        if re.match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", email):
+           return True
         return False
 
     def validate_password(self, password):
@@ -57,11 +58,11 @@ class Authentication(object):
         Args(str): The password to match
         """
         if len(password) < 6:
-            return "Make sure your password is at least 6 letters"
+            return False
         elif re.search('[0-9]', password) is None:
-            return "Your password should have a number in it"
+            return False
         elif re.search('[A-Z]', password) is None:
-            return "Your password should have atleast one capital letter"
+            return False
         return True
 
     def login_user(self, user):
@@ -69,10 +70,11 @@ class Authentication(object):
         Args:
             user(object): The user object to login.
         """
-        email = user.email
+        username = user.item_name
+        email = user.user_email
         password = user.pass_one
 
-        registered_user = self.show_user(email)
+        registered_user = self.show_user(username)
 
         if registered_user:
             for user in registered_user:
@@ -146,12 +148,13 @@ class User(AppObject):
         username(str): The user's name.
         password(str): The user's password.
         confirm_password(str): The user's confirmation password.
+        email(str): The user's email
     Methods:
-        register_user: Adds a user to the user's collection.
-        login_user: Confirms the credentials of the user and grants access to account.
+        add_item
+        edit_item
     """
     def __init__(self, username="default user", password="default password", \
-    confirm_password="default confirm password", email="default email"):
+    confirm_password="default confirm password", email="defaultemail@email.com"):
         """initializes the attributes of the user created
         """
         super(User, self).__init__(name=username)
@@ -176,8 +179,8 @@ class User(AppObject):
 
     def get_email(self):
         """A getter for the email"""
-        return self.name
-    email = property(get_email)
+        return self.email
+    user_email = property(get_email)
 
     def add_item(self, category):
         """Creates category and adds it to the user's collection.
