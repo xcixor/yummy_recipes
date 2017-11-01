@@ -32,7 +32,8 @@ class RecipeForm(FlaskForm):
     """
     This form class creates a Recipe management form
     """
-    name = StringField('Name', validators=[Required()])
+    name = StringField('Name')
     ingredients = StringField('Ingredients')
     preparation = StringField('Preparation')
-    submit = SubmitField('Save')
+    savesubmit = SubmitField('Save')
+    exitsubmit = SubmitField('Exit')
