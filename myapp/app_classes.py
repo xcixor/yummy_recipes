@@ -259,7 +259,8 @@ class Category(AppObject):
         ingredients = recipe.item_ingredients
 
         if self.find_item(name, owner):
-            return self.show_items(owner)
+            # return self.show_items(owner)
+            return True
         recipe_toadd = {'name': name, 'ingredients':ingredients, 'preparation': preparation, 'owner':owner}
         self.items.append(recipe_toadd)
         return self.show_items(owner)
