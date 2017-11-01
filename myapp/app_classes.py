@@ -8,7 +8,7 @@ Methods:
 import re
 
 class Authentication(object):
-    """Manages the actions of the user and maintains a list of users who have registered."""
+    """Manages the actions of the user and maintains a list of the users who have registered."""
     def __init__(self):
         self.users = []
 
