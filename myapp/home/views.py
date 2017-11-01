@@ -19,21 +19,21 @@ def dashboard():
     mycategories = myuser.show_items(user)
     return render_template('dashboard/dashboard.html', user_categories=mycategories)
 
-@home.route('/', methods=['GET', 'POST'])
-def index():
-    """Defines the landing page"""
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        username = form.username.data
-        pass_1 = form.password.data
-        pass_2 = form.password2.data
-        usr = User(username, pass_1, pass_2)
-        if usr_mgr.register_user(usr):
-            session['username'] = username
-            flash('You can now login.')
-            return redirect(url_for('home.dashboard', form=form))
-        flash("You cant login")
-    return render_template('index.html', form=form)
+# @home.route('/', methods=['GET', 'POST'])
+# def index():
+#     """Defines the landing page"""
+#     form = RegistrationForm()
+#     if form.validate_on_submit():
+#         username = form.username.data
+#         pass_1 = form.password.data
+#         pass_2 = form.password2.data
+#         usr = User(username, pass_1, pass_2)
+#         if usr_mgr.register_user(usr):
+#             session['username'] = username
+#             flash('You can now login.')
+#             return redirect(url_for('home.dashboard', form=form))
+#         flash("You cant login")
+#     return render_template('index.html', form=form)
 
 @home.route('/create_category', methods=['GET','POST'])
 def create_category():
@@ -61,12 +61,12 @@ def create_category():
             return render_template('/dashboard/dashboard.html', mycat=mycat)
     return render_template('dashboard/categoryadd.html', form=form)
 
-@home.route('/logout')
-def logout():
-    """Logs the user out of the system"""
-    session.pop('username', None)
-    flash("You have been logged out")
-    return redirect(url_for('home.index', form=RegistrationForm()))
+# @home.route('/logout')
+# def logout():
+#     """Logs the user out of the system"""
+#     session.pop('username', None)
+#     flash("You have been logged out")
+#     return redirect(url_for('home.index', form=RegistrationForm()))
 
 @home.route('/edit_category/<name>', methods=['GET', 'POST'])
 def edit_category(name):

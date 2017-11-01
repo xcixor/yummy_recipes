@@ -1,26 +1,50 @@
 """This module imports the authentication blueprint.
 It creates the routes for user authenication.
 """
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, session, flash
 
-from . import authentication
+from myapp.authentication import authentication
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm
 
-from .. import User, usr_mgr
+from myapp import User, usr_mgr
+
+@authentication.route('/', methods=['GET', 'POST'])
+def index():
+    """Defines the landing page"""
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        pass_1 = form.password.data
+        pass_2 = form.password2.data
+        usr = User(username, pass_1, pass_2)
+        if usr_mgr.register_user(usr):
+            session['username'] = username
+            flash('You can now login.')
+            return redirect(url_for('authentication.login', form=form))
+        flash("You cant login")
+    return render_template('index.html', form=form)
 
 @authentication.route('/login', methods = ['GET', 'POST'])
 def login():
     """Validates the User details and tries to Log the user in"""
-    form = RegistrationForm()
+    form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        usr = User(username, password)
 
-        if usr_mgr.login_user(usr):
+        if usr_mgr.login_user(username, password):
+            print('logged in')
             session['username'] = username
-            render_template('dashboard/dashboard.html')
+            return render_template('dashboard/dashboard.html')
+        print('not logged in')
     return render_template('authentication/login.html', form=form)
+
+@authentication.route('/logout', methods = ['GET', 'POST'])
+def logout():
+    """Logs the user out of the system"""
+    session.pop('username', None)
+    flash("You have been logged out")
+    return redirect(url_for('authentication.index', form=RegistrationForm()))
 
 
