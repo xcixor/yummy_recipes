@@ -2,10 +2,6 @@
 
 import unittest
 
-import sys
-
-sys.path.append("..")
-
 from myapp.app_classes import Recipe
 
 class TestUser(unittest.TestCase):

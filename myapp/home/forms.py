@@ -16,22 +16,24 @@ class RegistrationForm(FlaskForm):
         Required(), Length(2, 40)])
     password = PasswordField('Password', render_kw={"placeholder": "password"}, validators=[
         Required(), EqualTo('password2', message='Passwords must match.'), Length(6)])
-    password2 = PasswordField('Confirm password', render_kw={"placeholder": "password"}, validators=[Required()])
+    password2 = PasswordField('Confirm password', render_kw={"placeholder": "password"})
     submit = SubmitField('Register')
 
 class CategoryForm(FlaskForm):
     """
     The form class creates the category management form
     """
-    name = StringField('Name', validators=[Required()])
+    name = StringField('Name')
     description = StringField('Description')
-    submit = SubmitField('Save')
+    savesubmit = SubmitField('Save')
+    exitsubmit = SubmitField('Exit')
     
 class RecipeForm(FlaskForm):
     """
     This form class creates a Recipe management form
     """
-    name = StringField('Name', validators=[Required()])
+    name = StringField('Name')
     ingredients = StringField('Ingredients')
     preparation = StringField('Preparation')
-    submit = SubmitField('Save')
+    savesubmit = SubmitField('Save')
+    exitsubmit = SubmitField('Exit')
