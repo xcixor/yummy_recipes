@@ -46,12 +46,16 @@ def create_category():
         if save_btn:        
             name = form.name.data
             description = form.description.data
-            cat_to_add = Category(name, description, owner)
-            mycat = myuser.add_item(cat_to_add)
-            if isinstance(mycat, list):
-                return render_template('/dashboard/dashboard.html', mycat=mycat)  
-            flash("That item is already in the list")
-            return redirect(url_for('home.create_category', form=form))
+            if name:
+                cat_to_add = Category(name, description, owner)
+                mycat = myuser.add_item(cat_to_add)
+                if isinstance(mycat, list):
+                    message = flash("Successfully added {} category".format(name))
+                    return render_template('/dashboard/dashboard.html', mycat=mycat, message=message)  
+                flash("That item is already in the list")
+                return redirect(url_for('home.create_category', form=form))
+            flash("No details provided for new category")
+            return render_template('/dashboard/dashboard.html', mycat=myuser.show_items(owner))
         elif exit_btn:
             mycat = myuser.show_items(owner)
             return render_template('/dashboard/dashboard.html', mycat=mycat)
@@ -104,18 +108,40 @@ def delete_category(name):
     return render_template('/dashboard/dashboard.html')
 
 @home.route('/create_recipe/<name>', methods=['GET','POST'])
-def create_recipe(name):
+def create_recipe(name):    
     """Collects data about a category and creates a cateegory"""
+    # form = RecipeForm()
+    # if form.validate_on_submit():
+    #     rec_name = form.name.data
+    #     ingredients = form.ingredients.data
+    #     preparation = form.preparation.data
+    #     rec_toadd = Recipe(rec_name, ingredients, preparation, name)
+    #     myrec = category.add_item(rec_toadd)
+    #     if isinstance(myrec, list):
+    #         return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
+    #     flash("Cannot add duplicate recipe")
+    # return render_template('/dashboard/addrecipe.html', form=form)
+    # owner = session['username']
     form = RecipeForm()
     if form.validate_on_submit():
-        rec_name = form.name.data
-        ingredients = form.ingredients.data
-        preparation = form.preparation.data
-        rec_toadd = Recipe(rec_name, ingredients, preparation, name)
-        myrec = category.add_item(rec_toadd)
-        if isinstance(myrec, list):
-            return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
-        flash("Cannot add duplicate recipe")
+        save_btn  = form.savesubmit.data
+        exit_btn = form.exitsubmit.data
+        if save_btn: 
+            rec_name = form.name.data
+            ingredients = form.ingredients.data
+            preparation = form.preparation.data
+            if rec_name:
+                rec_toadd = Recipe(rec_name, ingredients, preparation, name)
+                myrec = category.add_item(rec_toadd)       
+                if isinstance(myrec, list):
+                    # message = flash("Successfully added {} recipe".format(rec_name))
+                    return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)  
+                flash("That item is already in the list")
+                return redirect(url_for('home.create_recipe', form=form, name=name))
+            flash("No details provided for new Recipe")
+            return render_template('/dashboard/recipeview.html', myrec=category.show_items(name), owner=name)
+        elif exit_btn:
+            return render_template('/dashboard/recipeview.html', myrec=category.show_items(name), owner=name)
     return render_template('/dashboard/addrecipe.html', form=form)
 
 @home.route('/my_dash')
