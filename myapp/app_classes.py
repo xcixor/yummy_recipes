@@ -32,6 +32,7 @@ class Authentication(object):
         email = user.user_email
 
         if self.show_user(username):
+            print("user exists")
             return "User already registered"
         valid_password = self.validate_password(password)
         if valid_password:
@@ -65,25 +66,23 @@ class Authentication(object):
             return False
         return True
 
-    def login_user(self, user):
+    def login_user(self, username, password):
         """Compares details provided with those on record to prove user's authenticity.
         Args:
             user(object): The user object to login.
         """
-        username = user.item_name
-        email = user.user_email
-        password = user.pass_one
+        # username = user.item_name
+        # email = user.user_email
+        # password = user.pass_one
 
         registered_user = self.show_user(username)
-
-        if registered_user:
+        if isinstance(registered_user, list):
             for user in registered_user:
-                reg_email = user['email']
-                reg_password = user['password']
-                if email == reg_email and password == reg_password:
-                    return "User successfully loged in"
-                else:
-                    return "Password/email combination is incorrect"
+                if password == user['password']:
+                    return True
+        else:
+            return False
+
 class AppObject(object):
     """Super class for objects with similar behavior in the app.
     Attributes:
