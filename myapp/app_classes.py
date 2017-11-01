@@ -192,7 +192,7 @@ class User(AppObject):
         description = category.item_description
 
         if self.find_item(name, owner):
-            return False
+            return True
         category_toadd = {'name': name, 'description': description, 'owner': owner}
         self.items.append(category_toadd)
         return self.show_items(owner)
@@ -259,7 +259,7 @@ class Category(AppObject):
         ingredients = recipe.item_ingredients
 
         if self.find_item(name, owner):
-            return False
+            return self.show_items(owner)
         recipe_toadd = {'name': name, 'ingredients':ingredients, 'preparation': preparation, 'owner':owner}
         self.items.append(recipe_toadd)
         return self.show_items(owner)
