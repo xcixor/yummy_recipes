@@ -41,15 +41,20 @@ def create_category():
     owner = session['username']
     form = CategoryForm()
     if form.validate_on_submit():
-        name = form.name.data
-        description = form.description.data
-
-        cat_to_add = Category(name, description, owner)
-        mycat = myuser.add_item(cat_to_add)
-        if isinstance(mycat, list):
+        save_btn  = form.savesubmit.data
+        exit_btn = form.exitsubmit.data
+        if save_btn:        
+            name = form.name.data
+            description = form.description.data
+            cat_to_add = Category(name, description, owner)
+            mycat = myuser.add_item(cat_to_add)
+            if isinstance(mycat, list):
+                return render_template('/dashboard/dashboard.html', mycat=mycat)  
+            flash("That item is already in the list")
+            return redirect(url_for('home.create_category', form=form))
+        elif exit_btn:
+            mycat = myuser.show_items(owner)
             return render_template('/dashboard/dashboard.html', mycat=mycat)
-        flash("Item already in list")
-        return redirect(url_for('home.create_category', form=form))
     return render_template('dashboard/categoryadd.html', form=form)
 
 @home.route('/logout')
