@@ -13,7 +13,7 @@ class TestUser(unittest.TestCase):
         """Creates a user object and three categories
         and adds category_one to the user's collection
         """
-        self.user = User("ptah", "12345", "12345")
+        self.user = User("ptah", "pN12345", "pN12345", "ptah@myemail.com")
         self.category_one = Category("Soups", "Goes with other foods", "ptah")
         self.category_two = Category("Main dishes", "Eaten for satisfaction", "ptah")
         self.category_three = Category("Salads", "gravy like dishes", "alice")
