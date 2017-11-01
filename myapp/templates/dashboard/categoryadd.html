@@ -5,12 +5,23 @@
 <link rel="stylesheet" href="{{url_for('static', filename='css/categoryadd.css')}}">
 {% endblock %}
 {% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+      <div class="container alert alert-warning">
+            <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+            <span class="close" data-dismiss="alert">&times;</span>
+      {{ message }}
+      </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
       <div class="container">
         <div class="row">
-
               {{ wtf.quick_form(form) }}
-    
         </div>
-      </div>
+      </div
 {% endblock %}
 
