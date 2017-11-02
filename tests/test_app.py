@@ -7,7 +7,7 @@ from flask import current_app
 from myapp import create_app
 
 
-class BasicsTestCase(unittest.TestCase):
+class AppTest(unittest.TestCase):
     """
     Inherits from testcase to create the test cases
     """

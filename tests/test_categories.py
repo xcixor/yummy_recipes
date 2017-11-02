@@ -5,7 +5,7 @@ import unittest
 from myapp.app_classes import Category, User
 
 
-class TestUser(unittest.TestCase):
+class TestCategories(unittest.TestCase):
     """
     contains the test for the category object methods
     """

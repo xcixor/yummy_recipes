@@ -4,7 +4,7 @@ import unittest
 
 from myapp.app_classes import Recipe
 
-class TestUser(unittest.TestCase):
+class TestRecipeCreation(unittest.TestCase):
     """
     contains the test for the Recipe object methods
     """

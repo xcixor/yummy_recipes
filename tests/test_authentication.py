@@ -5,7 +5,7 @@ import unittest
 from myapp.app_classes import User, Authentication
 
 
-class TestUser(unittest.TestCase):
+class TestAuthentication(unittest.TestCase):
     """
     contains the test for a usermanager
     """
