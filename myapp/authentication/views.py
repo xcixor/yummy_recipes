@@ -30,6 +30,8 @@ def login():
     """Validates the User details and tries to Log the user in"""
     form = LoginForm()
     if form.validate_on_submit():
+        # if session['logged_in']:
+        #     return redirect(url_for('dashboard.home'))
         username = form.username.data
         password = form.password.data
         if usr_mgr.login_user(username, password):
