@@ -14,8 +14,8 @@ from myapp.dashboard.forms import CategoryForm, RecipeForm
 def home():
     """Avails the user's dashboard"""
     user = session['username']
-    mycategories = myuser.show_items(user)
-    return render_template('dashboard/dashboard.html', user_categories=mycategories)
+    mycategory = myuser.show_items(user)
+    return render_template('dashboard/dashboard.html', mycategory=mycategory)
 
 @dashboard.route('/create_category', methods=['GET','POST'])
 def create_category():
@@ -30,17 +30,17 @@ def create_category():
             description = form.description.data
             if name:
                 cat_to_add = Category(name, description, owner)
-                mycat = myuser.add_item(cat_to_add)
-                if isinstance(mycat, list):
+                mycategory = myuser.add_item(cat_to_add)
+                if isinstance(mycategory, list):
                     message = flash("Successfully added {} category".format(name))
-                    return render_template('/dashboard/dashboard.html', mycat=mycat, message=message)  
+                    return render_template('/dashboard/dashboard.html', mycategory=mycategory, message=message)  
                 flash("That item is already in the list")
                 return redirect(url_for('dashboard.create_category', form=form))
             flash("No details provided for new category")
-            return render_template('/dashboard/dashboard.html', mycat=myuser.show_items(owner))
+            return render_template('/dashboard/dashboard.html', mycategory=myuser.show_items(owner))
         elif exit_btn:
-            mycat = myuser.show_items(owner)
-            return render_template('/dashboard/dashboard.html', mycat=mycat)
+            mycategory = myuser.show_items(owner)
+            return render_template('/dashboard/dashboard.html', mycategory=mycategory)
     return render_template('dashboard/categoryadd.html', form=form)
 
 @dashboard.route('/edit_category/<name>', methods=['GET', 'POST'])
@@ -68,9 +68,9 @@ def edit_category(name):
         new_name = request.form['name']
         new_description = request.form['description']
         edit_cat = Category(new_name, new_description, owner)
-        mycat = myuser.edit_item(old_name, edit_cat)
-        if isinstance(mycat, list):
-            return render_template('/dashboard/dashboard.html', mycat=mycat)
+        mycategory = myuser.edit_item(old_name, edit_cat)
+        if isinstance(mycategory, list):
+            return render_template('/dashboard/dashboard.html', mycategory=mycategory)
     return render_template('dashboard/editcategory.html', form=form, name=old_name, description=old_description)
 
 @dashboard.route('/delete_category/<name>', methods=['GET', 'POST'])
@@ -78,25 +78,13 @@ def delete_category(name):
     """Deletes a category from the category list"""
     owner = session['username']
     if myuser.delete_item(name, owner):
-        mycat = myuser.items
-        return render_template('/dashboard/dashboard.html', mycat=mycat)
+        mycategory = myuser.items
+        return render_template('/dashboard/dashboard.html', mycategory=mycategory)
     return render_template('/dashboard/dashboard.html')
 
 @dashboard.route('/create_recipe/<name>', methods=['GET','POST'])
 def create_recipe(name):    
     """Collects data about a category and creates a cateegory"""
-    # form = RecipeForm()
-    # if form.validate_on_submit():
-    #     rec_name = form.name.data
-    #     ingredients = form.ingredients.data
-    #     preparation = form.preparation.data
-    #     rec_toadd = Recipe(rec_name, ingredients, preparation, name)
-    #     myrec = category.add_item(rec_toadd)
-    #     if isinstance(myrec, list):
-    #         return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)
-    #     flash("Cannot add duplicate recipe")
-    # return render_template('/dashboard/addrecipe.html', form=form)
-    # owner = session['username']
     form = RecipeForm()
     if form.validate_on_submit():
         save_btn  = form.savesubmit.data
@@ -109,7 +97,6 @@ def create_recipe(name):
                 rec_toadd = Recipe(rec_name, ingredients, preparation, name)
                 myrec = category.add_item(rec_toadd)       
                 if isinstance(myrec, list):
-                    # message = flash("Successfully added {} recipe".format(rec_name))
                     return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)  
                 flash("That item is already in the list")
                 return redirect(url_for('dashboard.create_recipe', form=form, name=name))
@@ -119,15 +106,9 @@ def create_recipe(name):
             return render_template('/dashboard/recipeview.html', myrec=category.show_items(name), owner=name)
     return render_template('/dashboard/addrecipe.html', form=form)
 
-@dashboard.route('/my_dash')
-def my_dash():
-    """Returns the user to the dashboard after working on recipes"""
-    user = session['username']
-    mycat = myuser.show_items(user)
-    return render_template('dashboard/dashboard.html', mycat=mycat)
-
 @dashboard.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def delete_recipe(name, owner):
+    """Deletes a recipe from the cateogory's list"""
     myrec = category.delete_item(name, owner)
     if isinstance(myrec, list):
         return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
