@@ -4,18 +4,10 @@
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/editrecipe.css')}}">
 {% endblock %}
-{% block content %}
-
-<div class="container alert alert-warning">
-<span class="close" data-dismiss="alert">&times;</span>
-{{ message }}
-</div>
-{% endfor %}
-{% endif %}
-{% endwith %}
+{% block body_content %}
 <div class="landing container">
 <div class="row">
-        {{ wtf.quick_form(form) }}
+{{ wtf.quick_form(form) }}
 </div>
 </div>
 

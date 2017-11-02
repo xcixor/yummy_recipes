@@ -4,9 +4,9 @@
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/recipeview.css')}}">
 {% endblock %}
-{% block content %}
+{% block body_content %}
 
-{% if myrec %}
+{% if myrecipe %}
 <div class="container">
     <div class="row">
         <h2>{{ owner }}</h2>
@@ -20,30 +20,32 @@
             </thead>
 
             <tbody>
-                    {% for data in myrec %}
+                    {% for data in myrecipe %}
                 <tr>
                 <td>{{ data['name'] }}</td>
                 <td>{{ data['ingredients'] }}</td>
                 <td>{{ data['preparation'] }}</td>
-                <td><a href="/edit_recipe/{{ data['name'] }}/{{owner}}">edit</a></td>
-                <td><a href="/delete_recipe/{{ data['name'] }}/{{owner}}">delete</a></td>
+                <td><a href="/dashboard/edit_recipe/{{ data['name'] }}/{{owner}}">edit</a></td>
+                <td><a href="/dashboard/delete_recipe/{{ data['name'] }}/{{owner}}">delete</a></td>
                 {% endfor %}
                 </tr>
             </tbody>
         </table>
         <div id="btns">
-                <a href="/create_recipe/{{owner}}" class="btn btn-info float-right">Add another</a>
-                <a href="{{ url_for('home.my_dash') }}" class="btn btn-info float-right">Home</a>
+                <a href="/dashboard/create_recipe/{{owner}}" class="btn btn-info float-right">Add another</a>
+                <a href="{{ url_for('dashboard.home') }}" class="btn btn-info float-right">Home</a>
         </div>
         
         {% else %}
         <div class="container">
             <div class="jumbotron">
               <h1>Hi, {{session['username']}}</h1> 
-              <p>{{owner}} category does not have any more recipes, <a href="/create_recipe/{{owner}}">add some</a> or go back to<a href="{{ url_for('home.my_dash') }}"> categories</a></p> 
+              <p>{{owner}} category does not have any more recipes, 
+                  <a href="/dashboard/create_recipe/{{owner}}">add some</a> 
+                  or go back to<a href="{{ url_for('dashboard.home') }}"> categories</a></p> 
             </div>
           </div>
         {% endif %}
     </div>
-</div>
+</div
 {% endblock %}
