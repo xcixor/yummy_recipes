@@ -5,7 +5,7 @@ from flask import render_template, redirect, url_for, session, flash
 
 from myapp.authentication import authentication
 
-from .forms import RegistrationForm, LoginForm
+from myapp.authentication.forms import RegistrationForm, LoginForm
 
 from myapp import User, usr_mgr
 
