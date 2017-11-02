@@ -22,7 +22,7 @@ def index():
             session['username'] = username
             flash('You can now login.')
             return redirect(url_for('authentication.login', form=form))
-        flash("You cant login")
+        flash("Your password must have atleast one alphabet and one digit")
     return render_template('index.html', form=form)
 
 @authentication.route('/login', methods = ['GET', 'POST'])
@@ -32,12 +32,11 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-
         if usr_mgr.login_user(username, password):
             print('logged in')
             session['username'] = username
             return render_template('dashboard/dashboard.html')
-        print('not logged in')
+        flash ('Check your credentials and try again')
     return render_template('authentication/login.html', form=form)
 
 @authentication.route('/logout', methods = ['GET', 'POST'])

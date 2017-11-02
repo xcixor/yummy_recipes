@@ -58,11 +58,9 @@ class Authentication(object):
         """Validates the password
         Args(str): The password to match
         """
-        if len(password) < 6:
+        if re.search('[0-9]', password) is None:
             return False
-        elif re.search('[0-9]', password) is None:
-            return False
-        elif re.search('[A-Z]', password) is None:
+        elif re.search('[a-z]', password) is None:
             return False
         return True
 
@@ -71,9 +69,6 @@ class Authentication(object):
         Args:
             user(object): The user object to login.
         """
-        # username = user.item_name
-        # email = user.user_email
-        # password = user.pass_one
 
         registered_user = self.show_user(username)
         if isinstance(registered_user, list):
