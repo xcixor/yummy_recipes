@@ -32,7 +32,6 @@ class Authentication(object):
         email = user.user_email
 
         if self.show_user(username):
-            print("user exists")
             return "User already registered"
         valid_password = self.validate_password(password)
         if valid_password:
@@ -44,7 +43,7 @@ class Authentication(object):
                     return "Registration successful"
                 return "Invalid email"
             return "Passwords do not match"
-        return self.validate_password(password)
+        return False
 
     def validate_email(self, email):
         """Validates the email

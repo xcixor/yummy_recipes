@@ -22,7 +22,7 @@ def index():
             session['username'] = username
             flash('You can now login.')
             return redirect(url_for('authentication.login', form=form))
-        flash("Your password must have atleast one alphabet and one digit")
+        flash("Your password must have an alphabet digit combination")
     return render_template('index.html', form=form)
 
 @authentication.route('/login', methods = ['GET', 'POST'])
