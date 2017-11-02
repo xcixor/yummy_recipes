@@ -95,30 +95,30 @@ def create_recipe(name):
             preparation = form.preparation.data
             if rec_name:
                 rec_toadd = Recipe(rec_name, ingredients, preparation, name)
-                myrec = category.add_item(rec_toadd)       
-                if isinstance(myrec, list):
-                    return render_template('/dashboard/recipeview.html', myrec=myrec, owner=name)  
+                myrecipe = category.add_item(rec_toadd)       
+                if isinstance(myrecipe, list):
+                    return render_template('/dashboard/recipeview.html', myrecipe=myrecipe, owner=name)  
                 flash("That item is already in the list")
                 return redirect(url_for('dashboard.create_recipe', form=form, name=name))
             flash("No details provided for new Recipe")
-            return render_template('/dashboard/recipeview.html', myrec=category.show_items(name), owner=name)
+            return render_template('/dashboard/recipeview.html', myrecipe=category.show_items(name), owner=name)
         elif exit_btn:
-            return render_template('/dashboard/recipeview.html', myrec=category.show_items(name), owner=name)
+            return render_template('/dashboard/recipeview.html', myrecipe=category.show_items(name), owner=name)
     return render_template('/dashboard/addrecipe.html', form=form)
 
 @dashboard.route('/delete_recipe/<name>/<owner>', methods=['GET', 'POST'])
 def delete_recipe(name, owner):
     """Deletes a recipe from the cateogory's list"""
-    myrec = category.delete_item(name, owner)
-    if isinstance(myrec, list):
-        return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+    myrecipe = category.delete_item(name, owner)
+    if isinstance(myrecipe, list):
+        return render_template('/dashboard/recipeview.html', myrecipe=myrecipe, owner=owner)
     render_template('/dashboard/recipeview.html')
 
 @dashboard.route('/view_recipes/<owner>', methods=['GET', 'POST'])
 def view_recipes(owner):
-    myrecs = category.show_items(owner)
-    if isinstance(myrecs, list):
-        return render_template('/dashboard/recipeview.html', myrec=myrecs, owner=owner)
+    myrecipes = category.show_items(owner)
+    if isinstance(myrecipes, list):
+        return render_template('/dashboard/recipeview.html', myrecipe=myrecipes, owner=owner)
     render_template('/dashboard/recipeview.html')
 
 @dashboard.route('/edit_recipe/<name>/<owner>', methods=['GET', 'POST'])
@@ -150,9 +150,9 @@ def edit_recipe(name, owner):
         new_preparation = request.form['preparation']
         new_ingredients = request.form['ingredients']
         edited_rec = Recipe(new_name, new_ingredients, new_preparation, owner)
-        myrec = category.edit_item(name, edited_rec)
-        if isinstance(myrec, list):
-            return render_template('/dashboard/recipeview.html', myrec=myrec, owner=owner)
+        myrecipe = category.edit_item(name, edited_rec)
+        if isinstance(myrecipe, list):
+            return render_template('/dashboard/recipeview.html', myrecipe=myrecipe, owner=owner)
     return render_template('dashboard/editrecipe.html', form=form, name=old_name, \
             ingredients=old_ingredients, preparation=old_preparation)
 
