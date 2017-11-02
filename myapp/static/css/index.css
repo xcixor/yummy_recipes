@@ -13,7 +13,7 @@
 
 .landing{
     padding: 50px;
-    background-color: blueviolet;
+    background-color: wheat;
     border-radius: 25px;
     border: solid blue 5px;
     margin-top: 50px;
@@ -21,7 +21,8 @@
 }
 body{
     /* background: radial-gradient(circle, black, white); */
-    background-image: url("../images/bread.jpg")
+    background-image: url("../images/bread.jpg");
+    position: relative;  
 }
 .landing-content{
     height: 100%;
