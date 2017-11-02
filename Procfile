@@ -1,1 +1,1 @@
-web: python herokuapp.py
+web: python manager.py
