@@ -8,16 +8,31 @@
 {% block body_content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-
+        <div class="col-md-2">
         </div>
-        <div class="col-md-4">
-            {{ wtf.quick_form(form) }} 
+        <div class="col-md-8">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">Login</div>
+                    {{ wtf.quick_form(form) }} 
+                    </div>
+                </div>
         </div>
-        <div class="col-md-4">
-            
+        <div class="col-md-2">
         </div>
     </div>
 </div>
+<!-- 
+<div class="container">
+    <h2>Panel Group</h2>
+    <div class="panel-group">
+        <div class="panel panel-default">
+        <div class="panel-heading">Login</div>
+        <div class="panel-body">Panel Content</div>
+        {{ wtf.quick_form(form) }} 
+        </div>
+        </div>
+    </div>
+</div> -->
 
 {% endblock %}

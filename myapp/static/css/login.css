@@ -1,6 +1,6 @@
 body{
     /* background-image: url("../images/bread.jpg") */
-        /* background: radial-gradient(circle, black, white); */
+        background: radial-gradient(circle, black, white);
 }
 
 @media (max-width: 767px) {
@@ -9,3 +9,17 @@ body{
         margin:0;
     }
  }
+ .panel{
+     padding: 20px;
+     margin: 20px;
+     align-items: center;
+ }
+ .container{
+     margin-top: 80px;
+ }
+ .panel-heading{
+     font-size: 16pt;
+     padding-bottom: 20px;
+     padding-left: 0px;
+ }
+ 
