@@ -1,4 +1,6 @@
-"""The dashboard constructor creates the module's blueprint"""
+"""This file makes python treat the main directory as containing modules
+It also defines the home blueprint
+"""
 
 from flask import Blueprint
 
