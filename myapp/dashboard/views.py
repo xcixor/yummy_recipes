@@ -8,9 +8,11 @@ from myapp import myuser, category
 
 from myapp import Category, Recipe
 
+import sys
+
 from myapp.dashboard.forms import CategoryForm, RecipeForm
 
-@dashboard.route('/dashboard')
+@dashboard.route('/', methods=['GET','POST'])
 def home():
     """Avails the user's dashboard"""
     user = session['username']
@@ -22,25 +24,34 @@ def create_category():
     """Collects data about a category and creates a category"""
     owner = session['username']
     form = CategoryForm()
+    print('am outside loop')
     if form.validate_on_submit():
-        save_btn  = form.savesubmit.data
-        exit_btn = form.exitsubmit.data
-        if save_btn:        
-            name = form.name.data
-            description = form.description.data
-            if name:
-                cat_to_add = Category(name, description, owner)
-                mycategory = myuser.add_item(cat_to_add)
-                if isinstance(mycategory, list):
-                    message = flash("Successfully added {} category".format(name))
-                    return render_template('/dashboard/dashboard.html', mycategory=mycategory, message=message)  
-                flash("That item is already in the list")
-                return redirect(url_for('dashboard.create_category', form=form))
-            flash("No details provided for new category")
-            return render_template('/dashboard/dashboard.html', mycategory=myuser.show_items(owner))
-        elif exit_btn:
-            mycategory = myuser.show_items(owner)
-            return render_template('/dashboard/dashboard.html', mycategory=mycategory)
+        print('just inside')
+    save_btn  = form.savesubmit.data
+    exit_btn = form.exitsubmit.data
+    print('posting')
+    if save_btn:        
+        name = form.name.data
+        description = form.description.data
+        print(form.name.data)
+        if name:
+            cat_to_add = Category(name, description, owner)
+            mycategory = myuser.add_item(cat_to_add)
+            print(mycategory)
+            if isinstance(mycategory, list):
+                message = flash("Successfully added {} category".format(name))
+                print(mycategory)
+                # return render_template('/dashboard/dashboard.html', mycategory=mycategory, message=message)  
+                # return redirect(url_for('dashboard.home', mycategory=mycategory, message=message))
+            flash("That item is already in the list")
+            return redirect(url_for('dashboard.create_category', form=form))
+        flash("No details provided for new category")
+        return render_template('/dashboard/dashboard.html', mycategory=myuser.show_items(owner))
+    elif exit_btn:
+        mycategory = myuser.show_items(owner)
+        return render_template('/dashboard/dashboard.html', mycategory=mycategory)
+
+    print('just left')
     return render_template('dashboard/categoryadd.html', form=form)
 
 @dashboard.route('/edit_category/<name>', methods=['GET', 'POST'])
