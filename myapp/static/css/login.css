@@ -1,6 +1,6 @@
 body{
     /* background-image: url("../images/bread.jpg") */
-        background: radial-gradient(circle, black, white);
+        /* background: radial-gradient(circle, black, white); */
 }
 
 @media (max-width: 767px) {
