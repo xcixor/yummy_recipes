@@ -47,6 +47,6 @@ class TestUser(unittest.TestCase):
     def test_user_login(self):
         """Tests whether its possible to log a registered user in"""
         self.admin.register_user(self.user_one)
-        result = self.admin.login_user(self.user_one)
-        self.assertEqual(result, "User successfully loged in")
+        result = self.admin.login_user('mike','pN75216895')
+        self.assertEqual(result, True)
         
