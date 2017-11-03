@@ -38,12 +38,12 @@ def create_category():
                     message = flash("Successfully added {} category".format(name))
                     return redirect(url_for('dashboard.home', mycategory=mycategory, message=message))
                 flash("That item is already in the list")
-                return redirect(url_for('dashboard.create_category', form=form, message=message))
+                return redirect(url_for('dashboard.create_category', form=form))
             return redirect(url_for('dashboard.home', mycategory=myuser.show_items(owner), message=message))
         elif exit_btn:
             print('elif clicked')
-            message = flash("No details provided for category")
-            return redirect(url_for('dashboard.home',message=message))
+            flash("No details provided for category")
+            return redirect(url_for('dashboard.home'))
     return render_template('dashboard/categoryadd.html', form=form)
 
 @dashboard.route('/edit_category/<name>', methods=['GET', 'POST'])
