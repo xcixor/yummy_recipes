@@ -4,7 +4,7 @@ from flask_wtf import  FlaskForm
 
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 
-from wtforms.validators import Required, Email, Length, EqualTo
+from wtforms.validators import Required, Email, Length, EqualTo, Regexp
 
 from wtforms import ValidationError
 
@@ -22,7 +22,9 @@ class RegistrationForm(FlaskForm):
     The form class created the registration form
     """
     username = StringField('Username', render_kw={"placeholder": "username"}, \
-            validators=[Required(), Length(2, 40)])
+            validators=[Required(), Length(2, 40), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
+                                          'Name must have only letters, '
+                                          'numbers, dots or underscores')])
     email = StringField('Email', render_kw={"placeholder": "Email"}, \
             validators=[Required(), Length(1, 64), Email()])
     password = PasswordField('Password', render_kw={"placeholder": "password"}, \
