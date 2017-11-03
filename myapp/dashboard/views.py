@@ -42,7 +42,7 @@ def create_category():
                 message = flash("Successfully added {} category".format(name))
                 print(mycategory)
                 # return render_template('/dashboard/dashboard.html', mycategory=mycategory, message=message)  
-                # return redirect(url_for('dashboard.home', mycategory=mycategory, message=message))
+                return redirect(url_for('dashboard.home', mycategory=mycategory, message=message))
             flash("That item is already in the list")
             return redirect(url_for('dashboard.create_category', form=form))
         flash("No details provided for new category")
