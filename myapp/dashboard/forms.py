@@ -25,7 +25,9 @@ class CategoryForm(FlaskForm):
     """
     The form class creates the category management form
     """
-    name = StringField('Name')
+    name = StringField('Name', validators=[Length(0, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
+                                          'Name must have only letters, '
+                                          'numbers, dots or underscores')])
     description = StringField('Description')
     savesubmit = SubmitField('Save')
     exitsubmit = SubmitField('Exit')
