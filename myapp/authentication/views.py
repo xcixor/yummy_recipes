@@ -30,12 +30,14 @@ def login():
     """Validates the User details and tries to Log the user in"""
     form = LoginForm()
     if form.validate_on_submit():
+        # if session['logged_in']:
+        #     return redirect(url_for('dashboard.home'))
         username = form.username.data
         password = form.password.data
         if usr_mgr.login_user(username, password):
             print('logged in')
             session['username'] = username
-            return render_template('dashboard/dashboard.html')
+            return redirect(url_for('dashboard.home'))
         flash ('Check your credentials and try again')
     return render_template('authentication/login.html', form=form)
 

@@ -109,12 +109,6 @@ class AppObject(object):
         item_in_list = [item for item in object_items if item['name'] == name]
         if item_in_list:
             return True
-    def add_item(self, item_to_add):
-        """Adds an item to the main object's collection.
-        Args:
-            item_to_add(item): The item to be added to the collection.
-        """
-        pass
 
     def delete_item(self, name, owner):
         """Removes an item from the itemlist
@@ -126,14 +120,13 @@ class AppObject(object):
                 del self.items[item]
                 return self.show_items(owner)
         return None
+
+    def validate_input(self, form_input):
+        """Checks whether form input has special characters"""
+        if not re.match("^[a-zA-Z0-9 _]*$", form_input):
+            # return "The value of that input cannot contain special characters"
+            return False
     
-    def edit_item(self, name, new_item):
-        """Updates the details of the new item
-        Args:
-            name(str): contains the name of the item to edit.
-            new_recipe(object): containes the details of the new recipe.
-        """
-        pass
 
 class User(AppObject):
     """Inherits from AppObject and Instantiates a new user.
